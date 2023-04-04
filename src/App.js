@@ -3,6 +3,7 @@ import './App.css';
 
 
 //comment Kristi-Rebeka
+// my comment
 function App() {
   return (
     <div className="App">
