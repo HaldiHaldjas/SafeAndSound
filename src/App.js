@@ -32,13 +32,5 @@ function App() {
 }
 
 
-const root = createRoot(document.getElementById('root'));
-root.render(
-    <Router>
-        <Suspense fallback={<div>Loading...</div>}>
-            <App />
-        </Suspense>
-    </Router>
-);
 export default App;
 
