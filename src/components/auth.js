@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { database } from "../config/firebase";
+import {Link} from "react-router-dom";
 
 export const Auth = () => {
 
@@ -59,7 +60,8 @@ export const Auth = () => {
             <input placeholder="Password"
                    type="password"
                    onChange={(e) => setPassword(e.target.value)}/><br />
-            <button onClick={signIn}>Sign in</button>
+            <button onClick={signIn}>Sign in</button><br /><br />
+            <Link to="/">Back</Link>
         </div>
     );
 };

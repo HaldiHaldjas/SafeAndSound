@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './App.css';
 import { Auth } from "./components/auth";
 import RegistrationForm from "./components/RegistrationForm";
@@ -15,25 +15,15 @@ function App() {
       <main>
           <br/><br/><br/>
           <Router>
-              <div>
                   <Switch>
                           <Route path="/auth" component={Auth} />
                           <Route path="/register" component={RegistrationForm} />
                           <Route path="/"  >
-                              <Link to="/auth">
-                                  <button className="button" style={{width: "100px", padding: "20px"}}>Log in</button>
-                              </Link>
-
+                              <Link to="/auth">Log in</Link>
                               <br/>
-
-                              <Link to="/register">
-                                  <button className="button" style={{width: "100px", padding: "20px"}}>Register</button>
-                              </Link>
-
-
+                              <Link to="/register">Register</Link>
                           </Route>
                       </Switch>
-              </div>
           </Router>
       </main>
     </div>
