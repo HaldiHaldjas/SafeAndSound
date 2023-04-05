@@ -5,7 +5,7 @@ import { Auth } from "./components/auth";
 import { database } from "./config/firebase";
 import {getDocs, collection, addDoc} from "firebase/firestore"
 import RegistrationForm from "./components/RegistrationForm";
-import { BrowserRouter, Route, Routes, Link, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 
 
 function App() {
@@ -19,26 +19,23 @@ function App() {
           <br/><br/><br/>
           <BrowserRouter>
               <div>
-                    <ul>
-                       <Link to="/auth">
-                           <button className="button" style={{width: "100px", padding: "20px"}}>Log in</button>
-                       </Link>
-                    </ul>
-                  <br/>
-                    <ul>
-                      <Link to="/register">
-                          <button className="button" style={{width: "100px", padding: "20px"}}>Register</button>
-                      </Link>
+                  <Switch>
+                          <Route path="/auth" component={Auth} />
+                          <Route path="/register" component={RegistrationForm} />
+                          <Route path="/">
+                              <Link to="/auth">
+                                  <button className="button" style={{width: "100px", padding: "20px"}}>Log in</button>
+                              </Link>
 
-                  </ul>
+                              <br/>
+
+                              <Link to="/register">
+                                  <button className="button" style={{width: "100px", padding: "20px"}}>Register</button>
+                              </Link>
 
 
-                 <Switch>
-                      <Route path="/auth" element={<Auth />}></Route>
-                      <Route path="/register" element={<RegistrationForm />} />
-
-                      {/* Define additional routes as needed */}
-                 </Switch>
+                          </Route>
+                      </Switch>
               </div>
           </BrowserRouter>
       </main>
