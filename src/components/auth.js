@@ -4,13 +4,13 @@ import { createUserWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { database } from "../config/firebase";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Auth = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 
     const getUserDocument = async (uid) => {
@@ -30,10 +30,16 @@ export const Auth = () => {
     const createUserDocument = async (user) => {
         try {
             const userRef = doc(database, "users", user.uid);
+            console.log('userRef:', userRef);
             const newUser = {
-                name: "", // add the user's name here
+                first_name: "",
+                last_name: "",
                 email: user.email,
-                profilePicture: "", // add the user's profile picture URL here
+                password: user.password,
+                phone: 0,
+                driver: false,
+                licence_plate: "",
+                driving_licence_pic: "",
             };
             await setDoc(userRef, newUser);
         } catch (err) {
@@ -46,8 +52,9 @@ export const Auth = () => {
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                createUserDocument(user);
-                getUserDocument(user.uid);
+                createUserDocument(user)
+                setIsLoggedIn(true)
+
             });
         } catch (err) {
             console.error(err)
@@ -62,6 +69,9 @@ export const Auth = () => {
                    onChange={(e) => setPassword(e.target.value)}/><br />
             <button onClick={signIn}>Sign in</button><br /><br />
             <Link to="/">Back</Link>
+            {isLoggedIn &&
+                <p>trallalalaaa</p>
+            }
         </div>
     );
 };
