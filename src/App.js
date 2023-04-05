@@ -1,4 +1,6 @@
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
+import { render } from 'react-dom';
+
 import {useEffect, useState} from "react";
 import './App.css';
 import { Auth } from "./components/auth";
@@ -44,8 +46,8 @@ function App() {
 }
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+
+ReactDOM.render(<App />, document.getElementById('root'));
 export default App;
 
 
