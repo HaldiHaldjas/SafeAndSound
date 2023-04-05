@@ -2,7 +2,7 @@ import React from "react";
 import  { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import {doc, setDoc, getDoc, collection} from "firebase/firestore";
 import { database } from "../config/firebase";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,8 @@ export const Auth = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [error, setError] = useState("");
 
 
     const getUserDocument = async (uid) => {
@@ -27,15 +28,16 @@ export const Auth = () => {
             console.error(err);
         }
     };
+
     const createUserDocument = async (user) => {
         try {
             const userRef = doc(database, "users", user.uid);
-            console.log('userRef:', userRef);
+            console.log(user);
             const newUser = {
                 first_name: "",
                 last_name: "",
                 email: user.email,
-                password: user.password,
+                password: "",
                 phone: 0,
                 driver: false,
                 licence_plate: "",
