@@ -3,6 +3,7 @@ import './App.css';
 import { Auth } from "./components/auth";
 import RegistrationForm from "./components/RegistrationForm";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Suspense } from "react";
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       </header>
       <main>
           <br/><br/><br/>
-          <Router>
+            <Router>
                   <Switch>
                           <Route path="/auth" component={Auth} />
                           <Route path="/register" component={RegistrationForm} />
@@ -24,7 +25,7 @@ function App() {
                               <Link to="/register">Register</Link>
                           </Route>
                       </Switch>
-          </Router>
+            </Router>
       </main>
     </div>
   );
@@ -32,6 +33,12 @@ function App() {
 
 
 const root = createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(
+    <Router>
+        <Suspense fallback={<div>Loading...</div>}>
+            <App />
+        </Suspense>
+    </Router>
+);
 export default App;
 
