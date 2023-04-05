@@ -3,6 +3,7 @@ import  { auth } from "../config/firebase";
 import {addDoc, collection, getDocs} from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import {database} from "../config/firebase";
+import {Link} from "react-router-dom";
 
 
 export default function RegistrationForm() {
@@ -14,23 +15,22 @@ export default function RegistrationForm() {
     const [newPhone, setNewPhone] = useState(0)
     const [isNewUserDriver, setIsNewUserDriver] = useState(false)
     const [newPassword, setNewPassword] = useState("");
+    const [licencePlate, setLicencePlate] = useState("")
+    const [licencePic, setLicencePic] = useState("")
+
     const usersCollectionRef = collection(database, "users")
 const handleRegistration = async () => {
 
     try {
-     /*   const userCredentials = await createUserWithEmailAndPassword(
-            auth,
-            newEmail,
-            newPassword
-        );
-*/
         await addDoc(usersCollectionRef, {
             first_name: newFirstName,
             last_name: newLastName,
             email: newEmail,
             password: newPassword,
             phone: newPhone,
-            driver: isNewUserDriver
+            driver: isNewUserDriver,
+            licence_plate: licencePlate,
+            driving_licence_pic: licencePic,
         });
 
     } catch (err) {
@@ -51,9 +51,15 @@ return (
         <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
         <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
         <label>I also want to be a driver</label><br />
+        {isNewUserDriver &&
+            <>
+                 <input placeholder="Licence plate" onChange={(e) => setLicencePlate(e.target.value)}/> <br />
+                 <input placeholder="Picture of driving licence" onChange={(e) => setLicencePic(e.target.value)}/>
+            </>
+        }
+        <br />
         <button onClick={handleRegistration}>Registrate</button><br /><br />
-        <a href="..">I already have an account</a>
-
+        <Link to="/">Back</Link>
     </div>
 
 )
