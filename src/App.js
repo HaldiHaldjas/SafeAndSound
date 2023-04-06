@@ -1,13 +1,12 @@
-import { createRoot } from 'react-dom/client';
 import './App.css';
 import { Auth } from "./components/auth";
 import RegistrationForm from "./components/RegistrationForm";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { Suspense } from "react";
+import Button from "@mui/material/Button";
 
 
 function App() {
-//LAHFLAJF
+
   return (
       <div className="App">
       <header>
