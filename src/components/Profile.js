@@ -1,19 +1,31 @@
-import React from "react";
+import React, {useState} from "react";
 import {collection, doc, getDoc} from "firebase/firestore";
 import {database} from "../config/firebase";
+import {Signin} from "./Signin";
+import { useLocation } from 'react-router-dom';
+
 
 
 
 export default function Profile() {
-const usersCollectionRef = collection(database, "users")
 
-    const getUserDocument = async (uid) => {
+    const location = useLocation();
+    const userUid = location.state.userUid;
+    const usersCollectionRef = collection(database, "users")
+    const [userEmail, setUserEmail] = useState("")
+
+    console.log("trallallala")
+
+    const getUserDocument = async (userUid) => {
         try {
-            const userRef = doc(database, "users", uid);
+            const userRef = doc(database, "users", userUid);
             const userDoc = await getDoc(userRef);
             if (userDoc.exists()) {
                 const userData = userDoc.data();
-                console.log(userData);
+                console.log(userData)
+
+
+                setUserEmail(userData.email)
             } else {
                 console.log("User document does not exist");
             }
@@ -21,8 +33,8 @@ const usersCollectionRef = collection(database, "users")
             console.error(err);
         }
     };
-
+    getUserDocument(userUid)
 return (
-    getUserDocument()
+    <p>{userEmail}</p>
 )
 }

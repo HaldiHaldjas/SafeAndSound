@@ -1,5 +1,5 @@
 import './App.css';
-import { Auth } from "./components/auth";
+import { Signin } from "./components/Signin";
 import RegistrationForm from "./components/RegistrationForm";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -17,11 +17,11 @@ function App() {
             <Router>
                   <Switch>
 
-                      {/*<Route path="/auth" component={Auth} />*/}
+
                           <Route path="/register" component={RegistrationForm} />
                           <Route path="/"  >
-                              <Auth>Sign in</Auth>
-                              {/*<Link to="/auth">Log in</Link>*/}
+                              <Signin>Sign in</Signin>
+
                               <br/>
                                 <Button variant="contained"
                                         sx={{backgroundColor: "#add8e6",
