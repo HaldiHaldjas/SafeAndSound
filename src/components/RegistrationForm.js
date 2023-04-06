@@ -1,9 +1,10 @@
 import React, { useState} from "react";
-import  { auth } from "../config/firebase";
 import {addDoc, collection, getDocs} from "firebase/firestore";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import {database} from "../config/firebase";
 import {Link} from "react-router-dom";
+import Button from "@mui/material/Button";
+import { Auth } from "./auth";
+
 
 
 export default function RegistrationForm() {
@@ -17,6 +18,7 @@ export default function RegistrationForm() {
     const [newPassword, setNewPassword] = useState("");
     const [licencePlate, setLicencePlate] = useState("")
     const [licencePic, setLicencePic] = useState("")
+    const [isRegistered, setIsRegistered] = useState(false)
 
     const usersCollectionRef = collection(database, "users")
 const handleRegistration = async () => {
@@ -32,7 +34,7 @@ const handleRegistration = async () => {
             licence_plate: licencePlate,
             driving_licence_pic: licencePic,
         });
-
+    setIsRegistered(true)
     } catch (err) {
         console.error(err)
     }
@@ -58,8 +60,18 @@ return (
             </>
         }
         <br />
-        <button onClick={handleRegistration}>Registrate</button><br /><br />
+        <Button variant="contained"
+                sx={{backgroundColor: "#add8e6",
+                    '&:hover': {
+                        backgroundColor: '#fff',
+                        color: '#3c52b2',}}} onClick={handleRegistration}>Register</Button><br /><br />
+        <br />
+        {isRegistered ?
+        <Button><Link to="/" >Go back to signing in</Link></Button>
+          :
         <Link to="/">Back</Link>
+        }
+
     </div>
 
 )
