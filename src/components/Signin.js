@@ -6,7 +6,7 @@ import {doc, setDoc, getDoc, collection} from "firebase/firestore";
 import { database } from "../config/firebase";
 import { Button } from "@mui/material";
 import RegistrationForm from "./RegistrationForm";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Switch, Routes} from "react-router-dom";
 import Profile from "./Profile";
 
 export const Signin = () => {
@@ -56,9 +56,9 @@ export const Signin = () => {
 
     return (
         <div>
-            <Router>
-                <Switch>
-                    <Route exact path="/">
+            {/*<Router>*/}
+            {/*    <Switch>*/}
+            {/*        <Route exact path="/">*/}
                         <input
                             placeholder="Email"
                             onChange={(e) => setEmail(e.target.value)}
@@ -85,23 +85,21 @@ export const Signin = () => {
                         </Button>
                         <br/>
                         <br/>
-                    </Route>
+                  {/* <Routes>
+                       <Route path="/profile" element={  <Profile userUid={userUid}/>} />
 
-                    <Route exact path="/Profile">
-                        <Profile userUid={userUid}/>
-                    </Route>
 
                     <Route>
                         <div>You need to log in first</div>
                     </Route>
-                </Switch>
+                   </Routes>
+
 
                 {isLoggedIn && (
                     <Link to={{pathname: "/Profile", state: {userUid: userUid}}}>
                         Profile
                     </Link>
-                )}
-            </Router>
+                )}*/}
         </div>
     );
 }

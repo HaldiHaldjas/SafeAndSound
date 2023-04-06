@@ -1,18 +1,31 @@
+import React from 'react';
 import './App.css';
 import { Signin } from "./components/Signin";
 import RegistrationForm from "./components/RegistrationForm";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Button from "@mui/material/Button";
+import Navigation from './components/Navigation';
+import Routing from './Routing'
 
 
 function App() {
 
   return (
       <div className="App">
-      <header>
-        <h1>Safe and sound</h1>
-      </header>
-      <main>
+          <Navigation />
+             <main>
+                 <Routes>
+                     <Route path="/" />
+                     <Route path="/signin" element={ <Signin/> } />
+                     <Route path="/register" element={ <RegistrationForm/> } />
+
+                 </Routes>
+             </main>
+      </div>
+  );
+}
+
+/*
           <br/><br/><br/>
             <Router>
                   <Switch>
@@ -38,6 +51,7 @@ function App() {
     </div>
   );
 }
+*/
 
 
 export default App;
