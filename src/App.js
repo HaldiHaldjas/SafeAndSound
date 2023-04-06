@@ -1,8 +1,9 @@
+import { createRoot } from 'react-dom/client';
 import './App.css';
 import { Auth } from "./components/auth";
 import RegistrationForm from "./components/RegistrationForm";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
+import { Suspense } from "react";
 
 
 function App() {
@@ -16,12 +17,19 @@ function App() {
           <br/><br/><br/>
             <Router>
                   <Switch>
-                          <Route path="/auth" component={Auth} />
+
+                      {/*<Route path="/auth" component={Auth} />*/}
                           <Route path="/register" component={RegistrationForm} />
                           <Route path="/"  >
-                              <Link to="/auth">Log in</Link>
+                              <Auth>Sign in</Auth>
+                              {/*<Link to="/auth">Log in</Link>*/}
                               <br/>
-                              <Link to="/register">Register</Link>
+                                <Button variant="contained"
+                                        sx={{backgroundColor: "#add8e6",
+                                            '&:hover': {
+                                        backgroundColor: '#fff',
+                                        color: '#3c52b2',}}}>
+                                            <Link to="/register">Register</Link></Button>
                           </Route>
                       </Switch>
             </Router>

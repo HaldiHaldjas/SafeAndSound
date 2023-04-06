@@ -5,6 +5,7 @@ import { useState } from "react";
 import {doc, setDoc, getDoc, collection} from "firebase/firestore";
 import { database } from "../config/firebase";
 import { Link } from "react-router-dom";
+import {Button} from "@mui/material";
 
 export const Auth = () => {
 
@@ -69,10 +70,16 @@ export const Auth = () => {
             <input placeholder="Password"
                    type="password"
                    onChange={(e) => setPassword(e.target.value)}/><br />
-            <button onClick={signIn}>Sign in</button><br /><br />
-            <Link to="/">Back</Link>
+            <Button variant="contained"
+                    sx={{backgroundColor: "#F8F8F8",
+                        color: "#383838",
+                        '&:hover': {
+                    backgroundColor: '#fff',
+                    color: '#3c52b2',
+                },}} onClick={signIn}>Sign in</Button><br /><br />
+
             {isLoggedIn &&
-                <p>trallalalaaa</p>
+                <p>User is logged in and we will show components like Profile, Requests, Offers a.s.o</p>
             }
         </div>
     );
