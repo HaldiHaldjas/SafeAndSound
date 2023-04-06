@@ -88,7 +88,7 @@ export const Signin = () => {
                     </Route>
 
                     <Route exact path="/Profile">
-                        <Profile userUid={userUid}/>
+                        <Profile email={email}/>
                     </Route>
 
                     <Route>
@@ -97,7 +97,7 @@ export const Signin = () => {
                 </Switch>
 
                 {isLoggedIn && (
-                    <Link to={{pathname: "/Profile", state: {userUid: userUid}}}>
+                    <Link to={{pathname: "/Profile", state: {email: email}}}>
                         Profile
                     </Link>
                 )}

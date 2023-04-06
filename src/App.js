@@ -21,8 +21,10 @@ function App() {
                           <Route path="/register" component={RegistrationForm} />
                           <Route path="/"  >
                               <Signin>Sign in</Signin>
+                               <br/>
 
-                              <br/>
+
+                              <Route></Route>
                                 <Button variant="contained"
                                         sx={{backgroundColor: "#add8e6",
                                             '&:hover': {
