@@ -1,28 +1,45 @@
+import React from 'react';
 import './App.css';
-import { Auth } from "./components/auth";
+import { Signin } from "./components/Signin";
 import RegistrationForm from "./components/RegistrationForm";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Button from "@mui/material/Button";
+import Navigation from './components/Navigation';
+import Routing from './Routing'
+import RequestForm from "./components/Request";
 
 
 function App() {
 
   return (
       <div className="App">
-      <header>
-        <h1>Safe and sound</h1>
-      </header>
-      <main>
+          <Navigation />
+             <main>
+                 <Routes>
+                     <Route path="/" />
+                     <Route path="request" element={<RequestForm/>}/>
+                     <Route path="/signin" element={ <Signin/> } />
+                     <Route path="/register" element={ <RegistrationForm/> } />
+
+                 </Routes>
+             </main>
+      </div>
+  );
+}
+
+/*
           <br/><br/><br/>
             <Router>
                   <Switch>
 
-                      {/*<Route path="/auth" component={Auth} />*/}
+
                           <Route path="/register" component={RegistrationForm} />
                           <Route path="/"  >
-                              <Auth>Sign in</Auth>
-                              {/*<Link to="/auth">Log in</Link>*/}
-                              <br/>
+                              <Signin>Sign in</Signin>
+                               <br/>
+
+
+                              <Route></Route>
                                 <Button variant="contained"
                                         sx={{backgroundColor: "#add8e6",
                                             '&:hover': {
@@ -37,6 +54,7 @@ function App() {
     </div>
   );
 }
+*/
 
 
 export default App;
