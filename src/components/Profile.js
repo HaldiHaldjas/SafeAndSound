@@ -26,13 +26,10 @@ export default function Profile() {
 
     console.log("trallallala")
 
-    const getUserDocument = async (email) => {
+    const getUserDocument = async (userUid) => {
         try {
-
-
-            const userRef = database.collection("users").where("email", "==", email);
+            const userRef = doc(database, "users", userUid);
             const userDoc = await getDoc(userRef);
-            console.log(userDoc)
             if (userDoc.exists()) {
                 const userData = userDoc.data();
                 console.log(userData)
