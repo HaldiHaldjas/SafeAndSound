@@ -30,6 +30,7 @@ function App() {
                                         color: '#3c52b2',}}}>
                                             <Link to="/register">Register</Link></Button>
                           </Route>
+                      <Route path="/seedata" component={SeeData} />
                       </Switch>
             </Router>
       </main>
