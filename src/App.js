@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Navigation from './components/Navigation';
 import Routing from './Routing'
+import RequestForm from "./components/Request";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
              <main>
                  <Routes>
                      <Route path="/" />
+                     <Route path="request" element={<RequestForm/>}/>
                      <Route path="/signin" element={ <Signin/> } />
                      <Route path="/register" element={ <RegistrationForm/> } />
 

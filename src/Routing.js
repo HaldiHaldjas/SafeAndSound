@@ -5,6 +5,7 @@ import {Routes, Route} from "react-router-dom";
 import {Signin} from "./components/Signin";
 import RegistrationForm from "./components/RegistrationForm";
 import Profile from "./components/Profile";
+import RequestForm from "./components/Request";
 
 
 function Routing() {
@@ -13,7 +14,7 @@ function Routing() {
             <Route path="/"/>
             <Route path="signin" element={<Signin/>}/>
             <Route path="register" element={<RegistrationForm/>}/>
-            <Route path="profile" element={<Profile userUid={userUid}/>}/>
+            <Route path="request" element={<RequestForm/>}/>
         </Routes>
     );
 }
