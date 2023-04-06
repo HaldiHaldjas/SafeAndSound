@@ -63,6 +63,7 @@ export const Auth = () => {
             console.error(err)
         }
     };
+    //khaF
     return (
         <div>
             <input placeholder="Email"
