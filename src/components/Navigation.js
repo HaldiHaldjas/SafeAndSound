@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,9 +7,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import Button from '@mui/material/Button';
 
 
 function Navigation() {
+
+    const navigate = useNavigate();
 
 
     return(
@@ -36,19 +39,18 @@ function Navigation() {
                     Safe and sound
                     </Typography>
 
-                    {/*This box is the normal menu on bigger devices*/}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
 
 
                         <MenuItem >
-                            <Link to="request"><Typography textAlign="center">Request</Typography></Link>
+                            <Button variant='outlined' color='primary' onClick={() => navigate('request')}>Request</Button>
                         </MenuItem>
                         <MenuItem >
-                            <Link to="signin"><Typography textAlign="center">Sign in</Typography></Link>
+                            <Button variant='outlined' color='primary' onClick={() => navigate('signin')}>Sign in</Button>
                         </MenuItem>
 
                         <MenuItem >
-                            <Link to="register"><Typography textAlign="center">Register</Typography></Link>
+                            <Button variant='outlined' color='primary' onClick={() => navigate('register')}>Register</Button>
                         </MenuItem>
                     </Box>
 

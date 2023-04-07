@@ -3,9 +3,6 @@ import {addDoc, collection, getDocs} from "firebase/firestore";
 import {database} from "../config/firebase";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
-import { Signin } from "././Signin";
-
-
 
 export default function RegistrationForm() {
 
@@ -22,6 +19,7 @@ export default function RegistrationForm() {
     const [isRegistered, setIsRegistered] = useState(false)
 
     const usersCollectionRef = collection(database, "users")
+
 const handleRegistration = async () => {
 
     try {
@@ -70,7 +68,7 @@ return (
                         color: '#3c52b2',}}} onClick={handleRegistration}>Register</Button><br /><br />
         <br />
         {isRegistered ?
-        <Button><Link to="/" >Go back to signing in</Link></Button>
+        <Button><Link to="/signin" >Go back to signing in</Link></Button>
           :
         <Link to="/">Back</Link>
         }
