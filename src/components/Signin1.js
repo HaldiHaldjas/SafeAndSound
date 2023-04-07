@@ -16,12 +16,18 @@ export const Signin1 = () => {
             const q = query(collection(database, "users"), where("email", "==", email));
             const querySnapshot = await getDocs(q);
             if (querySnapshot.empty) {
-                console.log("No matching documents.");
+                console.log("User not found, please register.");
             } else {
-                querySnapshot.forEach((doc) => {
-                    console.log(doc.id, " => ", doc.data());
-                });
-            }
+                const userDoc = querySnapshot.docs[0];
+                if (userDoc.data().password === password) {
+                    setIsLoggedIn(true)
+                    console.log("jeei, logged in !");
+                } else {
+                    console.log("Wrong password!")
+
+                }
+                };
+
         } catch (error) {
             console.error(error);
         }
