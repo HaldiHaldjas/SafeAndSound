@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {collection, query, where} from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { database } from "../config/firebase";
 import { Button } from "@mui/material";
 
@@ -13,24 +13,21 @@ export const Signin1 = () => {
 
     const signIn = async (email) => {
         try {
-            const userCollection = collection(database, "users");
-            const myquery =  query(userCollection.where("email", "===", email));
-
-            myquery.get().then((querySnapshot) => {
-                if (querySnapshot.empty) {
-                    console.log('No matching documents.');
-
-                }
-                console.log(querySnapshot);
-            })
-
-        } catch (err) {
-            console.error(err);
+            const q = query(collection(database, "users"), where("email", "==", email));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                console.log("No matching documents.");
+            } else {
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.id, " => ", doc.data());
+                });
+            }
+        } catch (error) {
+            console.error(error);
         }
-    }
+    };
 
-
-        return (
+    return (
             <div>
                 {/*<Router>*/}
                 {/*    <Switch>*/}
