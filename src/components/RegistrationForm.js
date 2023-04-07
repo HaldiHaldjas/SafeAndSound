@@ -14,6 +14,7 @@ export default function RegistrationForm() {
     const [newLastName, setNewLastName] = useState("")
     const [newEmail, setNewEmail] = useState("")
     const [newPhone, setNewPhone] = useState(0)
+    const [newProfilePic, setNewProfilePic] = useState("")
     const [isNewUserDriver, setIsNewUserDriver] = useState(false)
     const [newPassword, setNewPassword] = useState("");
     const [licencePlate, setLicencePlate] = useState("")
@@ -30,6 +31,7 @@ const handleRegistration = async () => {
             email: newEmail,
             password: newPassword,
             phone: newPhone,
+            profile_pic: newProfilePic,
             driver: isNewUserDriver,
             licence_plate: licencePlate,
             driving_licence_pic: licencePic,
@@ -51,6 +53,7 @@ return (
         <input placeholder="Email" onChange={(e) => setNewEmail(e.target.value)}/><br />
         <input placeholder="Password"  type="password" onChange={(e) => setNewPassword(e.target.value)}/><br />
         <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
+        <input placeholder="Profile picture" onChange={(e) => setNewProfilePic(e.target.value)}/><br />
         <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
         <label>I also want to be a driver</label><br />
         {isNewUserDriver &&
