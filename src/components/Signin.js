@@ -12,12 +12,15 @@ export const Signin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [noUser, setNoUser] = useState(false)
+    const [wrongPassword, setWrongPassword] = useState(false)
 
     const signIn = async () => {
         try {
             const q = query(collection(database, "users"), where("email", "==", email));
             const querySnapshot = await getDocs(q);
             if (querySnapshot.empty) {
+                setNoUser(true)
                 console.log("User not found, please register.");
             } else {
                 const userDoc = querySnapshot.docs[0];
@@ -26,6 +29,7 @@ export const Signin = () => {
                     console.log("jeei, logged in !");
                     navigate("/signin/profile", { state: { email: email } });
                 } else {
+                    setWrongPassword(true)
                     console.log("Wrong password!");
                 }
             }
@@ -61,6 +65,11 @@ export const Signin = () => {
                     >
                         Sign in
                     </Button>
+                    {noUser &&
+                        <p>User not found, please register!</p>}
+                    {wrongPassword &&
+                        <p>Wrong password!</p>}
+
                     <br />
                     <br />
                 </>
