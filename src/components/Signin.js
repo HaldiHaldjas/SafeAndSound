@@ -1,42 +1,35 @@
-import React, {useState} from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { useNavigate} from "react-router-dom";
-import { database } from "../config/firebase";
+import React, {useRef} from "react";
+import  { auth } from "../config/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { useState } from "react";
 import { Button } from "@mui/material";
-import Profile from "./Profile"
-
+import Profile from "./Profile";
+import { useNavigate} from "react-router-dom";
 
 export const Signin = () => {
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [noUser, setNoUser] = useState(false)
-    const [wrongPassword, setWrongPassword] = useState(false)
 
     const signIn = async () => {
         try {
-            const q = query(collection(database, "users"), where("email", "==", email));
-            const querySnapshot = await getDocs(q);
-            if (querySnapshot.empty) {
-                setNoUser(true)
-                console.log("User not found, please register.");
-            } else {
-                const userDoc = querySnapshot.docs[0];
-                if (userDoc.data().password === password) {
-                    setIsLoggedIn(true);
-                    console.log("jeei, logged in !");
+            await signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log("User signed in:", user)
+                    setIsLoggedIn(true)
                     navigate("/signin/profile", { state: { email: email } });
-                } else {
-                    setWrongPassword(true)
-                    console.log("Wrong password!");
-                }
-            }
+
+                });
         } catch (error) {
-            console.error(error);
+            const errorCode = error.code;
+            setError(true);
+            console.log("Error signing in:", errorCode)
         }
     };
+
 
     return (
         <div>
@@ -61,20 +54,15 @@ export const Signin = () => {
                                 color: "#3c52b2",
                             },
                         }}
-                        onClick={() => signIn(email)}
+                        onClick={signIn}
                     >
                         Sign in
                     </Button>
-                    {noUser &&
-                        <p>User not found, please register!</p>}
-                    {wrongPassword &&
-                        <p>Wrong password!</p>}
-
                     <br />
                     <br />
                 </>
             )}
         </div>
     );
-
 }
+

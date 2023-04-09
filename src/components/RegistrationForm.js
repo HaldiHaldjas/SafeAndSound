@@ -1,8 +1,9 @@
 import React, { useState} from "react";
 import {addDoc, collection, getDocs} from "firebase/firestore";
-import {database} from "../config/firebase";
+import {auth, database} from "../config/firebase";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 
 export default function RegistrationForm() {
 
@@ -23,17 +24,20 @@ export default function RegistrationForm() {
 const handleRegistration = async () => {
 
     try {
-        await addDoc(usersCollectionRef, {
-            first_name: newFirstName,
-            last_name: newLastName,
-            email: newEmail,
-            password: newPassword,
-            phone: newPhone,
-            profile_pic: newProfilePic,
-            driver: isNewUserDriver,
-            licence_plate: licencePlate,
-            driving_licence_pic: licencePic,
-        });
+
+        await createUserWithEmailAndPassword(auth, newEmail, newPassword)
+            .then((userCredential) => {
+
+                addDoc(usersCollectionRef, {
+                    first_name: newFirstName,
+                    last_name: newLastName,
+                    email: newEmail,
+                    phone: newPhone,
+                    profile_pic: newProfilePic,
+                    driver: isNewUserDriver,
+                    licence_plate: licencePlate,
+                    driving_licence_pic: licencePic,
+        })});
     setIsRegistered(true)
     } catch (err) {
         console.error(err)
