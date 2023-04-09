@@ -10,7 +10,7 @@ export default function Profile() {
 
     const location = useLocation();
     const email = location?.state?.email;
-    console.log(email)
+
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [phone, setPhone] = useState(0)
