@@ -17,7 +17,9 @@ function Navigation() {
         <AppBar position="static" sx={{backgroundColor: 'darkgrey'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters >
-                    <DirectionsCarIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}></DirectionsCarIcon>
+                    <DirectionsCarIcon
+                        sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+                    </DirectionsCarIcon>
                      <Typography
                         variant="h6"
                         noWrap
@@ -37,17 +39,22 @@ function Navigation() {
                     Safe and sound
                     </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
+                    <Box sx={{
+                        display: "flex",
+                        justifyContent: { xs: "flex-start", md: "flex-end"},
+                        alignItems: "center",
+                    }}>
 
-                        <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('request')}>Request</Button>
-                        </MenuItem>
+
                         <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('signin')}>Sign in</Button>
                         </MenuItem>
 
                         <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('register')}>Register</Button>
+                        </MenuItem>
+                        <MenuItem >
+                            <Button variant='outlined' color='primary' onClick={() => navigate('request')}>Request</Button>
                         </MenuItem>
                         <MenuItem>
                             <Button variant='outlined' color='primary' onClick={() => navigate('seedata')}>Offered rides</Button>
