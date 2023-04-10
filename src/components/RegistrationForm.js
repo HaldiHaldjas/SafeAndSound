@@ -79,8 +79,8 @@ return (
         <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
         <label for="profilePic">Profile picture:</label>
         <input placeholder="Profile picture" type="file" id="profilePic"
-               onChange={(e) => setImageUpload(e.target.files[0])} />
-        <button onClick={upLoadImage}>Upload picture</button> <br />
+               onChange={(e) => setImageUpload(e.target.files[0])} /> <br />
+        <button onClick={upLoadImage}>Upload picture</button> <br /> <br />
 
         <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
         <label>I also want to be a driver</label><br />
