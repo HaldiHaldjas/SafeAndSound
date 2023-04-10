@@ -8,7 +8,6 @@ import RequestForm from "./components/RequestForm";
 import SeeData from "./components/SeeData";
 
 function App() {
-
     return (
         <div className="App">
             <Navigation />
@@ -28,5 +27,4 @@ function App() {
 
 
 export default App;
-
 

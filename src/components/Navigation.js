@@ -52,6 +52,9 @@ function Navigation() {
                         <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('register')}>Register</Button>
                         </MenuItem>
+                        <MenuItem>
+                            <Link to="/seedata"><Typography textAlign="center">Offered rides</Typography></Link>
+                        </MenuItem>
                     </Box>
 
 
