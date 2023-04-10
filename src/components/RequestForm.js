@@ -3,7 +3,8 @@ import {addDoc, collection, getDocs} from "firebase/firestore";
 import {database} from "../config/firebase";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
-import { Auth } from "./auth";
+
+
 
 
 
