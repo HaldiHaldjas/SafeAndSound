@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import {addDoc, collection} from "firebase/firestore";
+import {addDoc, collection
+} from "firebase/firestore";
 import {auth, database, storage, storageRef} from "../config/firebase";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
