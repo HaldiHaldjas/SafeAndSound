@@ -5,7 +5,7 @@ import RegistrationForm from "./components/RegistrationForm";
 import { Routes, Route } from "react-router-dom";
 import Navigation from './components/Navigation';
 import RequestForm from "./components/RequestForm";
-
+import SeeData from "./components/SeeData";
 
 function App() {
 
