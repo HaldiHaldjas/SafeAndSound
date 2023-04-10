@@ -32,8 +32,11 @@ export default function RegistrationForm() {
         if (imageUpload == null)
             return;
         const imageRef = ref(storage, `images/${imageUpload.name + v4() }`);
-        uploadBytes(imageRef, imageUpload).then(() => {
-            alert("Image uploaded")
+        uploadBytes(imageRef, imageUpload).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                setImageList((prev) => [...prev, url]);
+            })
+
             }
         )
     }
@@ -88,7 +91,7 @@ return (
         <button onClick={upLoadImage}>Upload picture</button> <br />
 
         {imageList.map((url) => {
-            return <img src={url} sx={{width: "10px"}}alt="" />
+            return <img src={url} alt="" />
         })}
         <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
         <label>I also want to be a driver</label><br />
