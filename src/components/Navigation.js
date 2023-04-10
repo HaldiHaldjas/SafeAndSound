@@ -50,6 +50,9 @@ function Navigation() {
                         <MenuItem >
                             <Link to="register"><Typography textAlign="center">Register</Typography></Link>
                         </MenuItem>
+                        <MenuItem>
+                            <Link to="/seedata"><Typography textAlign="center">Offered rides</Typography></Link>
+                        </MenuItem>
                     </Box>
 
 
