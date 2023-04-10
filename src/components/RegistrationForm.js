@@ -1,9 +1,10 @@
 import React, { useState} from "react";
 import {addDoc, collection, getDocs} from "firebase/firestore";
-import {auth, database} from "../config/firebase";
+import {auth, database, storage, storageRef} from "../config/firebase";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
 import {createUserWithEmailAndPassword} from "firebase/auth";
+
 
 export default function RegistrationForm() {
 
@@ -20,6 +21,9 @@ export default function RegistrationForm() {
     const [isRegistered, setIsRegistered] = useState(false)
 
     const usersCollectionRef = collection(database, "users")
+
+    const profPics = ref(storage, "profPics");
+    const spaceRef = ref(storage, "profPics/space.jpg")
 
 const handleRegistration = async () => {
 
@@ -55,7 +59,8 @@ return (
         <input placeholder="Email" onChange={(e) => setNewEmail(e.target.value)}/><br />
         <input placeholder="Password"  type="password" onChange={(e) => setNewPassword(e.target.value)}/><br />
         <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
-        <input placeholder="Profile picture" onChange={(e) => setNewProfilePic(e.target.value)}/><br />
+        <label for="profilePic">Profile picture:</label>
+        <input placeholder="Profile picture" type="file" id="profilePic" onChange={(e) => setNewProfilePic(e.target.value)}/><br />
         <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
         <label>I also want to be a driver</label><br />
         {isNewUserDriver &&
