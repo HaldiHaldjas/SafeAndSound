@@ -1,9 +1,11 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import {addDoc, collection, getDocs} from "firebase/firestore";
 import {auth, database, storage, storageRef} from "../config/firebase";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
 import {createUserWithEmailAndPassword} from "firebase/auth";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 
 
 export default function RegistrationForm() {
@@ -19,13 +21,35 @@ export default function RegistrationForm() {
     const [licencePlate, setLicencePlate] = useState("")
     const [licencePic, setLicencePic] = useState("")
     const [isRegistered, setIsRegistered] = useState(false)
+    const [imageUpload, setImageUpload] = useState(null)
+    const [imageList, setImageList] = useState([])
+
+    const imageListRef = ref(storage, "images/")
 
     const usersCollectionRef = collection(database, "users")
 
-    const profPics = ref(storage, "profPics");
-    const spaceRef = ref(storage, "profPics/space.jpg")
+    const upLoadImage = () => {
+        if (imageUpload == null)
+            return;
+        const imageRef = ref(storage, `images/${imageUpload.name + v4() }`);
+        uploadBytes(imageRef, imageUpload).then(() => {
+            alert("Image uploaded")
+            }
+        )
+    }
 
-const handleRegistration = async () => {
+    useEffect(() => {
+        listAll(imageListRef).then((response) => {
+            response.items.forEach((item) => {
+                getDownloadURL(item).then((url) => {
+                    setImageList((prev) => [...prev, url])
+                })
+            })
+        })
+    }, [])
+
+
+    const handleRegistration = async () => {
 
     try {
 
@@ -49,7 +73,6 @@ const handleRegistration = async () => {
 }
 
 
-
 return (
 
     <div>
@@ -60,7 +83,13 @@ return (
         <input placeholder="Password"  type="password" onChange={(e) => setNewPassword(e.target.value)}/><br />
         <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
         <label for="profilePic">Profile picture:</label>
-        <input placeholder="Profile picture" type="file" id="profilePic" onChange={(e) => setNewProfilePic(e.target.value)}/><br />
+        <input placeholder="Profile picture" type="file" id="profilePic"
+               onChange={(e) => setImageUpload(e.target.files[0])} />
+        <button onClick={upLoadImage}>Upload picture</button> <br />
+
+        {imageList.map((url) => {
+            return <img src={url} sx={{width: "10px"}}alt="" />
+        })}
         <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
         <label>I also want to be a driver</label><br />
         {isNewUserDriver &&
