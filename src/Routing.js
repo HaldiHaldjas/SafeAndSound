@@ -11,7 +11,7 @@ function Routing() {
     return (
         <Routes>
             <Route path="/"/>
-            <Route path="/signin/*"element={<Signin/>}/>
+            <Route path="/signin/*" element={<Signin/>}/>
             <Route path="register" element={<RegistrationForm/>}/>
             <Route path="/signin/profile" element={<Profile />}/>
             <Route path="request" element={<RequestForm/>}/>
