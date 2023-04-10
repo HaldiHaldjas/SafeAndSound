@@ -19,7 +19,7 @@ function Navigation() {
         <AppBar position="static" sx={{backgroundColor: 'darkgrey'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters >
-                    <DirectionsCarIcon></DirectionsCarIcon>
+                    <DirectionsCarIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}></DirectionsCarIcon>
                      <Typography
                         variant="h6"
                         noWrap
@@ -40,7 +40,6 @@ function Navigation() {
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
-
 
                         <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('request')}>Request</Button>
