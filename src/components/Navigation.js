@@ -52,6 +52,9 @@ function Navigation() {
                         <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('register')}>Register</Button>
                         </MenuItem>
+                        <MenuItem >
+                            <Button variant='outlined' color='primary' onClick={() => navigate('seeRequests')}>See requests</Button>
+                        </MenuItem>
                     </Box>
 
 

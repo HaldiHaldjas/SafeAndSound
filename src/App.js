@@ -5,6 +5,7 @@ import RegistrationForm from "./components/RegistrationForm";
 import { Routes, Route } from "react-router-dom";
 import Navigation from './components/Navigation';
 import RequestForm from "./components/RequestForm";
+import SeeRequestsForm from "./components/SeeRequests";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
                     <Route path="request" element={<RequestForm/>}/>
                     <Route path="/signin/*" element={ <Signin/> } />
                     <Route path="/register" element={ <RegistrationForm/> } />
-
+                    <Route path="seeRequests" element={<SeeRequestsForm/>}/>
                 </Routes>
             </main>
         </div>

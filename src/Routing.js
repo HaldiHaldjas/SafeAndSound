@@ -4,6 +4,7 @@ import {Signin} from "./components/Signin";
 import RegistrationForm from "./components/RegistrationForm";
 import Profile from "./components/Profile";
 import RequestForm from "./components/Request";
+import SeeRequestsForm from "./components/SeeRequests";
 
 
 function Routing() {
@@ -14,6 +15,7 @@ function Routing() {
             <Route path="register" element={<RegistrationForm/>}/>
             <Route path="/signin/profile" element={<Profile />}/>
             <Route path="request" element={<RequestForm/>}/>
+            <Route path="seeRequests" element={<SeeRequestsForm/>}/>
         </Routes>
     );
 }
