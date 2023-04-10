@@ -1,11 +1,9 @@
 import React, { useState} from "react";
 import {addDoc, collection, getDocs} from "firebase/firestore";
-import {database} from "../config/firebase";
+import {auth, database} from "../config/firebase";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
-import { Signin } from "././Signin";
-
-
+import {createUserWithEmailAndPassword} from "firebase/auth";
 
 export default function RegistrationForm() {
 
@@ -14,6 +12,7 @@ export default function RegistrationForm() {
     const [newLastName, setNewLastName] = useState("")
     const [newEmail, setNewEmail] = useState("")
     const [newPhone, setNewPhone] = useState(0)
+    const [newProfilePic, setNewProfilePic] = useState("")
     const [isNewUserDriver, setIsNewUserDriver] = useState(false)
     const [newPassword, setNewPassword] = useState("");
     const [licencePlate, setLicencePlate] = useState("")
@@ -21,19 +20,24 @@ export default function RegistrationForm() {
     const [isRegistered, setIsRegistered] = useState(false)
 
     const usersCollectionRef = collection(database, "users")
+
 const handleRegistration = async () => {
 
     try {
-        await addDoc(usersCollectionRef, {
-            first_name: newFirstName,
-            last_name: newLastName,
-            email: newEmail,
-            password: newPassword,
-            phone: newPhone,
-            driver: isNewUserDriver,
-            licence_plate: licencePlate,
-            driving_licence_pic: licencePic,
-        });
+
+        await createUserWithEmailAndPassword(auth, newEmail, newPassword)
+            .then((userCredential) => {
+
+                addDoc(usersCollectionRef, {
+                    first_name: newFirstName,
+                    last_name: newLastName,
+                    email: newEmail,
+                    phone: newPhone,
+                    profile_pic: newProfilePic,
+                    driver: isNewUserDriver,
+                    licence_plate: licencePlate,
+                    driving_licence_pic: licencePic,
+        })});
     setIsRegistered(true)
     } catch (err) {
         console.error(err)
@@ -51,6 +55,7 @@ return (
         <input placeholder="Email" onChange={(e) => setNewEmail(e.target.value)}/><br />
         <input placeholder="Password"  type="password" onChange={(e) => setNewPassword(e.target.value)}/><br />
         <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
+        <input placeholder="Profile picture" onChange={(e) => setNewProfilePic(e.target.value)}/><br />
         <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
         <label>I also want to be a driver</label><br />
         {isNewUserDriver &&
@@ -67,7 +72,7 @@ return (
                         color: '#3c52b2',}}} onClick={handleRegistration}>Register</Button><br /><br />
         <br />
         {isRegistered ?
-        <Button><Link to="/" >Go back to signing in</Link></Button>
+        <Button><Link to="/signin" >Go back to signing in</Link></Button>
           :
         <Link to="/">Back</Link>
         }
