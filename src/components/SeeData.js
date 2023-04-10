@@ -3,18 +3,32 @@ import '../App.css';
 import { database } from "../config/firebase";
 import { createRoot } from 'react-dom/client';
 
+import {collection, getDocs, addDoc} from "firebase/firestore";
+
 
 function App() {
     const [offers, setOffers] = useState([]);
-    const fetchOffers = async () => {
-        const response = database.collection('Offers');
-        const data = await response.get();
-        const fetchedOffers = [];
-        data.docs.forEach(item => {
-            fetchedOffers.push(item.data());
-        });
-        setOffers(fetchedOffers);
+    async function fetchOffers() {
+        // const response = database.collection('Offers');
+        // const data = await response.get();
+        // const fetchedOffers = [];
+        // data.docs.forEach(item => {
+        //     fetchedOffers.push(item.data());
+        // });
+
+
+        await getDocs(collection(database, "offers"))
+            .then((querySnapshot) => {
+                const newData = querySnapshot.docs
+                    .map((doc) => ({...doc.data(), id: doc.id}));
+                setOffers(newData);
+                console.log(offers, newData);
+            })
+
+        // console.log(fetchedOffers)
+        // setOffers(fetchedOffers);
     };
+
     useEffect(() => {
         fetchOffers();
     }, []);
