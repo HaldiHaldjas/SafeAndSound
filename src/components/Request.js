@@ -3,7 +3,7 @@ import {addDoc, collection, getDocs} from "firebase/firestore";
 import {database} from "../config/firebase";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
-
+import { Auth } from "./auth";
 
 
 
@@ -53,31 +53,31 @@ export default function RequestForm() {
 
             <Button variant="contained"
                     sx={{backgroundColor: "#add8e6",
-                        '&:hover': {
-                            backgroundColor: '#fff',
-                            color: '#3c52b2',}}}
+                '&:hover': {
+                    backgroundColor: '#fff',
+                    color: '#3c52b2',}}}
                     onClick={(e) => setSubmitRequest(e.target.value)}
             > Submit </Button>
             <Button variant="contained"
                     sx={{backgroundColor: "#add8e6",
-                        '&:hover': {
-                            backgroundColor: '#fff',
-                            color: '#3c52b2',}}}
-                // onClick={(e) => Open Profile page (e.target.value)}
+                '&:hover': {
+                    backgroundColor: '#fff',
+                    color: '#3c52b2',}}}
+                    // onClick={(e) => Open Profile page (e.target.value)}
             > My profile </Button>
             <Button variant="contained"
                     sx={{backgroundColor: "#add8e6",
                         '&:hover': {
                             backgroundColor: '#fff',
                             color: '#3c52b2',}}}
-                // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
+                    // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
             > Previous drives </Button>
             <label>Home button?</label><br />
             <br />
-            // what does this "/" mean?
-            <Button><Link to="/" >Go back to signing in</Link></Button>
+             // what does this "/" mean?
+                <Button><Link to="/" >Go back to signing in</Link></Button>
 
-            <Button><Link to="/">Back</Link></Button>
+                <Button><Link to="/">Back</Link></Button>
             }
         </div>
     )
