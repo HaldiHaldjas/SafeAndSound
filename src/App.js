@@ -7,8 +7,6 @@ import Navigation from './components/Navigation';
 import RequestForm from "./components/Request";
 import SeeData from "./components/SeeData";
 
-
-
 function App() {
 
   return (
