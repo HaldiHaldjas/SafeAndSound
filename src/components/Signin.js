@@ -25,7 +25,6 @@ export const Signin = () => {
                 });
         } catch (error) {
             const errorCode = error.code;
-            setError(true);
             console.log("Error signing in:", errorCode)
         }
     };
