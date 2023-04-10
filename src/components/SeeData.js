@@ -1,51 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import '../App.css';
 import { database } from "../config/firebase";
-import { createRoot } from 'react-dom/client';
-
-import {collection, getDocs, addDoc} from "firebase/firestore";
-
+import { collection, getDocs } from "firebase/firestore";
+import { Table, TableBody, TableCell, TableHead, TableRow, Checkbox, Button } from '@material-ui/core';
 
 function App() {
     const [offers, setOffers] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     async function fetchOffers() {
-        // const response = database.collection('Offers');
-        // const data = await response.get();
-        // const fetchedOffers = [];
-        // data.docs.forEach(item => {
-        //     fetchedOffers.push(item.data());
-        // });
-
-
-        await getDocs(collection(database, "offers"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({...doc.data(), id: doc.id}));
-                setOffers(newData);
-                console.log(offers, newData);
-            })
-
-        // console.log(fetchedOffers)
-        // setOffers(fetchedOffers);
-    };
+        const querySnapshot = await getDocs(collection(database, "offers"));
+        const newData = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
+        console.log(newData);
+        setOffers(newData);
+        setLoading(false); // set loading state to false when data is fetched
+    }
 
     useEffect(() => {
         fetchOffers();
     }, []);
 
-    console.log(offers);
-
     return (
         <div className="App">
-            {offers &&
-                offers.map(offer => {
-                    return (
-                        <div className="offer-container" key={offer.id}>
-                            <h4>{offer.title}</h4>
-                            <p>{offer.body}</p>
-                        </div>
-                    );
-                })}
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>From</TableCell>
+                                <TableCell>To</TableCell>
+                                <TableCell>Timeframe 1</TableCell>
+                                <TableCell>Timeframe 2</TableCell>
+                                <TableCell>Free Spots</TableCell>
+                                <TableCell>Price</TableCell>
+                                <TableCell>Verification Code</TableCell>
+                                <TableCell>My choice</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {offers.map((offer) => (
+                                <TableRow key={offer.id}>
+                                    <TableCell>{offer.from && offer.from._lat}, {offer.from && offer.from._long}</TableCell>
+                                    <TableCell>{offer.to && offer.to._lat}, {offer.to && offer.to._long}</TableCell>
+                                    <TableCell>{offer.timeframe_1}</TableCell>
+                                    <TableCell>{offer.timeframe_2}</TableCell>
+                                    <TableCell>{offer.free_spots}</TableCell>
+                                    <TableCell>{offer.price}</TableCell>
+                                    <TableCell>{offer.verif_code}</TableCell>
+                                    <TableCell><Checkbox /></TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+
+                    <Button
+                        variant="contained"
+                        sx={{
+                            backgroundColor: "#F8F8F8",
+                            color: "#383838",
+                            "&:hover": {
+                                backgroundColor: "#fff",
+                                color: "#3c52b2",
+                            },
+                        }}>Confirm my choice</Button>
+                </>
+            )}
         </div>
     );
 }
