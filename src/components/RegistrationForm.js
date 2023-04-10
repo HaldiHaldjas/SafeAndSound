@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {addDoc, collection, getDocs} from "firebase/firestore";
+import React, { useState } from "react";
+import {addDoc, collection} from "firebase/firestore";
 import {auth, database, storage, storageRef} from "../config/firebase";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -22,9 +22,9 @@ export default function RegistrationForm() {
     const [licencePic, setLicencePic] = useState("")
     const [isRegistered, setIsRegistered] = useState(false)
     const [imageUpload, setImageUpload] = useState(null)
-    const [imageList, setImageList] = useState([])
+  //  const [imageList, setImageList] = useState([])
 
-    const imageListRef = ref(storage, "images/")
+ //   const imageListRef = ref(storage, "images/")
 
     const usersCollectionRef = collection(database, "users")
 
@@ -34,9 +34,8 @@ export default function RegistrationForm() {
         const imageRef = ref(storage, `images/${imageUpload.name + v4() }`);
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
-                console.log(url);
                 setNewProfilePic(url);
-                setImageList((prev) => [...prev, url]);
+              //  setImageList((prev) => [...prev, url]);
             })
 
             }
