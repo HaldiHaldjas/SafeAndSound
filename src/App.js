@@ -3,7 +3,7 @@ import { Auth } from "./components/auth";
 import RegistrationForm from "./components/RegistrationForm";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Button from "@mui/material/Button";
-
+import RequestForm from "./components/RequestForm"
 
 //haldi comment
 
@@ -31,6 +31,22 @@ function App() {
                                         backgroundColor: '#fff',
                                         color: '#3c52b2',}}}>
                                             <Link to="/register">Register</Link></Button>
+                              <Button variant="contained"
+                                      sx={{backgroundColor: "#add8e6",
+                                          '&:hover': {
+                                              backgroundColor: '#fff',
+                                              color: '#3c52b2',}}}>
+                                  <Link to="/request">Add a request</Link>
+                              </Button>
+                          </Route>
+                          <Route path="/request" component={RequestForm}>
+                              {/*<Button variant="contained"
+                                         sx={{backgroundColor: "#add8e6",
+                                          '&:hover': {
+                                        backgroundColor: '#fff',
+                                        color: '#3c52b2',}}}>
+                                            <Link to="/request">Add a request</Link>
+                                </Button>*/}
                           </Route>
                       </Switch>
             </Router>
