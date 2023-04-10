@@ -48,11 +48,11 @@ export default function Profile() {
 return (
     <div>
             <h1>Welcome, {firstName}!</h1>
+        <img src={profilePic} />
         <p>First name: {firstName}</p>
         <p>Last name: {lastName}</p>
         <p>E-mail: {email}</p>
         <p>Phone: {phone}</p>
-        <p>Profile picture: {profilePic}</p>
         {isUserDriver &&
             <>
         <p>Licence plate: {licencePlate}</p>

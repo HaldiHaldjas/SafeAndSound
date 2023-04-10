@@ -4,8 +4,8 @@ import { Signin } from "./components/Signin";
 import RegistrationForm from "./components/RegistrationForm";
 import { Routes, Route } from "react-router-dom";
 import Navigation from './components/Navigation';
-import RequestForm from "./components/Request";
-import SeeData from "./components/SeeData";
+import RequestForm from "./components/RequestForm";
+
 
 function App() {
 

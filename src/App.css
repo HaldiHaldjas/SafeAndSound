@@ -37,6 +37,10 @@
   }
 }
 
+img {
+  width: 150px;
+  margin: 10px;
+}
 body {
   background-image: url('/src/images/img1.jpg');
   background-repeat: no-repeat;
