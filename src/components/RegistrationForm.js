@@ -34,22 +34,14 @@ export default function RegistrationForm() {
         const imageRef = ref(storage, `images/${imageUpload.name + v4() }`);
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
+                console.log(url);
+                setNewProfilePic(url);
                 setImageList((prev) => [...prev, url]);
             })
 
             }
         )
     }
-
-    useEffect(() => {
-        listAll(imageListRef).then((response) => {
-            response.items.forEach((item) => {
-                getDownloadURL(item).then((url) => {
-                    setImageList((prev) => [...prev, url])
-                })
-            })
-        })
-    }, [])
 
 
     const handleRegistration = async () => {
@@ -90,9 +82,6 @@ return (
                onChange={(e) => setImageUpload(e.target.files[0])} />
         <button onClick={upLoadImage}>Upload picture</button> <br />
 
-        {imageList.map((url) => {
-            return <img src={url} alt="" />
-        })}
         <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
         <label>I also want to be a driver</label><br />
         {isNewUserDriver &&
