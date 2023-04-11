@@ -5,18 +5,19 @@ import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";
+import Profile from "./Profile";
 
 
 
 
-function RequestForm() {
+export default function RequestForm() {
 
     const [date, setDate] = useState("")
     const [placeToStart, setPlaceToStart] = useState("")
     const [placeToGo, setPlaceToGo] = useState("")
     const [timeToGo, setTimeToGo] = useState("")
     const [timeToArrive, setTimeToArrive] = useState(0)
-    const [freeSpots, setFreeSpots] = useState(false)
+    const [neededSpots, setNeededSpots] = useState(false)
     // const [price, setPrice] = useState("");
     const [submitRequest, setSubmitRequest] = useState("")
     const [seeDriveHistory, setSeeDriveHistory] = useState(false)
@@ -26,16 +27,32 @@ function RequestForm() {
 
     const requestsCollectionRef = collection(database, "requests") // see users requests collection from database
 
+    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    function generateString(length) {
+        let result = ' ';
+        const charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        return result;
+    }
+
     const handleRequest = async () => {
+        // random id-generator
+        let randomId = generateString(5)
+
 
         try {
             await addDoc(requestsCollectionRef, {
-                day: date,
+                date: date,
                 from: placeToStart,
                 to: placeToGo,
                 timeframe_1: timeToGo,
                 timeframe_2: timeToArrive,
-                needed_spots: freeSpots,
+                needed_spots: neededSpots,
+                randomId: "randomId"
 
             });
             setSubmitRequest(true)
@@ -100,7 +117,7 @@ function RequestForm() {
             </LoadScript>
             <input type="time" placeholder="Departure time" onChange={(e) => setTimeToGo(e.target.value)}/><br />
             <input type="time" placeholder="ETA - estimated arrival time" onChange={(e) => setTimeToArrive(e.target.value)}/><br />
-            <input type="number" placeholder="Free spots" type="number"onChange={(e) => setFreeSpots(Number(e.target.value))}/><br />
+            <input type="number" placeholder="Needed spots" type="number"onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
             {/*<input placeholder="Price" type="number"onChange={(e) => setPrice(Number(e.target.value))}/><br />*/}
 
             <Button variant="contained"
@@ -115,7 +132,7 @@ function RequestForm() {
                 '&:hover': {
                     backgroundColor: '#fff',
                     color: '#3c52b2',}}}
-                    // onClick={(e) => Open Profile page (e.target.value)}
+                    onClick={Profile}
             > My profile </Button>
             <Button variant="contained"
                     sx={{backgroundColor: "#add8e6",
@@ -126,12 +143,10 @@ function RequestForm() {
             > Previous drives </Button>
             <label>Home button?</label><br />
             <br />
-                <Button><Link to="/" >Go back to signing in</Link></Button>
+                 <Button><Link to="/" >Go back to signing in</Link></Button>
 
                 <Button><Link to="/">Back</Link></Button>
             }
         </div>
     )
 }
-
-export default RequestForm;

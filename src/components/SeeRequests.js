@@ -1,127 +1,147 @@
-
-/!*See requests/offers
-List of request/offers
-aligned with a drivers profile with checkbox and submit button under
-checkbox for using a request/offer -
-Submit button
-New search button
-Home icon*!/
-
-import React, {useState} from "react";
-import {collection, doc, getDoc} from "firebase/firestore";
+import React, {useState, useEffect} from "react";
+import {doc, getDocs, collection} from "firebase/firestore";
 import {database} from "../config/firebase";
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import Profile from "./Profile";
+
+// import { DataGrid } from '@mui/x-data-grid';
 // import {Signin} from "./Signin";
 // import { useLocation } from 'react-router-dom'; // where do we use user location?
-// import { Auth } from "./auth";
 // import { Link } from "react-router-dom";
 // Next button is for seeing driver profile
-// import Button from "@mui/material/Button";
+import Button from "@mui/material/Button";
+import Profile from "./Profile";
 // import checkbox from mui;
 
-export default function SeeRequestsForm() {
 
-    // const location = useLocation();
-    // const userUid = location.state.userUid;
-    // const usersCollectionRef = collection(database, "users")
-    // const userProfile = collection(database, "users", possible userID)
-    const [newDate, setNewDate] = useState("")
-    const [newPlaceToStart, setNewPlaceToStart] = useState("")
-    const [newPlaceToGo, setNewPlaceToGo] = useState("")
-    const [newTimeToGo, setNewTimeToGo] = useState("")
-    const [newTimeToArrive, setNewTimeToArrive] = useState(0)
-    const [newFreeSpots, setNewFreeSpots] = useState(false)
-    // const [newPrice, setNewPrice] = useState("");
-    const [seeDriverProfile, setSeeDriverProfile] = useState(false)
-    const [submitAccept, setSubmitAccept] = useState("")
-    // const [requestPostition - järjekorranumber tabelis']
-    const requestsRequestIdCollectionRef = collection(database, "requests") // see request list from database
+export default function SeeRequestsForm() {
+    const [requests, setRequests] = useState([])
+    // const [newDate, setNewDate] = useState("")
+    // const [newPlaceToStart, setNewPlaceToStart] = useState("")
+    // const [newPlaceToGo, setNewPlaceToGo] = useState("")
+    // const [newTimeToGo, setNewTimeToGo] = useState("")
+    // const [newTimeToArrive, setNewTimeToArrive] = useState(0)
+    // const [newNeededSpots, setNewNeededSpots] = useState(false)
+    // const [seeDriverProfile, setSeeDriverProfile] = useState(false)
+    // const [submitAccept, setSubmitAccept] = useState("")
+    // const [requestPosition - järjekorranumber tabelis']
+    //  const requestsRequestIdCollectionRef = collection(database, "requests") // see request list from database
     // function compareOffersAndRequests (if requestId.newPlaceToStart !== offerId.newPlaceToStart) => alert("Did not find any match! New search")
     // (if requestId.newPlaceToStart === offerId.newPlaceToStart) => {returns offerinfo(offerID), drivers profile link }
     // const retrieveDriverProfile = collection(database, "requestDriverProfile") // gets drivers profile from database
 
-    console.log("Lähme sõidame!")
 
-    const getRequestList = async (requestId) => {
-        try {
-            const requestRef = doc(database, "requests", requestId);
-            const requestDoc = await getDoc(requestRef);
-            if (requestDoc.exists()) {
-                const requestData = requestDoc.data();
-                console.log(requestData)
-                setNewDate(requestData.date) // needs to added to database
-                setNewPlaceToStart(requestData.first_name)
-                setNewPlaceToGo(requestData.last_name)
-                setNewTimeToGo(requestData.email)
-                setNewTimeToArrive(requestData.phone)
-                setNewFreeSpots(requestData.profile_pic)
-                // setNewPrice(offerData.driver)
-                setSeeDriverProfile(userData.last_name) // we could use a username here
+    const getRequests = async () => {
+        await getDocs(collection(database, "requests"))
+            .then((querySnapshot) => {
+                const newData = querySnapshot.docs
+                    .map((doc) => ({...doc.data(), id: doc.id}));
+                setRequests(newData);
+                console.log(requests, newData)
+            })
+    }
+    useEffect(() => {
+        getRequests();
+    }, [])
 
-            } else {
+    return (
+        <div className="Requests list">
+            {requests.length > 0 && requests.map((request, index) => {
+                return <div key={index}>
+                    <p>{request.id}</p>
+                    <p>{request.from.address}</p>
+                    <p>{request.timeframe_2}</p>
+                    <p>{request.timeframe_1}</p>
+                    <br/><br/>
+                </div>
+                })
+                }
+        </div>
+    )
+}
+
+       /* try {
+            const requestRef = collection(database, "requests"); // request id
+            console.log(requestRef)
+            const requestDoc = await getDocs(requestRef);
+
+
+            if (requestDoc.empty) {
                 console.log("We did not find any matching requests");
-            }
-        } catch (err) {
-            console.error(err);
+            } else {
+                requestDoc.forEach((doc) => {
+                    const docData = doc.data();
+                    setNewDate(docData.date)
+
+
+                })}*/
+ /*               const requestData = requestDoc.data();
+                console.log(requestRef)
+                setNewDate(requestData.date)
+                setNewPlaceToStart(requestData.from)
+                setNewPlaceToGo(requestData.to)
+                setNewTimeToGo(requestData.timeframe_1)
+                setNewTimeToArrive(requestData.timeframe_2)
+                setNewNeededSpots(requestData.needed_spots)
+                // setSeeDriverProfile(userData.last_name) // we could use a username here
+*/
+/*
+
         }
-    };
+        catch (err)
+            {
+                console.error(err);
+            }
+        }
+    getRequests()
+        .then()
 
-    /*return (
+    console.log(newDate)
+    return (
         <div>
-            {/!*<p> {getRequestList} </p>*!/}
+          {/!*  <p>
+                <SeeRequestsForm>{getRequests} </SeeRequestsForm>
 
-                <p><label>From: </label> {newPlaceToStart}</p>
-            <p>Last name: {lastName}</p>
-            <p>E-mail: {email}</p>
-            <p>Phone: {phone}</p>
-            <p>Profile picture: {profilePic}</p>
-            {isUserDriver &&
-                <>
-                    <p>Licence plate: {licencePlate}</p>
-                    <p>Licence picture: {licencePic}</p>
-                </>
-            }*!/}
+                </p>*!/}
+            {/!*<p><label>Date: </label> {newDate}</p>*!/}
+            {/!*<p><label>From: </label> {newPlaceToStart}</p>*!/}
+            {/!*<p><label>To: </label> {newPlaceToGo}</p>*!/}
+            {/!*<p><label>Time to go: </label> {newTimeToGo}</p>*!/}
+            {/!*<p><label>Time to arrive: </label> {newTimeToArrive}</p>*!/}
+            {/!*<p><label>Needed spots: </label> {newNeededSpots}</p>*!/}
+            {/!*<p><label>Driver's profile </label> {Profile}</p>*!/}
         </div>
 
-    )*/
+    )
 }
 
 
 
-const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+
+/!*const columns = [
+    { field: 'id', headerName: 'ID', width: 70 {document.id}},
     { field: 'from', headerName: 'Place to start', width: 130 }, // type coordinates
     { field: 'to', headerName: 'Place to go', width: 130 }, // type coordinates
     { field: 'leaving', headerName: 'Time to leave', width: 70 }, // type time
     { field: 'arriving', headerName: 'Time to arrive', width: 70 }, // type time
     { field: 'price', headerName: 'Price/Cost', width: 70 }, // number + "eur"
     { field: 'driver', headerName: "Driver's profile", width: 70 },
-    { <Checkbox // input type="checkbox"
+    { field:"checkbox", headerName: "check me", width: 20},
+    ]
+        /!*<Checkbox // input type="checkbox"
         color="primary"
         indeterminate={numSelected > 0 && numSelected < rowCount}
         // checked={choosedriver}
         inputProps={{
             'aria-label': 'choose driver',
-        }}
-    />},
-];
+        }}/>*!/
 
 const rows = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
 
-export default function DataTable() {
-    return (
+];*!/
+
+/!*export default function DataTable()
+{
+   /!* return (
         <div style={{ height: 400, width: '100%' }}>
             <DataGrid
                 rows={rows}
@@ -131,6 +151,7 @@ export default function DataTable() {
                 checkboxSelection
             />
         </div>
-    );
-}
+    );*!/
+}*!/
 
+*/

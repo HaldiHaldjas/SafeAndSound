@@ -9,9 +9,11 @@ import MenuItem from '@mui/material/MenuItem';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import Button from '@mui/material/Button';
 
+
 function Navigation() {
 
     const navigate = useNavigate();
+
 
     return(
         <AppBar position="static" sx={{backgroundColor: 'darkgrey'}}>
@@ -58,6 +60,9 @@ function Navigation() {
                         </MenuItem>
                         <MenuItem>
                             <Button variant='outlined' color='primary' onClick={() => navigate('seedata')}>Offered rides</Button>
+                        </MenuItem>
+                        <MenuItem >
+                            <Button variant='outlined' color='primary' onClick={() => navigate('seeRequests')}>See requests</Button>
                         </MenuItem>
                     </Box>
 
