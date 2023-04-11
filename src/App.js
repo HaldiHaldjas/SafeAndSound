@@ -23,25 +23,12 @@ function App() {
                      <Route path="/register" element={ <RegistrationForm/> } />
                      <Route path="/offer" element={ <OfferForm/> } />
                      <Route path="/seedata" element={<SeeData />} />
+                     <Route path="seeRequests" element={<SeeRequestsForm/>}/>
                  </Routes>
              </main>
       </div>
   );
-    return (
-        <div className="App">
-            <Navigation />
-            <main>
-                <Routes>
-                    <Route path="/" />
-                    <Route path="request" element={<RequestForm/>}/>
-                    <Route path="offer" element={<OfferForm/>}/>
-                    <Route path="/signin/*" element={ <Signin/> } />
-                    <Route path="/register" element={ <RegistrationForm/> } />
-                    <Route path="seeRequests" element={<SeeRequestsForm/>}/>
-                </Routes>
-            </main>
-        </div>
-    );
+
 }
 
 

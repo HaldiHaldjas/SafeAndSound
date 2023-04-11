@@ -112,9 +112,20 @@ export default function RequestForm() {
                 <input type="text" placeholder="To" />
             </Autocomplete>
             </LoadScript>
-            <input type="time" placeholder="Departure time" onChange={(e) => setTimeToGo(e.target.value)}/><br />
-            <input type="time" placeholder="ETA - estimated arrival time" onChange={(e) => setTimeToArrive(e.target.value)}/><br />
-            <input type="number" placeholder="Needed spots" type="number"onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
+            <input
+                type="time"
+                placeholder="Departure time"
+                onChange={(e) => setTimeToGo(e.target.value)}/><br />
+            <input
+                type="time"
+                placeholder="ETA - estimated arrival time"
+                onChange={(e) => setTimeToArrive(e.target.value)}/><br />
+            <input
+                type="number"
+                placeholder="Needed spots"
+                min="1"
+                max="9"
+                onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
             {/*<input placeholder="Price" type="number"onChange={(e) => setPrice(Number(e.target.value))}/><br />*/}
 
             <Button variant="contained"
@@ -133,8 +144,8 @@ export default function RequestForm() {
                     // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
             > Previous drives </Button>
             <br /><br />
-                 <Button><Link to="/" >Go back to signing in</Link></Button>
-                 <Button><Link to="/">Back</Link></Button>
+                 <Button><Link to="/signin" >Go back to signing in</Link></Button>
+                 <Button><Link to="/signin/profile">Back</Link></Button>
             }
         </div>
     )

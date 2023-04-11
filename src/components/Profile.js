@@ -1,16 +1,15 @@
 import React, {useState} from "react";
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {database} from "../config/firebase";
-import { useLocation } from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
+import Button from "@mui/material/Button";
 
 
 export default function Profile() {
 
-    console.log("profile!")
 
     const location = useLocation();
     const email = location?.state?.email;
-
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [phone, setPhone] = useState(0)
@@ -47,7 +46,7 @@ export default function Profile() {
 
 return (
     <div>
-            <h1>Welcome, {firstName}!</h1>
+        <h1>Welcome, {firstName}!</h1>
         <img src={profilePic} />
         <p>First name: {firstName}</p>
         <p>Last name: {lastName}</p>
@@ -57,8 +56,24 @@ return (
             <>
         <p>Licence plate: {licencePlate}</p>
         <p>Licence picture: {licencePic}</p>
+                <Button variant="contained"
+                        sx={{backgroundColor: "#add8e6",
+                            '&:hover': {
+                                backgroundColor: '#fff',
+                                color: '#3c52b2',}}}>
+                    <Link to="/offer" >Insert an offer</Link>
+                </Button>
             </>
+
         }
+
+        <Button variant="contained"
+                sx={{backgroundColor: "#add8e6",
+                    '&:hover': {
+                        backgroundColor: '#fff',
+                        color: '#3c52b2',}}}>
+            <Link to="/request" >Insert a request</Link>
+        </Button>
     </div>
 
 )

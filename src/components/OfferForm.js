@@ -115,7 +115,14 @@ function OfferForm() {
             </LoadScript>
             <input type="time" placeholder="Departure time" onChange={(e) => setTimeToGo(e.target.value)}/><br />
             <input type="time" placeholder="ETA - estimated arrival time" onChange={(e) => setTimeToArrive(e.target.value)}/><br />
-            <input type="number" placeholder="Free spots" type="number"onChange={(e) => setFreeSpots(Number(e.target.value))}/><br />
+            <input
+                type="number"
+                placeholder="Free spots"
+                type="number"
+                min="1"
+                max="9"
+                sx={{width: "20px"}}
+                onChange={(e) => setFreeSpots(Number(e.target.value))}/><br />
             <span className="input-symbol-euro">
                 <input placeholder="Price" type="text" onChange={(e) => setPrice(Number(e.target.value))}/><br />
             </span>
