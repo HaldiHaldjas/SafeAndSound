@@ -21,6 +21,7 @@ function App() {
                      <Route path="request" element={<RequestForm/>}/>
                      <Route path="/signin/*" element={ <Signin/> } />
                      <Route path="/register" element={ <RegistrationForm/> } />
+                     <Route path="/offer" element={ <OfferForm/> } />
                      <Route path="/seeOffers/*" element={<SeeOffers />} />
                      <Route path="seeRequests" element={<SeeRequestsForm/>}/>
                      <Route path="/seeOffers/confirmation" element={<Confirmation />} />
