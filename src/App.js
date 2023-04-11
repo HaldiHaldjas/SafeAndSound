@@ -5,7 +5,8 @@ import RegistrationForm from "./components/RegistrationForm";
 import { Routes, Route } from "react-router-dom";
 import Navigation from './components/Navigation';
 import RequestForm from "./components/RequestForm";
-import SeeData from "./components/SeeData";
+import OfferForm from "./components/OfferForm";
+import SeeData from "./components/SeeOffers";
 import SeeRequestsForm from "./components/SeeRequests";
 
 
@@ -20,6 +21,7 @@ function App() {
                      <Route path="request" element={<RequestForm/>}/>
                      <Route path="/signin/*" element={ <Signin/> } />
                      <Route path="/register" element={ <RegistrationForm/> } />
+                     <Route path="/offer" element={ <OfferForm/> } />
                      <Route path="/seedata" element={<SeeData />} />
                  </Routes>
              </main>
@@ -32,6 +34,7 @@ function App() {
                 <Routes>
                     <Route path="/" />
                     <Route path="request" element={<RequestForm/>}/>
+                    <Route path="offer" element={<OfferForm/>}/>
                     <Route path="/signin/*" element={ <Signin/> } />
                     <Route path="/register" element={ <RegistrationForm/> } />
                     <Route path="seeRequests" element={<SeeRequestsForm/>}/>

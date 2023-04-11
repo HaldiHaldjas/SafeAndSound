@@ -47,8 +47,8 @@ function App() {
                         <TableBody>
                             {offers.map((offer) => (
                                 <TableRow key={offer.id}>
-                                    <TableCell>{offer.from && offer.from._lat}, {offer.from && offer.from._long}</TableCell>
-                                    <TableCell>{offer.to && offer.to._lat}, {offer.to && offer.to._long}</TableCell>
+                                    <TableCell>{offer.from && offer.from.address}</TableCell>
+                                    <TableCell>{offer.to && offer.to.address}</TableCell>
                                     <TableCell>{offer.timeframe_1}</TableCell>
                                     <TableCell>{offer.timeframe_2}</TableCell>
                                     <TableCell>{offer.free_spots}</TableCell>
