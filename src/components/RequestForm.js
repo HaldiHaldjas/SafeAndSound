@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";
-import Profile from "./Profile";
-
 
 
 
@@ -18,9 +16,8 @@ export default function RequestForm() {
     const [timeToGo, setTimeToGo] = useState("")
     const [timeToArrive, setTimeToArrive] = useState(0)
     const [neededSpots, setNeededSpots] = useState(false)
-    // const [price, setPrice] = useState("");
     const [submitRequest, setSubmitRequest] = useState("")
-    const [seeDriveHistory, setSeeDriveHistory] = useState(false)
+    //const [seeDriveHistory, setSeeDriveHistory] = useState(false)
     const placeToStartRef = useRef(null);
     const placeToGoRef = useRef(null);
 
@@ -127,13 +124,7 @@ export default function RequestForm() {
                     color: '#3c52b2',}}}
                     onClick={handleRequest}
             > Submit </Button>
-            <Button variant="contained"
-                    sx={{backgroundColor: "#add8e6",
-                '&:hover': {
-                    backgroundColor: '#fff',
-                    color: '#3c52b2',}}}
-                    onClick={Profile}
-            > My profile </Button>
+            <br /><br />
             <Button variant="contained"
                     sx={{backgroundColor: "#add8e6",
                         '&:hover': {
@@ -141,11 +132,9 @@ export default function RequestForm() {
                             color: '#3c52b2',}}}
                     // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
             > Previous drives </Button>
-            <label>Home button?</label><br />
-            <br />
+            <br /><br />
                  <Button><Link to="/" >Go back to signing in</Link></Button>
-
-                <Button><Link to="/">Back</Link></Button>
+                 <Button><Link to="/">Back</Link></Button>
             }
         </div>
     )
