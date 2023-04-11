@@ -5,25 +5,26 @@ import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";
-import Profile from "./Profile";
 
 
 
 
-export default function RequestForm() {
+function OfferForm() {
 
     const [date, setDate] = useState("")
     const [placeToStart, setPlaceToStart] = useState("")
     const [placeToGo, setPlaceToGo] = useState("")
     const [timeToGo, setTimeToGo] = useState("")
     const [timeToArrive, setTimeToArrive] = useState(0)
-    const [neededSpots, setNeededSpots] = useState(false)
+    const [freeSpots, setFreeSpots] = useState(false)
+    const [price, setPrice] = useState("");
     const [submitRequest, setSubmitRequest] = useState("")
-    //const [seeDriveHistory, setSeeDriveHistory] = useState(false)
+   // const [seeDriveHistory, setSeeDriveHistory] = useState(false)
     const placeToStartRef = useRef(null);
     const placeToGoRef = useRef(null);
 
-    const requestsCollectionRef = collection(database, "requests") // see users requests collection from database
+
+    const requestsCollectionRef = collection(database, "offers") // see users requests collection from database
 
     const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -38,19 +39,19 @@ export default function RequestForm() {
     }
 
     const handleRequest = async () => {
-        // random id-generator
+
         let randomId = generateString(5)
 
         try {
             await addDoc(requestsCollectionRef, {
-                date: date,
+                day: date,
                 from: placeToStart,
                 to: placeToGo,
                 timeframe_1: timeToGo,
                 timeframe_2: timeToArrive,
-                needed_spots: neededSpots,
+                needed_spots: freeSpots,
+                price: price,
                 randomId: randomId
-
             });
             setSubmitRequest(true)
         } catch (err) {
@@ -89,51 +90,47 @@ export default function RequestForm() {
     return (
 
         <div>
-            <h3>Where do you want to go? Insert request</h3>
+            <h3>You would like to share Your ride? Insert offer</h3>
             <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
 
             <LoadScript
                 googleMapsApiKey={googleMapsApiKey}
                 libraries={['places']}
             >
-            <Autocomplete
-                onLoad={(ref) =>  placeToStartRef.current = ref}
-                onPlaceChanged={handlePlaceToStartSelect}
-                options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
-            >
-                <input type="text" placeholder="From" />
-            </Autocomplete>
+                <Autocomplete
+                    onLoad={(ref) =>  placeToStartRef.current = ref}
+                    onPlaceChanged={handlePlaceToStartSelect}
+                    options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
+                >
+                    <input type="text" placeholder="From" />
+                </Autocomplete>
 
-            <Autocomplete
-                onLoad={(ref) => placeToGoRef.current = ref}
-                onPlaceChanged={handlePlaceToGoSelect}
-                options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
-            >
-                <input type="text" placeholder="To" />
-            </Autocomplete>
+                <Autocomplete
+                    onLoad={(ref) => placeToGoRef.current = ref}
+                    onPlaceChanged={handlePlaceToGoSelect}
+                    options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
+                >
+                    <input type="text" placeholder="To" />
+                </Autocomplete>
             </LoadScript>
-            <input
-                type="time"
-                placeholder="Departure time"
-                onChange={(e) => setTimeToGo(e.target.value)}/><br />
-            <input
-                type="time"
-                placeholder="ETA - estimated arrival time"
-                onChange={(e) => setTimeToArrive(e.target.value)}/><br />
+            <input type="time" placeholder="Departure time" onChange={(e) => setTimeToGo(e.target.value)}/><br />
+            <input type="time" placeholder="ETA - estimated arrival time" onChange={(e) => setTimeToArrive(e.target.value)}/><br />
             <input
                 type="number"
-                placeholder="Needed spots"
+                placeholder="Free spots"
+                type="number"
                 min="1"
                 max="9"
-                style={{width: "90px", height: "22px"}}
-                onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
-            {/*<input placeholder="Price" type="number"onChange={(e) => setPrice(Number(e.target.value))}/><br />*/}
-
+                sx={{width: "20px"}}
+                onChange={(e) => setFreeSpots(Number(e.target.value))}/><br />
+            <span className="input-symbol-euro">
+                <input placeholder="Price" type="text" onChange={(e) => setPrice(Number(e.target.value))}/><br />
+            </span>
             <Button variant="contained"
                     sx={{backgroundColor: "#add8e6",
-                '&:hover': {
-                    backgroundColor: '#fff',
-                    color: '#3c52b2',}}}
+                        '&:hover': {
+                            backgroundColor: '#fff',
+                            color: '#3c52b2',}}}
                     onClick={handleRequest}
             > Submit </Button>
             <br /><br />
@@ -142,12 +139,17 @@ export default function RequestForm() {
                         '&:hover': {
                             backgroundColor: '#fff',
                             color: '#3c52b2',}}}
-                    // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
+                // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
             > Previous drives </Button>
-            <br /><br />
-                 <Button><Link to="/signin" >Go back to signing in</Link></Button>
-                 <Button><Link to="/signin/profile">Back</Link></Button>
+
+
+            <br />
+            <Button><Link to="/" >Home</Link></Button>
+
+            <Button><Link to="/">Back</Link></Button>
             }
         </div>
     )
 }
+
+export default OfferForm;

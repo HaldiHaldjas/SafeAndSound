@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from './components/Navigation';
 import RequestForm from "./components/RequestForm";
 import SeeOffers from "./components/SeeOffers";
+import OfferForm from "./components/OfferForm";
 import SeeRequestsForm from "./components/SeeRequests";
 import Confirmation from "./components/Confirmation";
 
@@ -21,6 +22,7 @@ function App() {
                      <Route path="request" element={<RequestForm/>}/>
                      <Route path="/signin/*" element={ <Signin/> } />
                      <Route path="/register" element={ <RegistrationForm/> } />
+                     <Route path="/offer" element={ <OfferForm/> } />
                      <Route path="/seeOffers/*" element={<SeeOffers />} />
                      <Route path="seeRequests" element={<SeeRequestsForm/>}/>
                      <Route path="/seeOffers/confirmation" element={<Confirmation />} />
