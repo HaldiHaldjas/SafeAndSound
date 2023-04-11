@@ -45,9 +45,6 @@ function App() {
 
     const submit = () => {
         navigate("/seeOffers/confirmation", { state: { selectedOffer: selectedOffer } });
-
-
-
     }
 
     console.log(selectedOffer)
@@ -105,7 +102,6 @@ function App() {
                             ))}
                         </TableBody>
                     </Table>
-                    <Link to="confirmation" selectedOffer={selectedOffer}>
                         <Button
                             variant="contained"
                             sx={{
@@ -120,7 +116,7 @@ function App() {
                         >
                             Confirm my choice
                         </Button>
-                    </Link>
+
 
                 </>
             )}
