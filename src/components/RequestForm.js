@@ -24,7 +24,22 @@ export default function RequestForm() {
     const requestsCollectionRef = collection(database, "requests") // see users requests collection from database
     // const requestsHistoryCollectionRef = collection(database, "requestsHistory") // see users drive history collection from database
 
+    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    function generateString(length) {
+        let result = ' ';
+        const charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        return result;
+    }
+
     const handleRequest = async () => {
+        // random id-generator
+        let randomId = generateString(5)
+
 
         try {
             await addDoc(requestsCollectionRef, {
@@ -34,6 +49,7 @@ export default function RequestForm() {
                 timeframe_1: timeToGo,
                 timeframe_2: timeToArrive,
                 needed_spots: neededSpots,
+                randomId: "randomId"
 
             });
             setSubmitRequest(true)

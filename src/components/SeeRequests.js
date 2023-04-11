@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {doc, getDocs, collection} from "firebase/firestore";
 import {database} from "../config/firebase";
 
@@ -13,13 +13,13 @@ import Profile from "./Profile";
 
 
 export default function SeeRequestsForm() {
-    // const [requests, setRequests] = useState("")
-    const [newDate, setNewDate] = useState("")
-    const [newPlaceToStart, setNewPlaceToStart] = useState("")
-    const [newPlaceToGo, setNewPlaceToGo] = useState("")
-    const [newTimeToGo, setNewTimeToGo] = useState("")
-    const [newTimeToArrive, setNewTimeToArrive] = useState(0)
-    const [newNeededSpots, setNewNeededSpots] = useState(false)
+    const [requests, setRequests] = useState([])
+    // const [newDate, setNewDate] = useState("")
+    // const [newPlaceToStart, setNewPlaceToStart] = useState("")
+    // const [newPlaceToGo, setNewPlaceToGo] = useState("")
+    // const [newTimeToGo, setNewTimeToGo] = useState("")
+    // const [newTimeToArrive, setNewTimeToArrive] = useState(0)
+    // const [newNeededSpots, setNewNeededSpots] = useState(false)
     // const [seeDriverProfile, setSeeDriverProfile] = useState(false)
     // const [submitAccept, setSubmitAccept] = useState("")
     // const [requestPosition - järjekorranumber tabelis']
@@ -29,10 +29,36 @@ export default function SeeRequestsForm() {
     // const retrieveDriverProfile = collection(database, "requestDriverProfile") // gets drivers profile from database
 
 
-
     const getRequests = async () => {
+        await getDocs(collection(database, "requests"))
+            .then((querySnapshot) => {
+                const newData = querySnapshot.docs
+                    .map((doc) => ({...doc.data(), id: doc.id}));
+                setRequests(newData);
+                console.log(requests, newData)
+            })
+    }
+    useEffect(() => {
+        getRequests();
+    }, [])
 
-        try {
+    return (
+        <div className="Requests list">
+            {requests.length > 0 && requests.map((request, index) => {
+                return <div key={index}>
+                    <p>{request.id}</p>
+                    <p>{request.from.address}</p>
+                    <p>{request.timeframe_2}</p>
+                    <p>{request.timeframe_1}</p>
+                    <br/><br/>
+                </div>
+                })
+                }
+        </div>
+    )
+}
+
+       /* try {
             const requestRef = collection(database, "requests"); // request id
             console.log(requestRef)
             const requestDoc = await getDocs(requestRef);
@@ -46,7 +72,7 @@ export default function SeeRequestsForm() {
                     setNewDate(docData.date)
 
 
-                })}
+                })}*/
  /*               const requestData = requestDoc.data();
                 console.log(requestRef)
                 setNewDate(requestData.date)
@@ -57,6 +83,7 @@ export default function SeeRequestsForm() {
                 setNewNeededSpots(requestData.needed_spots)
                 // setSeeDriverProfile(userData.last_name) // we could use a username here
 */
+/*
 
         }
         catch (err)
@@ -70,17 +97,17 @@ export default function SeeRequestsForm() {
     console.log(newDate)
     return (
         <div>
-          {/*  <p>
+          {/!*  <p>
                 <SeeRequestsForm>{getRequests} </SeeRequestsForm>
 
-                </p>*/}
-            {/*<p><label>Date: </label> {newDate}</p>*/}
-            {/*<p><label>From: </label> {newPlaceToStart}</p>*/}
-            {/*<p><label>To: </label> {newPlaceToGo}</p>*/}
-            {/*<p><label>Time to go: </label> {newTimeToGo}</p>*/}
-            {/*<p><label>Time to arrive: </label> {newTimeToArrive}</p>*/}
-            {/*<p><label>Needed spots: </label> {newNeededSpots}</p>*/}
-            {/*<p><label>Driver's profile </label> {Profile}</p>*/}
+                </p>*!/}
+            {/!*<p><label>Date: </label> {newDate}</p>*!/}
+            {/!*<p><label>From: </label> {newPlaceToStart}</p>*!/}
+            {/!*<p><label>To: </label> {newPlaceToGo}</p>*!/}
+            {/!*<p><label>Time to go: </label> {newTimeToGo}</p>*!/}
+            {/!*<p><label>Time to arrive: </label> {newTimeToArrive}</p>*!/}
+            {/!*<p><label>Needed spots: </label> {newNeededSpots}</p>*!/}
+            {/!*<p><label>Driver's profile </label> {Profile}</p>*!/}
         </div>
 
     )
@@ -89,7 +116,7 @@ export default function SeeRequestsForm() {
 
 
 
-/*const columns = [
+/!*const columns = [
     { field: 'id', headerName: 'ID', width: 70 {document.id}},
     { field: 'from', headerName: 'Place to start', width: 130 }, // type coordinates
     { field: 'to', headerName: 'Place to go', width: 130 }, // type coordinates
@@ -110,9 +137,9 @@ export default function SeeRequestsForm() {
 const rows = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
 
-];*/
+];*!/
 
-/*export default function DataTable()
+/!*export default function DataTable()
 {
    /!* return (
         <div style={{ height: 400, width: '100%' }}>
@@ -125,5 +152,6 @@ const rows = [
             />
         </div>
     );*!/
-}*/
+}*!/
 
+*/
