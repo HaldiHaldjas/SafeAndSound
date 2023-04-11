@@ -13,7 +13,6 @@ import Button from '@mui/material/Button';
 // import { Signin } from "./Signin";
 // import { useLocation } from 'react-router-dom'; // where do we use user location?
 // import { Link } from "react-router-dom";
-// Next button is for seeing driver profile
 
 import Profile from "./Profile";
 
@@ -21,6 +20,9 @@ import Profile from "./Profile";
 
 export default function SeeRequestsForm() {
     const [requests, setRequests] = useState([])
+    // const [isChecked, setIsChecked] = useState([]);
+    const [checkedRequests, setCheckedRequests] = useState([]);
+
     // const [seeDriverProfile, setSeeDriverProfile] = useState(false)
     // const [submitAccept, setSubmitAccept] = useState("")
     // const [requestPosition - järjekorranumber tabelis']
@@ -39,42 +41,80 @@ export default function SeeRequestsForm() {
                 console.log(requests, newData)
             })
     }
+
     useEffect(() => {
         getRequests();
     }, [])
 
+    const handleCheckBoxChange = (event, requestId) => {
+        const checked = event.target.checked;
+        if (checked) {
+            setCheckedRequests([...checkedRequests, requestId]);
+        } else {
+            setCheckedRequests(checkedRequests.filter((id) => id !== requestId));
+        }
+    }
+    const handleButtonClick = (event) => {
+        if (event.type === handleCheckBoxChange) {
+            alert("So this is your choice?")
+        } else {
+            alert("Going alone?")
+        }
+    }
     return (
         <div className="Requests list">
             <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell>Verification Code</TableCell>
+                        <TableCell>Date</TableCell>
                         <TableCell>From</TableCell>
                         <TableCell>To</TableCell>
                         <TableCell>Timeframe 1</TableCell>
                         <TableCell>Timeframe 2</TableCell>
                         <TableCell>Needed Spots</TableCell>
+                        <TableCell>Driver's profile</TableCell>
                         <TableCell>My choice</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {requests.length > 0 && requests.map((request, index) => (
                         <TableRow key={index}>
-                             <TableCell>{request.id}</TableCell>
-                             <TableCell>{request.day}</TableCell>
+                             <TableCell>{request.randomId}</TableCell>
+                             <TableCell>{request.date}</TableCell>
                              <TableCell>{request.from.address}</TableCell>
                              <TableCell>{request.to.address}</TableCell>
                              <TableCell>{request.timeframe_1}</TableCell>
                              <TableCell>{request.timeframe_2}</TableCell>
                              <TableCell>{request.needed_spots}</TableCell>
-                             <TableCell><Checkbox/></TableCell>
-                             <br/><br/>
+                            <TableCell>Driver info</TableCell>
+                            <TableCell>
+                                 {/*<Checkbox
+                                     onClick{...handleCheckBoxChange}
+                                     color="success"
+                                 />*/}
+                                <Checkbox
+                                    checked={checkedRequests.includes(request.id)}
+                                    onChange={(event) => handleCheckBoxChange(event, request.id)}
+                                />
+                             </TableCell>
                         </TableRow>
                       ))}
-                    }
                 </TableBody>
             </Table>
+            {/*<Button
+                onClick={handleButtonClick}
+                variant="contained"
+                sx={{
+                    backgroundColor: "#F8F8F8",
+                    color: "#383838",
+                    "&:hover": {
+                        backgroundColor: "#fff",
+                        color: "#3c52b2",
+                    },
+                }}>Offer a ride</Button>*/}
             <Button
+                onClick={handleButtonClick}
                 variant="contained"
                 sx={{
                     backgroundColor: "#F8F8F8",
@@ -87,5 +127,3 @@ export default function SeeRequestsForm() {
         </div>
     )
 }
-
-
