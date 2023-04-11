@@ -21,24 +21,12 @@ function App() {
                      <Route path="/signin/*" element={ <Signin/> } />
                      <Route path="/register" element={ <RegistrationForm/> } />
                      <Route path="/seedata" element={<SeeData />} />
+                     <Route path="/seerequests" element={<SeeRequestsForm/>}/>
                  </Routes>
              </main>
       </div>
   );
-    return (
-        <div className="App">
-            <Navigation />
-            <main>
-                <Routes>
-                    <Route path="/" />
-                    <Route path="request" element={<RequestForm/>}/>
-                    <Route path="/signin/*" element={ <Signin/> } />
-                    <Route path="/register" element={ <RegistrationForm/> } />
-                    <Route path="seeRequests" element={<SeeRequestsForm/>}/>
-                </Routes>
-            </main>
-        </div>
-    );
+
 }
 
 

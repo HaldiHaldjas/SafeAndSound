@@ -5,7 +5,6 @@ import RegistrationForm from "./components/RegistrationForm";
 import Profile from "./components/Profile";
 import RequestForm from "./components/RequestForm";
 import SeeData from "./components/SeeData";
-import RequestForm from "./components/Request";
 import SeeRequestsForm from "./components/SeeRequests";
 
 
