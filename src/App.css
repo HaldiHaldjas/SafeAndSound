@@ -50,23 +50,3 @@ img {
   width: 150px;
   margin: 10px;
 }
-body {
-  background-image: url('/src/images/img1.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
-.input-symbol-euro {
-  position: relative;
-}
-.input-symbol-euro input {
-  padding-left:18px;
-}
-.input-symbol-euro:before {
-  position: absolute;
-  top: 0;
-  content:"€";
-  left: 17px;
-}
-

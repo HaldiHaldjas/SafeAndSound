@@ -51,18 +51,14 @@ function Navigation() {
                         <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('signin')}>Sign in</Button>
                         </MenuItem>
-
                         <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('register')}>Register</Button>
                         </MenuItem>
-                       {/* <MenuItem >
+                        <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('request')}>Request</Button>
                         </MenuItem>
-                        <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('offer')}>Offer</Button>
-                        </MenuItem>
-                     */}   <MenuItem>
-                            <Button variant='outlined' color='primary' onClick={() => navigate('seedata')}>Offered rides</Button>
+                        <MenuItem>
+                            <Button variant='outlined' color='primary' onClick={() => navigate('seeOffers')}>Offered rides</Button>
                         </MenuItem>
                         <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('seeRequests')}>See requests</Button>
