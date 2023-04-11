@@ -1,102 +1,86 @@
-import React, { useState } from "react";
-import {addDoc, collection, getDocs} from "firebase/firestore";
-import {database} from "../config/firebase";
-import {Link} from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { database } from "../config/firebase";
+import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
-import {GoogleApiWrapper} from "google-maps-react";
+import { LoadScript, Autocomplete } from '@react-google-maps/api';
+
 
 function RequestForm() {
 
-    const { google } = window;
-
     const [date, setDate] = useState("")
-    const [placeToStart, setPlaceToStart] = useState({
-        Latitude: null,
-        Longitude: null
-    });
-    const [placeToGo, setPlaceToGo] = useState({
-        Latitude: null,
-        Longitude: null
-    });
+    const [placeToStart, setPlaceToStart] = useState("")
+    const [placeToGo, setPlaceToGo] = useState("")
     const [timeToGo, setTimeToGo] = useState("")
     const [timeToArrive, setTimeToArrive] = useState(0)
     const [freeSpots, setFreeSpots] = useState(false)
+    // const [price, setPrice] = useState("");
     const [submitRequest, setSubmitRequest] = useState("")
     const [seeDriveHistory, setSeeDriveHistory] = useState(false)
+    const placeToStartRef = useRef(null);
+    const placeToGoRef = useRef(null);
+
 
     const requestsCollectionRef = collection(database, "requests") // see users requests collection from database
 
     const handleRequest = async () => {
+
         try {
-            const geocoder = new google.maps.Geocoder();
-            const startRequest = { address: placeToStart };
-            const endRequest = { address: placeToGo };
-            geocoder.geocode(startRequest, (startResults, startStatus) => {
-                if (startStatus === google.maps.GeocoderStatus.OK) {
-                    const startLocation = startResults[0].geometry.location;
-                    console.log(startLocation.lat());
-                    geocoder.geocode(endRequest, (endResults, endStatus) => {
-                        if (endStatus === google.maps.GeocoderStatus.OK) {
-                            const endLocation = endResults[0].geometry.location;
-                            addDoc(requestsCollectionRef, {
-                                day: date,
-                                from: {Latitude: startLocation.lat(), Longitude: startLocation.lng()},
-                                to: {Latitude: endLocation.lat(), Longitude: endLocation.lng()},
-                                timeframe_1: timeToGo,
-                                timeframe_2: timeToArrive,
-                                needed_spots: freeSpots,
-                            }).then(() => {
-                                setSubmitRequest(true);
-                            }).catch((error) => {
-                                console.error(error);
-                            });
-                        } else {
-                            console.error('Geocode was not successful for the following reason: ' + endStatus);
-                        }
-                    });
-                } else {
-                    console.error('Geocode was not successful for the following reason: ' + startStatus);
-                }
+            await addDoc(requestsCollectionRef, {
+                day: date,
+                from: placeToStart,
+                to: placeToGo,
+                timeframe_1: timeToGo,
+                timeframe_2: timeToArrive,
+                needed_spots: freeSpots,
+
             });
-        } catch (error) {
-            console.error(error);
+            setSubmitRequest(true)
+        } catch (err) {
+            console.error(err)
         }
+    }
+
+    const handlePlaceToStartSelect = () => {
+        const place = placeToStartRef.current.getPlace();
+        if (!place || !place.geometry) {
+            console.error('Invalid place object:', place);
+            return;
+        }
+        setPlaceToStart({
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+            address: place.formatted_address,
+        });
+    }
+
+    const handlePlaceToGoSelect = () => {
+        const place = placeToGoRef.current.getPlace();
+        if (!place || !place.geometry) {
+            console.error('Invalid place object:', place);
+            return;
+        }
+        setPlaceToGo({
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+            address: place.formatted_address,
+        });
     };
 
-    const handlePlaceToStartSelect = (place) => {
-        if (place) {
-            console.log(place)
-
-            const address = place.formatted_address;
-            console.log(address)
-            setPlaceToStart(address);
-        } else {
-            // handle the case when place is not defined or is null
-        }
-    };
-
-
-
-
-    const handlePlaceToGoSelect = (place) => {
-        if (place) {
-            const address = place.formatted_address;
-            console.log(address)
-            setPlaceToGo(address);
-        } else {
-            // handle the case when place is not defined or is null
-        }
-    };
-
-
+    console.log(placeToStart)
+    console.log(placeToGo)
     return (
 
         <div>
             <h3>Where do you want to go? Insert request</h3>
             <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
+
+            <LoadScript
+                googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}
+                libraries={['places']}
+            >
             <Autocomplete
-                onLoad={(autocomplete) => console.log("autocomplete: ", autocomplete)}
+                onLoad={(ref) =>  placeToStartRef.current = ref}
                 onPlaceChanged={handlePlaceToStartSelect}
                 options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
             >
@@ -104,12 +88,13 @@ function RequestForm() {
             </Autocomplete>
 
             <Autocomplete
-                onLoad={(autocomplete) => console.log("autocomplete: ", autocomplete)}
+                onLoad={(ref) => placeToGoRef.current = ref}
                 onPlaceChanged={handlePlaceToGoSelect}
                 options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
             >
                 <input type="text" placeholder="To" />
             </Autocomplete>
+            </LoadScript>
             <input type="time" placeholder="Departure time" onChange={(e) => setTimeToGo(e.target.value)}/><br />
             <input type="time" placeholder="ETA - estimated arrival time" onChange={(e) => setTimeToArrive(e.target.value)}/><br />
             <input type="number" placeholder="Free spots" type="number"onChange={(e) => setFreeSpots(Number(e.target.value))}/><br />
@@ -138,7 +123,6 @@ function RequestForm() {
             > Previous drives </Button>
             <label>Home button?</label><br />
             <br />
-             // what does this "/" mean?
                 <Button><Link to="/" >Go back to signing in</Link></Button>
 
                 <Button><Link to="/">Back</Link></Button>
@@ -147,6 +131,4 @@ function RequestForm() {
     )
 }
 
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDAjrgSjkzIiZj_OX2KnhdA5mWNLtWsalI'
-})(RequestForm);
+export default RequestForm;
