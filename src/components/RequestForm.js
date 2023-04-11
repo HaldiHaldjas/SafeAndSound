@@ -125,6 +125,7 @@ export default function RequestForm() {
                 placeholder="Needed spots"
                 min="1"
                 max="9"
+                style={{width: "90px", height: "22px"}}
                 onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
             {/*<input placeholder="Price" type="number"onChange={(e) => setPrice(Number(e.target.value))}/><br />*/}
 
