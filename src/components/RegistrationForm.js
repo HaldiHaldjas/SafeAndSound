@@ -23,9 +23,7 @@ export default function RegistrationForm() {
     const [licencePic, setLicencePic] = useState("")
     const [isRegistered, setIsRegistered] = useState(false)
     const [imageUpload, setImageUpload] = useState(null)
-  //  const [imageList, setImageList] = useState([])
 
- //   const imageListRef = ref(storage, "images/")
 
     const usersCollectionRef = collection(database, "users")
 
@@ -36,7 +34,7 @@ export default function RegistrationForm() {
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
                 setNewProfilePic(url);
-              //  setImageList((prev) => [...prev, url]);
+
             })
 
             }
@@ -98,9 +96,15 @@ return (
                         color: '#3c52b2',}}} onClick={handleRegistration}>Register</Button><br /><br />
         <br />
         {isRegistered ?
-        <Button><Link to="/signin" >Go back to signing in</Link></Button>
+        <Button variant="contained"
+                sx={{backgroundColor: "#add8e6",
+                    '&:hover': {
+                        backgroundColor: '#fff',
+                        color: '#3c52b2',}}}>
+            <Link to="/signin" >Go back to signing in</Link>
+        </Button>
           :
-        <Link to="/">Back</Link>
+        <Link to="/profile">Back</Link>
         }
 
     </div>
