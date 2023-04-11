@@ -7,9 +7,6 @@ import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";
 import Profile from "./Profile";
 
-
-
-
 export default function RequestForm() {
 
     const [date, setDate] = useState("")
@@ -23,7 +20,6 @@ export default function RequestForm() {
     const [seeDriveHistory, setSeeDriveHistory] = useState(false)
     const placeToStartRef = useRef(null);
     const placeToGoRef = useRef(null);
-
 
     const requestsCollectionRef = collection(database, "requests") // see users requests collection from database
 
@@ -42,7 +38,6 @@ export default function RequestForm() {
     const handleRequest = async () => {
         // random id-generator
         let randomId = generateString(5)
-
 
         try {
             await addDoc(requestsCollectionRef, {

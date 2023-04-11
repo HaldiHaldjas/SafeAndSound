@@ -4,10 +4,10 @@ import {Signin} from "./components/Signin";
 import RegistrationForm from "./components/RegistrationForm";
 import Profile from "./components/Profile";
 import RequestForm from "./components/RequestForm";
-import SeeData from "./components/SeeData";
+import SeeOffers from "./components/SeeOffers";
 import RequestForm from "./components/Request";
 import SeeRequestsForm from "./components/SeeRequests";
-
+import Confirmation from "./components/Confirmation";
 
 function Routing() {
     return (
@@ -18,7 +18,8 @@ function Routing() {
             <Route path="/signin/profile" element={<Profile />}/>
             <Route path="request" element={<RequestForm/>}/>
             <Route path="seeRequests" element={<SeeRequestsForm/>}/>
-            <Route path="/seedata" element={<SeeData />} />
+            <Route path="/seeOffers/*" element={<SeeOffers />} />
+            <Route path="/seeOffers/confirmation" element={<Confirmation/>}/>
         </Routes>
     );
 }
