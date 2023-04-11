@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { database } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { Table, TableBody, TableCell, TableHead, TableRow, Checkbox, Button } from '@material-ui/core';
+import  Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Checkbox from '@mui/material/Checkbox';
+import Button from '@mui/material/Button';
 
 function App() {
     const [offers, setOffers] = useState([]);
