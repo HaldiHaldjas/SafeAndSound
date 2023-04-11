@@ -52,7 +52,7 @@ export default function RequestForm() {
                 timeframe_1: timeToGo,
                 timeframe_2: timeToArrive,
                 needed_spots: neededSpots,
-                randomId: "randomId"
+                randomId: randomId
 
             });
             setSubmitRequest(true)
