@@ -4,6 +4,9 @@ import { database } from "../config/firebase";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
+import { googleMapsApiKey } from "../config/config";
+
+
 
 
 function RequestForm() {
@@ -76,7 +79,7 @@ function RequestForm() {
             <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
 
             <LoadScript
-                googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}
+                googleMapsApiKey={googleMapsApiKey}
                 libraries={['places']}
             >
             <Autocomplete
