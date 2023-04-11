@@ -102,20 +102,20 @@ function App() {
                             ))}
                         </TableBody>
                     </Table>
-                        <Button
-                            variant="contained"
-                            sx={{
-                                backgroundColor: "#F8F8F8",
-                                color: "#383838",
-                                "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
-                                },
-                            }}
-                            onClick={submit}
-                        >
-                            Confirm my choice
-                        </Button>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            backgroundColor: "#F8F8F8",
+                            color: "#383838",
+                            "&:hover": {
+                                backgroundColor: "#fff",
+                                color: "#3c52b2",
+                            },
+                        }}
+                        onClick={submit}
+                    >
+                        Confirm my choice
+                    </Button>
 
 
                 </>

@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from './components/Navigation';
 import RequestForm from "./components/RequestForm";
 import SeeOffers from "./components/SeeOffers";
+import OfferForm from "./components/OfferForm";
 import SeeRequestsForm from "./components/SeeRequests";
 import Confirmation from "./components/Confirmation";
 
