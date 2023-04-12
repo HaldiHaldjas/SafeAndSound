@@ -18,9 +18,9 @@
 
                 await signInWithEmailAndPassword(auth, email, password)
                     .then(() => {
-                        console.log("Jeei");
                         setIsSignedIn(true);
-                        navigate("/signin/profile", { state: { email: email } });
+                        navigate("/profile", { state: { email: email, isSignedIn: true } });
+
                     });
             } catch (error) {
                 const errorCode = error.code;

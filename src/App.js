@@ -9,6 +9,7 @@ import SeeOffers from "./components/SeeOffers";
 import OfferForm from "./components/OfferForm";
 import SeeRequestsForm from "./components/SeeRequests";
 import Confirmation from "./components/Confirmation";
+import Profile from "./components/Profile";
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
                  <Routes>
                      <Route path="/" />
                      <Route path="request" element={<RequestForm/>}/>
-                     <Route path="/signin/*" element={ <Signin/> } />
+                     <Route path="signin" element={ <Signin/> } />
+                     <Route path="/profile" element={ <Profile/> } />
                      <Route path="/register" element={ <RegistrationForm/> } />
                      <Route path="/offer" element={ <OfferForm/> } />
                      <Route path="/seeOffers/*" element={<SeeOffers />} />
