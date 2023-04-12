@@ -10,6 +10,7 @@ import OfferForm from "./components/OfferForm";
 import SeeRequestsForm from "./components/SeeRequests";
 import Confirmation from "./components/Confirmation";
 import Profile from "./components/Profile";
+import Routing from "./Routing";
 
 
 function App() {
@@ -18,20 +19,7 @@ function App() {
       <div className="App">
           <Navigation />
              <main>
-                 <Routes>
-                     <Route path="/" />
-                     <Route path="request" element={<RequestForm/>}/>
-                     <Route path="signin" element={ <Signin/> } />
-                     <Route path="/profile" element={ <Profile/> } />
-                     <Route path="/register" element={ <RegistrationForm/> } />
-                     <Route path="/offer" element={ <OfferForm/> } />
-                     <Route path="/seeOffers/*" element={<SeeOffers />} />
-                     <Route path="seeRequests" element={<SeeRequestsForm/>}/>
-                     <Route path="/seeOffers/confirmation" element={<Confirmation />} />
-
-
-
-                 </Routes>
+                <Routing />
              </main>
       </div>
   );
