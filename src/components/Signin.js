@@ -28,7 +28,9 @@
             }
         };
 
-
+        const toProfile = () => {
+            navigate("/profile", { state: { email: email, isSignedIn: true } });
+        }
         return (
             <div>
                 {isSignedIn ? (
@@ -42,7 +44,8 @@
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br />
-                        <Button variant='outlined' color='primary' onClick={() => navigate('signin')} sx={{ fontFamily: 'Roboto Mono', fontWeight: 700 }}>Sign in</Button>
+                        <Button variant='outlined' color='primary'
+                                onClick={toProfile} sx={{ fontFamily: 'Roboto Mono', fontWeight: 700 }}>Sign in</Button>
                         <br />
                         <br />
                     </>
