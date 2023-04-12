@@ -13,6 +13,7 @@ function Confirmation() {
     const [driverFirstName, setDriverFirstName] = useState("")
     const [driverLastName, setDriverLastName] = useState("")
     const [driverPhone, setDriverPhone] = useState(0)
+    const [driverPic, setDriverPic] = useState("")
 
     const email = selectedOffer.user_email;
 
@@ -28,6 +29,7 @@ function Confirmation() {
                 setDriverFirstName(userData.first_name)
                 setDriverLastName(userData.last_name)
                 setDriverPhone(userData.phone)
+                setDriverPic(userData.profile_pic)
             }
         } catch (err) {
             console.error(err);
@@ -42,32 +44,50 @@ function Confirmation() {
     }
 
     return (
-        <div>
-            <h3>Selected offer:</h3>
-            <p>From: {selectedOffer.from && selectedOffer.from.address}</p>
-            <p>To: {selectedOffer.to && selectedOffer.to.address}</p>
-            <p>Timeframe 1: {selectedOffer.timeframe_1}</p>
-            <p>Timeframe 2: {selectedOffer.timeframe_2}</p>
-            <p>Free spots: {selectedOffer.free_spots}</p>
-            <p>Price: {selectedOffer.price}</p>
-            <p>Verification code: {selectedOffer.verif_code}</p>
-            <p>Driver name: {driverFirstName} {driverLastName} </p>
-            <p>Driver phonenumber: {driverPhone}</p>
-            <Button
-                variant="contained"
-                sx={{
-                    backgroundColor: "#add8e6",
-                    "&:hover": {
-                        backgroundColor: "#fff",
-                        color: "#3c52b2",
-                    },
-                    width: "180px",
-                    height: "40px"
+        <div style={{
+            display: "flex",
+            alignItems: "center"
+        }}>
+            <div
+                style={{
+                    width: "50%",
+                    backgroundColor: "#fff",
+                    borderRadius: "10px",
+                    padding: "20px",
+                    marginTop: "40px",
+                    marginLeft: "40px"
+                }}>
+                <h3>Selected offer:</h3>
+                <p>From: {selectedOffer.from && selectedOffer.from.address}</p>
+                <p>To: {selectedOffer.to && selectedOffer.to.address}</p>
+                <p>Timeframe 1: {selectedOffer.timeframe_1}</p>
+                <p>Timeframe 2: {selectedOffer.timeframe_2}</p>
+                <p>Free spots: {selectedOffer.free_spots}</p>
+                <p>Price: {selectedOffer.price}</p>
+                <p>Verification code: {selectedOffer.randomId}</p>
+                </div>
+            <div style={{
+                width: "50%" }}>
 
-                }}
-                onClick={toProfile}>
-                Driver's profile
-            </Button>
+                    <img src={driverPic}></img>
+                    <p>Driver name: {driverFirstName} {driverLastName} </p>
+                    <p>Driver phonenumber: {driverPhone}</p>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            backgroundColor: "#add8e6",
+                            "&:hover": {
+                                backgroundColor: "#fff",
+                                color: "#3c52b2",
+                            },
+                            width: "180px",
+                            height: "40px"
+
+                        }}
+                        onClick={toProfile}>
+                        Driver's profile
+                    </Button>
+            </div>
         </div>
     );
 }

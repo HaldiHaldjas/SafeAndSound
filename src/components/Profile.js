@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {database} from "../config/firebase";
-import {Link, useLocation} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import Button from "@mui/material/Button";
 import { useNavigate} from "react-router-dom";
 
@@ -78,17 +78,16 @@ export default function Profile() {
                         padding: "20px",
                         marginTop: "40px",
                         marginLeft: "40px"
-                    }}
-                >
-                    <h1>Welcome, {firstName}!</h1>
+                    }}>
+                    <h1>{firstName} {lastName}</h1>
                     <img src={profilePic} />
-                    <p>First name: {firstName}</p>
-                    <p>Last name: {lastName}</p>
+
                     <p>E-mail: {email}</p>
                     <p>Phone: {phone}</p>
                     {isUserDriver && (
                         <>
                             <p>Licence plate: {licencePlate}</p>
+                            <label>Driving licence:</label><br />
                             <img src={licencePic} />
                         </>
                     )}

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {addDoc, collection} from "firebase/firestore";
 import {auth, database, storage} from "../config/firebase";
-import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -91,7 +90,7 @@ export default function RegistrationForm() {
         navigate("/signin");
     }
 
-    console.log(isRegistered)
+
 return (
     <div style={{
         display: "flex",

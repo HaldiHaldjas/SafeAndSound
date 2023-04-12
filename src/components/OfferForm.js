@@ -6,6 +6,7 @@ import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";
 import { useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import CheckIcon from "@mui/icons-material/Check";
 
 
 
@@ -169,6 +170,11 @@ function OfferForm() {
                                 }}
                             onClick={handleRequest}
                     > Submit </Button>
+                    <br />
+                    {submitOffer &&
+                        <CheckIcon
+                            sx={{color: "green",
+                                paddingTop: "10px"}}></CheckIcon>}
                 </form>
                     </div>
                     <div style={{

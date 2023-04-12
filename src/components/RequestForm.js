@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";
 import { useNavigate} from "react-router-dom";
+import CheckIcon from "@mui/icons-material/Check";
 
 
 
@@ -170,6 +171,11 @@ export default function RequestForm() {
                                 }}
                                 onClick={handleRequest}
                         > Submit </Button>
+                        <br />
+                        {submitRequest &&
+                            <CheckIcon
+                                sx={{color: "green",
+                                    paddingTop: "10px"}}></CheckIcon>}
                         </form>
                     </div>
                     <div style={{
@@ -233,6 +239,7 @@ export default function RequestForm() {
                         >
                             All requests
                         </Button>
+
                 </div>
         </div>
     )
