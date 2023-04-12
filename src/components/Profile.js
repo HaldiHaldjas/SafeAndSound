@@ -89,7 +89,7 @@ export default function Profile() {
                     {isUserDriver && (
                         <>
                             <p>Licence plate: {licencePlate}</p>
-                            <p>Licence picture: {licencePic}</p>
+                            <img src={licencePic} />
                         </>
                     )}
                 </div>
