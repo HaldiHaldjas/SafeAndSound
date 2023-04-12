@@ -15,8 +15,18 @@ export default function SeeRequestsForm() {
     const navigate = useNavigate();
     const [requests, setRequests] = useState([])
     // const [isChecked, setIsChecked] = useState([]);
-    const [checkedRequests, setCheckedRequests] = useState([]);
+    // const [checkedRequests, setCheckedRequests] = useState([]);
     const [seeDriverProfile, setSeeDriverProfile] = useState([])
+    //
+    // const [selectedRequest, setSelectedRequest] = useState(null);
+
+    // const [loading, setLoading] = useState(true);
+    const [selectedIds, setSelectedIds] = useState([]);
+    const [selectedRequest, setSelectedRequest] = useState(null);
+
+
+
+
     // const [submitAccept, setSubmitAccept] = useState("")
     // const [requestPosition - järjekorranumber tabelis']
     //  const requestsRequestIdCollectionRef = collection(database, "requests") // see request list from database
@@ -25,14 +35,21 @@ export default function SeeRequestsForm() {
     // const retrieveDriverProfile = collection(database, "requestDriverProfile") // gets drivers profile from database
 
 
-    const getRequests = async () => {
-        await getDocs(collection(database, "requests"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({...doc.data(), id: doc.id}));
-                setRequests(newData);
-                console.log(requests, newData)
-            })
+    // const getRequests = async () => {
+    //     await getDocs(collection(database, "requests"))
+    //         .then((querySnapshot) => {
+    //             const newData = querySnapshot.docs
+    //                 .map((doc) => ({...doc.data(), id: doc.id}));
+    //             setRequests(newData);
+    //             // console.log(requests, newData)
+    //         })
+    // }
+
+    async function fetchRequests() {
+        const querySnapshot = await getDocs(collection(database, "requests"));
+        const newData = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
+        setRequests(newData);
+        // setLoading(false); // set loading state to false when data is fetched
     }
 
     const getDriverProfile = async () => {
@@ -41,39 +58,41 @@ export default function SeeRequestsForm() {
                 const newData2 = querySnapshot.docs
                     .map((doc) => ({...doc.data(), id: doc.id}));
                 setSeeDriverProfile(newData2); // (newData2.users.last_name)
-                console.log(seeDriverProfile, newData2)
+                // console.log(seeDriverProfile, newData2)
                 // const driverInfo = setSeeDriverProfile.
                 // const driverInfo = seeDriverProfile.map((user, index) => )
             })
     }
 
     useEffect(() => {
-        getRequests();
-    }, [])
-
-    useEffect(() => {
+        fetchRequests();
         getDriverProfile();
     }, [])
 
-    const handleCheckBoxChange = (event, requestId) => {
-        const checked = event.target.checked;
-        if (checked) {
-            setCheckedRequests([...checkedRequests, requestId]);
-        } else {
-            setCheckedRequests(checkedRequests.filter((id) => id !== requestId));
-        }
-    }
 
-    /*    const handleCheckBoxChange = (event, id) => {
+    // const handleCheckBoxChange = (event, requestId) => {
+    //     const checked = event.target.checked;
+    //     if (checked) {
+    //         setCheckedRequests([...checkedRequests, requestId]);
+    //     } else {
+    //         setCheckedRequests(checkedRequests.filter((id) => id !== requestId));
+    //     }
+    // }
+
+    const handleCheckbox = (event, id) => {
+        console.log(id)
+
         if (event.target.checked) {
-            setIsChecked((prevIsChecked) => [...prevIsChecked, id]);
-            setCheckedRequests(requests.find((request) => request.id === id));
-            console.log(checkedRequests)
+            setSelectedIds((prevSelectedIds) => [...prevSelectedIds, id]);
+            setSelectedRequest(requests.find((request) => request.id === id));
+
+
+
         } else {
-            setIsChecked((prevIsChecked) => prevIsChecked.filter((isChecked) => isChecked !== id));
-            setCheckedRequests(null);
+            setSelectedIds((prevSelectedIds) => prevSelectedIds.filter((selectedId) => selectedId !== id));
+            setSelectedRequest(null);
         }
-    }*/
+    };
 
   /*  const handleButtonClick = (event) => {
         if (event === handleCheckBoxChange) {
@@ -83,9 +102,17 @@ export default function SeeRequestsForm() {
         }
     }*/
 
-    const handleButtonClick = () => {
-        navigate("/seerequests/confirmation", {state: {checkedRequests: checkedRequests} });
+    // const handleButtonClick = () => {
+    //     navigate("/seerequests/confirmation", {state: {checkedRequests: checkedRequests} });
+    // }
+    const submit = () => {
+        navigate("/seerequests/confirmation", { state: { selectedRequest: selectedRequest } });
     }
+
+    // console.log(requests)
+
+    console.log(selectedRequest)
+
     return (
         <div className="Requests list">
             <Table>
@@ -98,7 +125,7 @@ export default function SeeRequestsForm() {
                         <TableCell>Timeframe 1</TableCell>
                         <TableCell>Timeframe 2</TableCell>
                         <TableCell>Needed Spots</TableCell>
-                        <TableCell>Driver's profile</TableCell>
+                        <TableCell>User's profile</TableCell>
                         <TableCell>My choice</TableCell>
                     </TableRow>
                 </TableHead>
@@ -118,18 +145,23 @@ export default function SeeRequestsForm() {
 */}
                             </TableCell>
                             <TableCell>
+                                {/*<Checkbox*/}
+                                {/*    checked={isChecked.includes(request.id)}*/}
+                                {/*    onChange={(event) => handleCheckBoxChange(event, request.id)}*/}
+                                {/*    color="success"*/}
+                                {/*/>*/}
                                 <Checkbox
-                                    checked={checkedRequests.includes(request.id)}
-                                    onChange={(event) => handleCheckBoxChange(event, request.id)}
-                                    color="success"
+                                    checked={selectedIds.includes(request.id)}
+                                    onChange={(event) => handleCheckbox(event, request.id)}
                                 />
+
                              </TableCell>
                         </TableRow>
                       ))}
                 </TableBody>
             </Table>
             <Button
-                onClick={handleButtonClick}
+                onClick={submit}
                 variant="contained"
                 sx={{
                     backgroundColor: "#F8F8F8",
