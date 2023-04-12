@@ -22,6 +22,7 @@ function App() {
                      <Route path="/register" element={ <RegistrationForm/> } />
                      <Route path="/seedata" element={<SeeData />} />
                      <Route path="/seerequests" element={<SeeRequestsForm/>}/>
+                     <Route path="/seerequests/confirmation" element={<RequestConfirmation />} />
                  </Routes>
              </main>
       </div>
