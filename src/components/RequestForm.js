@@ -16,7 +16,6 @@ export default function RequestForm() {
     const location = useLocation();
     const isSignedIn = location.state?.isSignedIn;
     const email = location.state?.email;
-    console.log(email)
     const [date, setDate] = useState("")
     const [placeToStart, setPlaceToStart] = useState("")
     const [placeToGo, setPlaceToGo] = useState("")
