@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 function RequestConfirmation() {
     const location = useLocation();
     const selectedRequest = location?.state?.selectedRequest;
-    console.log(selectedRequest)
+    // console.log(selectedRequest)
 
     return (
         <div>
