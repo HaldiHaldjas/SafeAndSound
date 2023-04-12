@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+import CheckIcon from '@mui/icons-material/Check';
 
 
 export default function RegistrationForm() {
@@ -22,6 +23,8 @@ export default function RegistrationForm() {
     const [licencePic, setLicencePic] = useState("")
     const [isRegistered, setIsRegistered] = useState(false)
     const [imageUpload, setImageUpload] = useState(null)
+    const [isImageUploaded, setIsImageUploaded] = useState(false);
+
 
 
     const usersCollectionRef = collection(database, "users")
@@ -33,6 +36,7 @@ export default function RegistrationForm() {
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
                 setNewProfilePic(url);
+                setIsImageUploaded(true);
 
             })
 
@@ -58,16 +62,32 @@ export default function RegistrationForm() {
                     licence_plate: licencePlate,
                     driving_licence_pic: licencePic,
         })});
-    setIsRegistered(true)
-    } catch (err) {
-        console.error(err)
+        document.getElementById("RegForm").reset();
+        setIsRegistered(true)
+        } catch (err) {
+            console.error(err)
+        }
     }
-}
 
 
 return (
-
-    <div>
+    <div style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    }}>
+    <div
+        style={{
+            width: "50%",
+            backgroundColor: "#fff",
+            borderRadius: "10px",
+            padding: "20px",
+            marginTop: "40px",
+            marginLeft: "40px",
+            justifyContent: "center",
+            alignItems: "center"
+        }}
+    >
         <h3>Sign up</h3>
         <input placeholder="First name" onChange={(e) => setNewFirstName(e.target.value)}/><br />
         <input placeholder="Last name" onChange={(e) => setNewLastName(e.target.value)}/><br />
@@ -76,9 +96,27 @@ return (
         <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
         <label for="profilePic">Profile picture:</label>
         <input placeholder="Profile picture" type="file" id="profilePic"
-               onChange={(e) => setImageUpload(e.target.files[0])} /> <br />
-        <button onClick={upLoadImage}>Upload picture</button> <br /> <br />
+               onChange={(e) => setImageUpload(e.target.files[0])} />
+        <br />
+        <Button variant="contained"
+                sx={{backgroundColor: "#add8e6",
+                    height: "30px",
 
+                    '&:hover': {
+                        backgroundColor: '#fff',
+                        color: '#3c52b2',
+                        }
+                }}
+                onClick={upLoadImage}>
+                Upload picture
+        </Button>
+        <br />
+        {isImageUploaded &&
+            <CheckIcon
+                sx={{color: "green",
+                    paddingTop: "10px"}}></CheckIcon>}
+
+        <br />
         <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
         <label>I also want to be a driver</label><br />
         {isNewUserDriver &&
@@ -92,19 +130,28 @@ return (
                 sx={{backgroundColor: "#add8e6",
                     '&:hover': {
                         backgroundColor: '#fff',
-                        color: '#3c52b2',}}} onClick={handleRegistration}>Register</Button><br /><br />
-        <br />
+                        color: '#3c52b2',}}} onClick={handleRegistration}>Register</Button>
+
         {isRegistered ?
         <Button variant="contained"
                 sx={{backgroundColor: "#add8e6",
                     '&:hover': {
                         backgroundColor: '#fff',
-                        color: '#3c52b2',}}}>
+                        color: '#3c52b2',},
+                        marginLeft: "25px"}}>
             <Link to="/signin" >Go back to signing in</Link>
         </Button>
           :
-        <Link to="/">Back</Link>
+            <Button variant="contained"
+                    sx={{backgroundColor: "#add8e6",
+                        '&:hover': {
+                            backgroundColor: '#fff',
+                            color: '#3c52b2',},
+                            marginLeft: "25px"}}>
+                <Link to="/signin" >Back</Link>
+            </Button>
         }
+        </div>
 
     </div>
 

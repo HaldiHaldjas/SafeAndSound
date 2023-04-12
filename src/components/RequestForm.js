@@ -22,7 +22,7 @@ export default function RequestForm() {
     const [timeToGo, setTimeToGo] = useState("")
     const [timeToArrive, setTimeToArrive] = useState(0)
     const [neededSpots, setNeededSpots] = useState(false)
-    const [submitRequest, setSubmitRequest] = useState("")
+    const [submitRequest, setSubmitRequest] = useState(false)
     //const [seeDriveHistory, setSeeDriveHistory] = useState(false)
     const placeToStartRef = useRef(null);
     const placeToGoRef = useRef(null);
@@ -56,7 +56,7 @@ export default function RequestForm() {
                 randomId: randomId
 
             });
-            document.getElementById("myForm").reset();
+            document.getElementById("RequestForm").reset();
             setSubmitRequest(true);
 
 
@@ -119,7 +119,7 @@ export default function RequestForm() {
                     marginLeft: "40px"
                     }}
                 >
-                    <form id="myForm">
+                    <form id="RequestForm">
                         <h3>Where do you want to go? Insert request</h3>
                         <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
 
