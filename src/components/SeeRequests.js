@@ -84,7 +84,7 @@ export default function SeeRequestsForm() {
     }*/
 
     const handleButtonClick = () => {
-        navigate("/seeOffers/confirmation", {state: {checkedRequests: checkedRequests} });
+        navigate("/seerequests/confirmation", {state: {checkedRequests: checkedRequests} });
     }
     return (
         <div className="Requests list">

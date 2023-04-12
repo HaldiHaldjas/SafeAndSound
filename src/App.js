@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import RequestForm from "./components/RequestForm";
 import SeeData from "./components/SeeData";
 import SeeRequestsForm from "./components/SeeRequests";
+import RequestConfirmation from "./components/RequestConfirmation";
 
 
 function App() {
