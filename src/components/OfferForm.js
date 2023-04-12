@@ -55,7 +55,8 @@ function OfferForm() {
                 timeframe_2: timeToArrive,
                 needed_spots: freeSpots,
                 price: price,
-                randomId: randomId
+                randomId: randomId,
+                user_email: email
             });
             document.getElementById("OfferForm").reset();
             setSubmitOffer(true)
@@ -247,7 +248,7 @@ function OfferForm() {
                         >
                             All requests
                         </Button>
-                    }
+
             </div>
         </div>
     )
