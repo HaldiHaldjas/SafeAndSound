@@ -1,17 +1,22 @@
 import React, { useState, useRef } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { database } from "../config/firebase";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";
-import Profile from "./Profile";
+import { useNavigate} from "react-router-dom";
 
 
 
 
 export default function RequestForm() {
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const isSignedIn = location.state?.isSignedIn;
+    const email = location.state?.email;
+    console.log(email)
     const [date, setDate] = useState("")
     const [placeToStart, setPlaceToStart] = useState("")
     const [placeToGo, setPlaceToGo] = useState("")
@@ -84,8 +89,10 @@ export default function RequestForm() {
         });
     };
 
-    console.log(placeToStart)
-    console.log(placeToGo)
+    const toProfile = () => {
+        navigate("/profile", { state: { email: email, isSignedIn: true } });
+    }
+
     return (
 
         <div>
@@ -127,7 +134,6 @@ export default function RequestForm() {
                 max="9"
                 style={{width: "90px", height: "22px"}}
                 onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
-            {/*<input placeholder="Price" type="number"onChange={(e) => setPrice(Number(e.target.value))}/><br />*/}
 
             <Button variant="contained"
                     sx={{backgroundColor: "#add8e6",
@@ -145,8 +151,7 @@ export default function RequestForm() {
                     // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
             > Previous drives </Button>
             <br /><br />
-                 <Button><Link to="/signin" >Go back to signing in</Link></Button>
-                 <Button><Link to="/signin/profile">Back</Link></Button>
+                 <Button onClick={toProfile}>Go to profile</Button>
             }
         </div>
     )

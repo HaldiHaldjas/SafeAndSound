@@ -47,7 +47,6 @@ function App() {
         navigate("/seeOffers/confirmation", { state: { selectedOffer: selectedOffer } });
     }
 
-    console.log(selectedOffer)
     return (
         <div className="App">
             {loading ? (
