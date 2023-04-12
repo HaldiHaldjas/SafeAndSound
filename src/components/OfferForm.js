@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { database } from "../config/firebase";
-import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";

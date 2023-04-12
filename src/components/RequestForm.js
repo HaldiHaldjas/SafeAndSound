@@ -56,7 +56,10 @@ export default function RequestForm() {
                 randomId: randomId
 
             });
-            setSubmitRequest(true)
+            document.getElementById("myForm").reset();
+            setSubmitRequest(true);
+
+
         } catch (err) {
             console.error(err)
         }
@@ -116,6 +119,7 @@ export default function RequestForm() {
                     marginLeft: "40px"
                     }}
                 >
+                    <form id="myForm">
                         <h3>Where do you want to go? Insert request</h3>
                         <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
 
@@ -165,6 +169,7 @@ export default function RequestForm() {
                                 }}
                                 onClick={handleRequest}
                         > Submit </Button>
+                        </form>
                     </div>
                     <div style={{
                         width: "50%" }}>
