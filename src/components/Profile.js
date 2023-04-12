@@ -52,42 +52,118 @@ export default function Profile() {
         navigate("/request", { state: { email: email, isSignedIn: true } });
     }
 
+    const toSeeOffers = () => {
+        navigate("/request", { state: { email: email, isSignedIn: true } });
+    }
+
+    const toSeeRequests = () => {
+        navigate("/request", { state: { email: email, isSignedIn: true } });
+    }
+
     return (
-    <div>
-        {isSignedIn && (
-            <>
-                <h1>Welcome, {firstName}!</h1>
-                <img src={profilePic} />
-                <p>First name: {firstName}</p>
-                <p>Last name: {lastName}</p>
-                <p>E-mail: {email}</p>
-                <p>Phone: {phone}</p>
+        <div style={{
+            display: "flex",
+            alignItems: "center"
+            }}>
+            {isSignedIn && (
+                <div
+                    style={{
+                        width: "50%",
+                        backgroundColor: "#fff",
+                        borderRadius: "10px",
+                        padding: "20px",
+                        marginTop: "40px",
+                        marginLeft: "40px"
+                    }}
+                >
+                    <h1>Welcome, {firstName}!</h1>
+                    <img src={profilePic} />
+                    <p>First name: {firstName}</p>
+                    <p>Last name: {lastName}</p>
+                    <p>E-mail: {email}</p>
+                    <p>Phone: {phone}</p>
                     {isUserDriver && (
                         <>
-                        <p>Licence plate: {licencePlate}</p>
-                        <p>Licence picture: {licencePic}</p>
-
-                        <Button variant="contained"
-                        sx={{backgroundColor: "#add8e6",
-                        '&:hover': {
-                        backgroundColor: '#fff',
-                        color: '#3c52b2',}}}>
-                        <Link to="/offer" >Insert an offer</Link>
-                        </Button>
+                            <p>Licence plate: {licencePlate}</p>
+                            <p>Licence picture: {licencePic}</p>
                         </>
                     )}
-                    <Button variant="contained"
-                            sx={{backgroundColor: "#add8e6",
-                                '&:hover': {
-                                    backgroundColor: '#fff',
-                                    color: '#3c52b2',}
-                                }}
-                                        onClick={toRequest}>
-                            Insert a request
-                    </Button>
-                    </>
-                    )}
                 </div>
+            )}
+            <div style={{
+                width: "50%" }}>
+                {isSignedIn && (
+                    <>
+                        {isUserDriver && (
+                            <Button
+                                variant="contained"
+                                sx={{
+                                    backgroundColor: "#add8e6",
+                                    "&:hover": {
+                                        backgroundColor: "#fff",
+                                        color: "#3c52b2",
+                                    },
+                                    width: "180px",
+                                    height: "40px"
 
-            );
+                                }}
+                            >
+                                <Link to="/offer">Insert an offer</Link>
+                            </Button>
+                        )}
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: "#add8e6",
+                                "&:hover": {
+                                    backgroundColor: "#fff",
+                                    color: "#3c52b2",
+                                },
+                                width: "180px",
+                                height: "40px"
+                                }}
+                            onClick={toRequest}
+                        >
+                            Insert a request
+                        </Button>
+                        <br /><br />
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: "#add8e6",
+                                "&:hover": {
+                                    backgroundColor: "#fff",
+                                    color: "#3c52b2",
+                                },
+                                width: "180px",
+                                height: "40px"
+
+                            }}
+                            onClick={toSeeOffers}
+                        >
+                            All offers
+                        </Button>
+                        <br /><br />
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: "#add8e6",
+                                "&:hover": {
+                                    backgroundColor: "#fff",
+                                    color: "#3c52b2",
+                                },
+                                width: "180px",
+                                height: "40px"
+
+                            }}
+                            onClick={toSeeRequests}
+                        >
+                            All requests
+                        </Button>
+                    </>
+                )}
+            </div>
+        </div>
+    );
+
 }

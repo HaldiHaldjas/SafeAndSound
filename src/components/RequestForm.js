@@ -94,65 +94,97 @@ export default function RequestForm() {
     }
 
     return (
+        <div style={{
+            display: "flex",
+            alignItems: "center"
+             }}>
+            <div
+                style={{
+                    width: "50%",
+                    backgroundColor: "#fff",
+                    borderRadius: "10px",
+                    padding: "10px",
+                    marginTop: "20px",
+                    marginLeft: "40px"
+                    }}
+                >
+                        <h3>Where do you want to go? Insert request</h3>
+                        <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
 
-        <div>
-            <h3>Where do you want to go? Insert request</h3>
-            <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
+                        <LoadScript
+                            googleMapsApiKey={googleMapsApiKey}
+                            libraries={['places']}
+                        >
+                        <Autocomplete
+                            onLoad={(ref) =>  placeToStartRef.current = ref}
+                            onPlaceChanged={handlePlaceToStartSelect}
+                            options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
+                        >
+                            <input type="text" placeholder="From" />
+                        </Autocomplete>
 
-            <LoadScript
-                googleMapsApiKey={googleMapsApiKey}
-                libraries={['places']}
-            >
-            <Autocomplete
-                onLoad={(ref) =>  placeToStartRef.current = ref}
-                onPlaceChanged={handlePlaceToStartSelect}
-                options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
-            >
-                <input type="text" placeholder="From" />
-            </Autocomplete>
+                        <Autocomplete
+                            onLoad={(ref) => placeToGoRef.current = ref}
+                            onPlaceChanged={handlePlaceToGoSelect}
+                            options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
+                        >
+                            <input type="text" placeholder="To" />
+                        </Autocomplete>
+                        </LoadScript>
+                        <input
+                            type="time"
+                            placeholder="Departure time"
+                            onChange={(e) => setTimeToGo(e.target.value)}/><br />
+                        <input
+                            type="time"
+                            placeholder="ETA - estimated arrival time"
+                            onChange={(e) => setTimeToArrive(e.target.value)}/><br />
+                        <input
+                            type="number"
+                            placeholder="Needed spots"
+                            min="1"
+                            max="9"
+                            style={{width: "90px", height: "22px"}}
+                            onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
 
-            <Autocomplete
-                onLoad={(ref) => placeToGoRef.current = ref}
-                onPlaceChanged={handlePlaceToGoSelect}
-                options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
-            >
-                <input type="text" placeholder="To" />
-            </Autocomplete>
-            </LoadScript>
-            <input
-                type="time"
-                placeholder="Departure time"
-                onChange={(e) => setTimeToGo(e.target.value)}/><br />
-            <input
-                type="time"
-                placeholder="ETA - estimated arrival time"
-                onChange={(e) => setTimeToArrive(e.target.value)}/><br />
-            <input
-                type="number"
-                placeholder="Needed spots"
-                min="1"
-                max="9"
-                style={{width: "90px", height: "22px"}}
-                onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
+                        <Button variant="contained"
+                                sx={{backgroundColor: "#add8e6",
+                                '&:hover': {
+                                    backgroundColor: '#fff',
+                                    color: '#3c52b2',},
+                                    width: "180px",
+                                    height: "40px"
+                                }}
+                                onClick={handleRequest}
+                        > Submit </Button>
+                    </div>
+                    <div style={{
+                        width: "50%" }}>
+                        <Button variant="contained"
+                            sx={{backgroundColor: "#add8e6",
+                                '&:hover': {
+                                    backgroundColor: '#fff',
+                                    color: '#3c52b2',},
+                                width: "180px",
+                                height: "40px"
+                            }}
+                            // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
+                    > Previous drives </Button>
+                    <br /><br />
+                         <Button
+                             variant="contained"
+                             sx={{
+                                 backgroundColor: "#add8e6",
+                                 "&:hover": {
+                                     backgroundColor: "#fff",
+                                     color: "#3c52b2",
+                                 },
+                                 width: "180px",
+                                 height: "40px"
 
-            <Button variant="contained"
-                    sx={{backgroundColor: "#add8e6",
-                '&:hover': {
-                    backgroundColor: '#fff',
-                    color: '#3c52b2',}}}
-                    onClick={handleRequest}
-            > Submit </Button>
-            <br /><br />
-            <Button variant="contained"
-                    sx={{backgroundColor: "#add8e6",
-                        '&:hover': {
-                            backgroundColor: '#fff',
-                            color: '#3c52b2',}}}
-                    // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
-            > Previous drives </Button>
-            <br /><br />
-                 <Button onClick={toProfile}>Go to profile</Button>
-            }
+                             }}onClick={toProfile}>Go to profile</Button>
+                    }
+                </div>
         </div>
     )
 }
