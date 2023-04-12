@@ -7,38 +7,57 @@ import {createUserWithEmailAndPassword} from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import CheckIcon from '@mui/icons-material/Check';
+import { useNavigate} from "react-router-dom";
 
 
 export default function RegistrationForm() {
 
-
+    const navigate = useNavigate();
     const [newFirstName, setNewFirstName] = useState("")
     const [newLastName, setNewLastName] = useState("")
     const [newEmail, setNewEmail] = useState("")
     const [newPhone, setNewPhone] = useState(0)
     const [newProfilePic, setNewProfilePic] = useState("")
+    const [ProfilePicUpload, setProfilePicUpload] = useState(null)
+    const [isProfilePicUploaded, setIsProfilePicUploaded] = useState(false);
     const [isNewUserDriver, setIsNewUserDriver] = useState(false)
     const [newPassword, setNewPassword] = useState("");
     const [licencePlate, setLicencePlate] = useState("")
     const [licencePic, setLicencePic] = useState("")
+    const [licencePicUpload, setLicencePicUpload] = useState(null)
+    const [isLicencePicUploaded, setIsLicencePicUploaded] = useState(false)
     const [isRegistered, setIsRegistered] = useState(false)
-    const [imageUpload, setImageUpload] = useState(null)
-    const [isImageUploaded, setIsImageUploaded] = useState(false);
+
 
 
 
     const usersCollectionRef = collection(database, "users")
 
-    const upLoadImage = () => {
-        if (imageUpload == null)
+    const upLoadProfilePic = () => {
+        if (ProfilePicUpload == null)
             return;
-        const imageRef = ref(storage, `images/${imageUpload.name + v4() }`);
-        uploadBytes(imageRef, imageUpload).then((snapshot) => {
+        const imageRef = ref(storage, `images/${ProfilePicUpload.name + v4() }`);
+        uploadBytes(imageRef, ProfilePicUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
                 setNewProfilePic(url);
-                setIsImageUploaded(true);
+                setIsProfilePicUploaded(true);
 
             })
+
+            }
+        )
+    }
+
+    const upLoadLicencePic = () => {
+        if (licencePicUpload == null)
+            return;
+        const imageRef = ref(storage, `images/${licencePicUpload.name + v4() }`);
+        uploadBytes(imageRef, licencePicUpload).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    setLicencePic(url);
+                    setIsLicencePicUploaded(true);
+
+                })
 
             }
         )
@@ -69,6 +88,9 @@ export default function RegistrationForm() {
         }
     }
 
+    const toSignin = () => {
+        navigate("/signin");
+    }
 
 return (
     <div style={{
@@ -96,7 +118,7 @@ return (
         <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
         <label for="profilePic">Profile picture:</label>
         <input placeholder="Profile picture" type="file" id="profilePic"
-               onChange={(e) => setImageUpload(e.target.files[0])} />
+               onChange={(e) => setProfilePicUpload(e.target.files[0])} />
         <br />
         <Button variant="contained"
                 sx={{backgroundColor: "#add8e6",
@@ -107,11 +129,11 @@ return (
                         color: '#3c52b2',
                         }
                 }}
-                onClick={upLoadImage}>
+                onClick={upLoadProfilePic}>
                 Upload picture
         </Button>
         <br />
-        {isImageUploaded &&
+        {isProfilePicUploaded &&
             <CheckIcon
                 sx={{color: "green",
                     paddingTop: "10px"}}></CheckIcon>}
@@ -121,8 +143,28 @@ return (
         <label>I also want to be a driver</label><br />
         {isNewUserDriver &&
             <>
-                 <input placeholder="Licence plate" onChange={(e) => setLicencePlate(e.target.value)}/> <br />
-                 <input placeholder="Picture of driving licence" onChange={(e) => setLicencePic(e.target.value)}/>
+                <input placeholder="Licence plate" onChange={(e) => setLicencePlate(e.target.value)}/> <br />
+                <label for="licencePic">Picture of driving licence:</label>
+                <input placeholder="Picture of driving licence" type="file" id="licencePic"
+                       onChange={(e) => setLicencePicUpload(e.target.files[0])} />
+                <br />
+                <Button variant="contained"
+                        sx={{backgroundColor: "#add8e6",
+                            height: "30px",
+
+                            '&:hover': {
+                                backgroundColor: '#fff',
+                                color: '#3c52b2',
+                            }
+                        }}
+                        onClick={upLoadLicencePic}>
+                    Upload picture
+                </Button>
+                <br />
+                {isLicencePicUploaded &&
+                    <CheckIcon
+                        sx={{color: "green",
+                            paddingTop: "10px"}}></CheckIcon>}
             </>
         }
         <br />
@@ -138,8 +180,9 @@ return (
                     '&:hover': {
                         backgroundColor: '#fff',
                         color: '#3c52b2',},
-                        marginLeft: "25px"}}>
-            <Link to="/signin" >Go back to signing in</Link>
+                        marginLeft: "25px"}}
+                onClick={toSignin}>
+         Go back to signing in
         </Button>
           :
             <Button variant="contained"
@@ -147,8 +190,9 @@ return (
                         '&:hover': {
                             backgroundColor: '#fff',
                             color: '#3c52b2',},
-                            marginLeft: "25px"}}>
-                <Link to="/signin" >Back</Link>
+                            marginLeft: "25px"}}
+                    onClick={toSignin}>
+               Back
             </Button>
         }
         </div>
