@@ -81,8 +81,7 @@ export default function RegistrationForm() {
                     licence_plate: licencePlate,
                     driving_licence_pic: licencePic,
         })});
-        document.getElementById("RegForm").reset();
-        setIsRegistered(true)
+          setIsRegistered(true)
         } catch (err) {
             console.error(err)
         }
@@ -92,6 +91,7 @@ export default function RegistrationForm() {
         navigate("/signin");
     }
 
+    console.log(isRegistered)
 return (
     <div style={{
         display: "flex",
@@ -170,19 +170,32 @@ return (
         <br />
         <Button variant="contained"
                 sx={{backgroundColor: "#add8e6",
+                    width: "180px",
+                    height: "40px",
                     '&:hover': {
                         backgroundColor: '#fff',
                         color: '#3c52b2',}}} onClick={handleRegistration}>Register</Button>
-
-        <Button variant="contained"
-                sx={{backgroundColor: "#add8e6",
-                    '&:hover': {
+        <br />
+        {isRegistered &&
+            <>
+            <CheckIcon
+                sx={{color: "green",
+                    paddingTop: "10px"}}></CheckIcon>
+            <br /><br />
+            <Button variant="contained"
+                    sx={{backgroundColor: "#add8e6",
+                        width: "180px",
+                        height: "40px",
+                        '&:hover': {
                         backgroundColor: '#fff',
-                        color: '#3c52b2',},
-                        marginLeft: "25px"}}
-                onClick={toSignin}>
-         Sign in
-        </Button>
+                        color: '#3c52b2',}}}
+                        onClick={toSignin}>
+                    Sign in
+            </Button></>}
+        <br />
+        <br />
+
+
 
         </div>
 
