@@ -93,6 +93,15 @@ export default function RequestForm() {
         navigate("/profile", { state: { email: email, isSignedIn: true } });
     }
 
+    const toSeeOffers = () => {
+        navigate("/seeOffers", { state: { email: email, isSignedIn: true } });
+    }
+
+    const toSeeRequests = () => {
+        navigate("/seerequests", { state: { email: email, isSignedIn: true } });
+    }
+
+
     return (
         <div style={{
             display: "flex",
@@ -160,17 +169,6 @@ export default function RequestForm() {
                     </div>
                     <div style={{
                         width: "50%" }}>
-                        <Button variant="contained"
-                            sx={{backgroundColor: "#add8e6",
-                                '&:hover': {
-                                    backgroundColor: '#fff',
-                                    color: '#3c52b2',},
-                                width: "180px",
-                                height: "40px"
-                            }}
-                            // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
-                    > Previous drives </Button>
-                    <br /><br />
                          <Button
                              variant="contained"
                              sx={{
@@ -182,7 +180,54 @@ export default function RequestForm() {
                                  width: "180px",
                                  height: "40px"
 
-                             }}onClick={toProfile}>Go to profile</Button>
+                             }}onClick={toProfile}>
+                             Go to profile
+                         </Button>
+                        <br /><br />
+                        <Button variant="contained"
+                                sx={{backgroundColor: "#add8e6",
+                                    '&:hover': {
+                                        backgroundColor: '#fff',
+                                        color: '#3c52b2',},
+                                    width: "180px",
+                                    height: "40px"
+                                }}
+                            // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
+                        > Previous drives </Button>
+                        <br /><br />
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: "#add8e6",
+                                "&:hover": {
+                                    backgroundColor: "#fff",
+                                    color: "#3c52b2",
+                                },
+                                width: "180px",
+                                height: "40px"
+
+                            }}
+                            onClick={toSeeOffers}
+                        >
+                            All offers
+                        </Button>
+                        <br /><br />
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: "#add8e6",
+                                "&:hover": {
+                                    backgroundColor: "#fff",
+                                    color: "#3c52b2",
+                                },
+                                width: "180px",
+                                height: "40px"
+
+                            }}
+                            onClick={toSeeRequests}
+                        >
+                            All requests
+                        </Button>
                     }
                 </div>
         </div>
