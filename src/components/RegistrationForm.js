@@ -104,7 +104,7 @@ return (
             <Link to="/signin" >Go back to signing in</Link>
         </Button>
           :
-        <Link to="/profile">Back</Link>
+        <Link to="/">Back</Link>
         }
 
     </div>
