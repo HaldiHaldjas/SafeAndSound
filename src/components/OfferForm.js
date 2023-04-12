@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { database } from "../config/firebase";
-import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";
@@ -23,7 +22,7 @@ function OfferForm() {
     const [timeToArrive, setTimeToArrive] = useState(0)
     const [freeSpots, setFreeSpots] = useState(false)
     const [price, setPrice] = useState("");
-    const [submitRequest, setSubmitRequest] = useState("")
+    const [submitOffer, setSubmitOffer] = useState(false)
    // const [seeDriveHistory, setSeeDriveHistory] = useState(false)
     const placeToStartRef = useRef(null);
     const placeToGoRef = useRef(null);
@@ -58,7 +57,9 @@ function OfferForm() {
                 price: price,
                 randomId: randomId
             });
-            setSubmitRequest(true)
+            document.getElementById("OfferForm").reset();
+            setSubmitOffer(true)
+
         } catch (err) {
             console.error(err)
         }
@@ -93,6 +94,10 @@ function OfferForm() {
         navigate("/profile", { state: { email: email, isSignedIn: true } });
     }
 
+    const toRequest = () => {
+        navigate("/request", { state: { email: email, isSignedIn: true } });
+    }
+
     const toSeeOffers = () => {
         navigate("/seeOffers", { state: { email: email, isSignedIn: true } });
     }
@@ -116,115 +121,133 @@ function OfferForm() {
                     marginLeft: "40px"
                 }}
             >
-            <h3>You would like to share Your ride? Insert offer</h3>
-            <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
+                <form id="OfferForm">
+                    <h3>You would like to share Your ride? Insert offer</h3>
+                    <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
 
-            <LoadScript
-                googleMapsApiKey={googleMapsApiKey}
-                libraries={['places']}
-            >
-                <Autocomplete
-                    onLoad={(ref) =>  placeToStartRef.current = ref}
-                    onPlaceChanged={handlePlaceToStartSelect}
-                    options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
-                >
-                    <input type="text" placeholder="From" />
-                </Autocomplete>
+                    <LoadScript
+                        googleMapsApiKey={googleMapsApiKey}
+                        libraries={['places']}
+                    >
+                        <Autocomplete
+                            onLoad={(ref) =>  placeToStartRef.current = ref}
+                            onPlaceChanged={handlePlaceToStartSelect}
+                            options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
+                        >
+                            <input type="text" placeholder="From" />
+                        </Autocomplete>
 
-                <Autocomplete
-                    onLoad={(ref) => placeToGoRef.current = ref}
-                    onPlaceChanged={handlePlaceToGoSelect}
-                    options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
-                >
-                    <input type="text" placeholder="To" />
-                </Autocomplete>
-            </LoadScript>
-            <input type="time" placeholder="Departure time" onChange={(e) => setTimeToGo(e.target.value)}/><br />
-            <input type="time" placeholder="ETA - estimated arrival time" onChange={(e) => setTimeToArrive(e.target.value)}/><br />
-            <input
-                type="number"
-                placeholder="Free spots"
-                type="number"
-                min="1"
-                max="9"
-                sx={{width: "20px"}}
-                onChange={(e) => setFreeSpots(Number(e.target.value))}/><br />
-            <span className="input-symbol-euro">
-                <input placeholder="Price" type="text" onChange={(e) => setPrice(Number(e.target.value))}/><br />
-            </span>
-                <Button variant="contained"
-                        sx={{backgroundColor: "#add8e6",
-                            '&:hover': {
-                                backgroundColor: '#fff',
-                                color: '#3c52b2',},
-                            width: "180px",
-                            height: "40px"
-                        }}
-                    onClick={handleRequest}
-            > Submit </Button>
-            </div>
-            <div style={{
-                width: "50%" }}>
-                <Button
-                    variant="contained"
-                    sx={{
-                        backgroundColor: "#add8e6",
-                        "&:hover": {
-                            backgroundColor: "#fff",
-                            color: "#3c52b2",
-                        },
-                        width: "180px",
-                        height: "40px"
+                        <Autocomplete
+                            onLoad={(ref) => placeToGoRef.current = ref}
+                            onPlaceChanged={handlePlaceToGoSelect}
+                            options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
+                        >
+                            <input type="text" placeholder="To" />
+                        </Autocomplete>
+                    </LoadScript>
+                    <input type="time" placeholder="Departure time" onChange={(e) => setTimeToGo(e.target.value)}/><br />
+                    <input type="time" placeholder="ETA - estimated arrival time" onChange={(e) => setTimeToArrive(e.target.value)}/><br />
+                    <input
+                        type="number"
+                        placeholder="Free spots"
+                        type="number"
+                        min="1"
+                        max="9"
+                        sx={{width: "20px"}}
+                        onChange={(e) => setFreeSpots(Number(e.target.value))}/><br />
+                    <span className="input-symbol-euro">
+                        <input placeholder="Price" type="text" onChange={(e) => setPrice(Number(e.target.value))}/><br />
+                    </span>
+                        <Button variant="contained"
+                                sx={{backgroundColor: "#add8e6",
+                                    '&:hover': {
+                                        backgroundColor: '#fff',
+                                        color: '#3c52b2',},
+                                    width: "180px",
+                                    height: "40px"
+                                }}
+                            onClick={handleRequest}
+                    > Submit </Button>
+                </form>
+                    </div>
+                    <div style={{
+                        width: "50%" }}>
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: "#add8e6",
+                                "&:hover": {
+                                    backgroundColor: "#fff",
+                                    color: "#3c52b2",
+                                },
+                                width: "180px",
+                                height: "40px"
 
-                    }}onClick={toProfile}>
-                    Go to profile
-                </Button>
-                <br /><br />
-                <Button variant="contained"
-                        sx={{backgroundColor: "#add8e6",
-                            '&:hover': {
-                                backgroundColor: '#fff',
-                                color: '#3c52b2',},
-                            width: "180px",
-                            height: "40px"
-                        }}
-                    // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
-                > Previous drives </Button>
-                <br /><br />
-                <Button
-                    variant="contained"
-                    sx={{
-                        backgroundColor: "#add8e6",
-                        "&:hover": {
-                            backgroundColor: "#fff",
-                            color: "#3c52b2",
-                        },
-                        width: "180px",
-                        height: "40px"
+                            }}onClick={toProfile}>
+                            Go to profile
+                        </Button>
+                        <br /><br />
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: "#add8e6",
+                                "&:hover": {
+                                    backgroundColor: "#fff",
+                                    color: "#3c52b2",
+                                },
+                                width: "180px",
+                                height: "40px"
+                            }}
+                            onClick={toRequest}
+                        >
+                            Insert a request
+                        </Button>
+                        <br /><br />
+                        <Button variant="contained"
+                                sx={{backgroundColor: "#add8e6",
+                                    '&:hover': {
+                                        backgroundColor: '#fff',
+                                        color: '#3c52b2',},
+                                    width: "180px",
+                                    height: "40px"
+                                }}
+                            // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
+                        > Previous drives </Button>
+                        <br /><br />
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: "#add8e6",
+                                "&:hover": {
+                                    backgroundColor: "#fff",
+                                    color: "#3c52b2",
+                                },
+                                width: "180px",
+                                height: "40px"
 
-                    }}
-                    onClick={toSeeOffers}
-                >
-                    All offers
-                </Button>
-                <br /><br />
-                <Button
-                    variant="contained"
-                    sx={{
-                        backgroundColor: "#add8e6",
-                        "&:hover": {
-                            backgroundColor: "#fff",
-                            color: "#3c52b2",
-                        },
-                        width: "180px",
-                        height: "40px"
+                            }}
+                            onClick={toSeeOffers}
+                        >
+                            All offers
+                        </Button>
+                        <br /><br />
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: "#add8e6",
+                                "&:hover": {
+                                    backgroundColor: "#fff",
+                                    color: "#3c52b2",
+                                },
+                                width: "180px",
+                                height: "40px"
 
-                    }}
-                    onClick={toSeeRequests}
-                >
-                    All requests
-                </Button>
-                }
+                            }}
+                            onClick={toSeeRequests}
+                        >
+                            All requests
+                        </Button>
+                    }
             </div>
         </div>
     )

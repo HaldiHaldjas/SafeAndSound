@@ -10,10 +10,8 @@ export default function Profile() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    let email = location?.state?.email;
-    console.log(email)
-    let isSignedIn = location.state?.isSignedIn;
-    console.log(isSignedIn)
+    const email = location?.state?.email;
+    const isSignedIn = location.state?.isSignedIn;
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [phone, setPhone] = useState(0)
