@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {getDocs, collection} from "firebase/firestore";
+import {doc, getDocs, collection} from "firebase/firestore";
 import {database} from "../config/firebase";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,22 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-
-// import { DataGrid } from '@mui/x-data-grid';
-// import { Signin } from "./Signin";
-// import { useLocation } from 'react-router-dom'; // where do we use user location?
-// import { Link } from "react-router-dom";
-
-import Profile from "./Profile";
-
-
+import {useNavigate} from "react-router-dom";
 
 export default function SeeRequestsForm() {
+
+    const navigate = useNavigate();
     const [requests, setRequests] = useState([])
     // const [isChecked, setIsChecked] = useState([]);
     const [checkedRequests, setCheckedRequests] = useState([]);
-
-    // const [seeDriverProfile, setSeeDriverProfile] = useState(false)
+    const [seeDriverProfile, setSeeDriverProfile] = useState([])
     // const [submitAccept, setSubmitAccept] = useState("")
     // const [requestPosition - järjekorranumber tabelis']
     //  const requestsRequestIdCollectionRef = collection(database, "requests") // see request list from database
@@ -42,8 +35,24 @@ export default function SeeRequestsForm() {
             })
     }
 
+    const getDriverProfile = async () => {
+        await getDocs(collection(database, "users"))
+            .then((querySnapshot) => {
+                const newData2 = querySnapshot.docs
+                    .map((doc) => ({...doc.data(), id: doc.id}));
+                setSeeDriverProfile(newData2); // (newData2.users.last_name)
+                console.log(seeDriverProfile, newData2)
+                // const driverInfo = setSeeDriverProfile.
+                // const driverInfo = seeDriverProfile.map((user, index) => )
+            })
+    }
+
     useEffect(() => {
         getRequests();
+    }, [])
+
+    useEffect(() => {
+        getDriverProfile();
     }, [])
 
     const handleCheckBoxChange = (event, requestId) => {
@@ -54,12 +63,28 @@ export default function SeeRequestsForm() {
             setCheckedRequests(checkedRequests.filter((id) => id !== requestId));
         }
     }
-    const handleButtonClick = (event) => {
-        if (event.type === handleCheckBoxChange) {
+
+    /*    const handleCheckBoxChange = (event, id) => {
+        if (event.target.checked) {
+            setIsChecked((prevIsChecked) => [...prevIsChecked, id]);
+            setCheckedRequests(requests.find((request) => request.id === id));
+            console.log(checkedRequests)
+        } else {
+            setIsChecked((prevIsChecked) => prevIsChecked.filter((isChecked) => isChecked !== id));
+            setCheckedRequests(null);
+        }
+    }*/
+
+  /*  const handleButtonClick = (event) => {
+        if (event === handleCheckBoxChange) {
             alert("So this is your choice?")
         } else {
             alert("Going alone?")
         }
+    }*/
+
+    const handleButtonClick = () => {
+        navigate("/seeOffers/confirmation", {state: {checkedRequests: checkedRequests} });
     }
     return (
         <div className="Requests list">
@@ -87,32 +112,22 @@ export default function SeeRequestsForm() {
                              <TableCell>{request.timeframe_1}</TableCell>
                              <TableCell>{request.timeframe_2}</TableCell>
                              <TableCell>{request.needed_spots}</TableCell>
-                            <TableCell>Driver info</TableCell>
+                            <TableCell>User Profile
+{/*
+                                {seeDriverProfile.length > 0 && seeDriverProfile.map((user, index) key={index}, {user.last_name})}
+*/}
+                            </TableCell>
                             <TableCell>
-                                 {/*<Checkbox
-                                     onClick{...handleCheckBoxChange}
-                                     color="success"
-                                 />*/}
                                 <Checkbox
                                     checked={checkedRequests.includes(request.id)}
                                     onChange={(event) => handleCheckBoxChange(event, request.id)}
+                                    color="success"
                                 />
                              </TableCell>
                         </TableRow>
                       ))}
                 </TableBody>
             </Table>
-            {/*<Button
-                onClick={handleButtonClick}
-                variant="contained"
-                sx={{
-                    backgroundColor: "#F8F8F8",
-                    color: "#383838",
-                    "&:hover": {
-                        backgroundColor: "#fff",
-                        color: "#3c52b2",
-                    },
-                }}>Offer a ride</Button>*/}
             <Button
                 onClick={handleButtonClick}
                 variant="contained"

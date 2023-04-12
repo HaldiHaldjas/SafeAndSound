@@ -117,8 +117,11 @@ export default function RequestForm() {
             </LoadScript>
             <input type="time" placeholder="Departure time" onChange={(e) => setTimeToGo(e.target.value)}/><br />
             <input type="time" placeholder="ETA - estimated arrival time" onChange={(e) => setTimeToArrive(e.target.value)}/><br />
-            <input type="number" placeholder="Needed spots" type="number"onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
-            {/*<input placeholder="Price" type="number"onChange={(e) => setPrice(Number(e.target.value))}/><br />*/}
+            <input type="number"
+                   placeholder="Needed spots"
+                   type="number" min="1"
+                   max="9"
+                   onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
 
             <Button variant="contained"
                     sx={{backgroundColor: "#add8e6",
