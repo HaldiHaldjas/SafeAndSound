@@ -174,7 +174,6 @@ return (
                         backgroundColor: '#fff',
                         color: '#3c52b2',}}} onClick={handleRegistration}>Register</Button>
 
-        {isRegistered ?
         <Button variant="contained"
                 sx={{backgroundColor: "#add8e6",
                     '&:hover': {
@@ -182,19 +181,9 @@ return (
                         color: '#3c52b2',},
                         marginLeft: "25px"}}
                 onClick={toSignin}>
-         Go back to signing in
+         Sign in
         </Button>
-          :
-            <Button variant="contained"
-                    sx={{backgroundColor: "#add8e6",
-                        '&:hover': {
-                            backgroundColor: '#fff',
-                            color: '#3c52b2',},
-                            marginLeft: "25px"}}
-                    onClick={toSignin}>
-               Back
-            </Button>
-        }
+
         </div>
 
     </div>
