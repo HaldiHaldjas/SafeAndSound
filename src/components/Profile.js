@@ -52,13 +52,19 @@ export default function Profile() {
         navigate("/request", { state: { email: email, isSignedIn: true } });
     }
 
+    const toOffer = () => {
+        navigate("/offer", { state: { email: email, isSignedIn: true } });
+    }
+
     const toSeeOffers = () => {
-        navigate("/request", { state: { email: email, isSignedIn: true } });
+        navigate("/seeOffers", { state: { email: email, isSignedIn: true } });
     }
 
     const toSeeRequests = () => {
-        navigate("/request", { state: { email: email, isSignedIn: true } });
+        navigate("/seerequests", { state: { email: email, isSignedIn: true } });
     }
+
+
 
     return (
         <div style={{
@@ -107,10 +113,12 @@ export default function Profile() {
                                     height: "40px"
 
                                 }}
+                                onClick={toOffer}
                             >
-                                <Link to="/offer">Insert an offer</Link>
+                                Insert an offer
                             </Button>
                         )}
+                        <br /><br />
                         <Button
                             variant="contained"
                             sx={{
