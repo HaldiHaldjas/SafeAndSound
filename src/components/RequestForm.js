@@ -232,7 +232,6 @@ export default function RequestForm() {
                         >
                             All requests
                         </Button>
-                    }
                 </div>
         </div>
     )

@@ -28,9 +28,6 @@ function App() {
                      <Route path="/seeOffers/*" element={<SeeOffers />} />
                      <Route path="seeRequests" element={<SeeRequestsForm/>}/>
                      <Route path="/seeOffers/confirmation" element={<Confirmation />} />
-
-
-
                  </Routes>
              </main>
       </div>

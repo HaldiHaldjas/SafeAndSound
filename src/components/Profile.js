@@ -89,7 +89,7 @@ export default function Profile() {
                     {isUserDriver && (
                         <>
                             <p>Licence plate: {licencePlate}</p>
-                            <p>Licence picture: {licencePic}</p>
+                            <img src= {licencePic} />
                         </>
                     )}
                 </div>
@@ -102,10 +102,11 @@ export default function Profile() {
                             <Button
                                 variant="contained"
                                 sx={{
-                                    backgroundColor: "#add8e6",
+                                    fontFamily: 'monospace',
+                                    backgroundColor: "#774e3f",
                                     "&:hover": {
-                                        backgroundColor: "#fff",
-                                        color: "#3c52b2",
+                                        backgroundColor: "#ccada2",
+                                        color: "#3e2723",
                                     },
                                     width: "180px",
                                     height: "40px"
@@ -120,10 +121,11 @@ export default function Profile() {
                         <Button
                             variant="contained"
                             sx={{
-                                backgroundColor: "#add8e6",
+                                fontFamily: 'monospace',
+                                backgroundColor: "#774e3f",
                                 "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
                                 },
                                 width: "180px",
                                 height: "40px"
@@ -136,10 +138,11 @@ export default function Profile() {
                         <Button
                             variant="contained"
                             sx={{
-                                backgroundColor: "#add8e6",
+                                fontFamily: 'monospace',
+                                backgroundColor: "#774e3f",
                                 "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
                                 },
                                 width: "180px",
                                 height: "40px"
@@ -153,10 +156,11 @@ export default function Profile() {
                         <Button
                             variant="contained"
                             sx={{
-                                backgroundColor: "#add8e6",
+                                fontFamily: 'monospace',
+                                backgroundColor: "#774e3f",
                                 "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
                                 },
                                 width: "180px",
                                 height: "40px"

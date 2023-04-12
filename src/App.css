@@ -39,12 +39,14 @@
   }
 }
 
-/*body {*/
-/*  background-image: url('/src/images/img1.jpg');*/
-/*  background-repeat: no-repeat;*/
-/*  background-size: cover;*/
-/*  background-position: center center;*/
-/*}*/
+body {
+  background-image: url('/src/images/img1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  /* Set background image to fixed (don't scroll along with the page) */
+  background-attachment: fixed;
+}
 
 img {
   width: 150px;
@@ -73,7 +75,7 @@ button {
 }
 /* app.css */
 table {
-  font-family: 'monospace', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 16px;
 }
 

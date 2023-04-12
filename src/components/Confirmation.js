@@ -14,7 +14,7 @@ function Confirmation() {
             <p>Timeframe 1: {selectedOffer.timeframe_1}</p>
             <p>Timeframe 2: {selectedOffer.timeframe_2}</p>
             <p>Free spots: {selectedOffer.free_spots}</p>
-            <p>Price: {selectedOffer.price}</p>
+            <p>Price: {selectedOffer.price}€</p>
             <p>Verification code: {selectedOffer.verif_code}</p>
         </div>
     );
