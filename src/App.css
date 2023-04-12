@@ -39,14 +39,57 @@
   }
 }
 
-body {
-  background-image: url('/src/images/img1.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
+/*body {*/
+/*  background-image: url('/src/images/img1.jpg');*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: cover;*/
+/*  background-position: center center;*/
+/*}*/
 
 img {
   width: 150px;
   margin: 10px;
+}
+@font-face {
+  font-family: 'RobotoMono-Regular';
+  src: url('/src/fonts/Roboto_Mono/static/RobotoMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Roboto Mono', sans-serif;
+}
+
+nav {
+  font-family: 'Roboto Mono', sans-serif;
+}
+button {
+  font-size: 14px;
+  border-width: 2px;
+}
+button {
+  font-family: 'Roboto Mono', monospace;
+}
+/* app.css */
+table {
+  font-family: 'monospace', monospace;
+  font-size: 16px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+
+body {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.MuiTableCell-root,
+.MuiTableHead-root,
+.MuiTableBody-root {
+  font-family: 'Roboto Mono', monospace;
 }

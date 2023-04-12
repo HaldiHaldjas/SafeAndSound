@@ -74,7 +74,7 @@ return (
         <input placeholder="Email" onChange={(e) => setNewEmail(e.target.value)}/><br />
         <input placeholder="Password"  type="password" onChange={(e) => setNewPassword(e.target.value)}/><br />
         <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
-        <label for="profilePic">Profile picture:</label>
+        <label htmlFor="profilePic">Profile picture:</label>
         <input placeholder="Profile picture" type="file" id="profilePic"
                onChange={(e) => setImageUpload(e.target.files[0])} /> <br />
         <button onClick={upLoadImage}>Upload picture</button> <br /> <br />

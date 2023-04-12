@@ -42,20 +42,7 @@
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br />
-                        <Button
-                            variant="contained"
-                            sx={{
-                                backgroundColor: "#F8F8F8",
-                                color: "#383838",
-                                "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
-                                },
-                            }}
-                            onClick={signIn}
-                        >
-                            Sign in
-                        </Button>
+                        <Button variant='outlined' color='primary' onClick={() => navigate('signin')} sx={{ fontFamily: 'Roboto Mono', fontWeight: 700 }}>Sign in</Button>
                         <br />
                         <br />
                     </>

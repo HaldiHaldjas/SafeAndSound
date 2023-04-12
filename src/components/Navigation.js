@@ -47,12 +47,11 @@ function Navigation() {
                         alignItems: "center",
                     }}>
 
-
                         <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('signin')}>Sign in</Button>
+                            <Button variant='outlined' color='primary' onClick={() => navigate('signin')} sx={{ fontFamily: 'monospace' }}>Sign in</Button>
                         </MenuItem>
                         <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('register')}>Register</Button>
+                            <Button variant='outlined' color='primary' onClick={() => navigate('register')} sx={{ fontFamily: 'monospace' }}>Register</Button>
                         </MenuItem>
              {/*           <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('request')}>Request</Button>
