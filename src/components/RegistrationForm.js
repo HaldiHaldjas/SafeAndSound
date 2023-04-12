@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import {addDoc, collection
-} from "firebase/firestore";
-import {auth, database, storage, storageRef} from "../config/firebase";
+import {addDoc, collection} from "firebase/firestore";
+import {auth, database, storage} from "../config/firebase";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
 import {createUserWithEmailAndPassword} from "firebase/auth";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
 
