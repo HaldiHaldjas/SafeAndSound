@@ -67,11 +67,9 @@ function Navigation() {
                         </MenuItem>
              */}       </Box>
 
-
                 </Toolbar>
             </Container>
         </AppBar>
     )
 }
-
 export default Navigation;

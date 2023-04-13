@@ -55,8 +55,8 @@ function App() {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>From</TableCell>
-                                <TableCell>To</TableCell>
+                                <TableCell>From:</TableCell>
+                                <TableCell>To:</TableCell>
                                 <TableCell>Timeframe 1</TableCell>
                                 <TableCell>Timeframe 2</TableCell>
                                 <TableCell>Free spots</TableCell>
@@ -66,23 +66,6 @@ function App() {
                                     <Checkbox />
                                 </TableCell>
                             </TableRow>
-                            {offers.map((offer) => (
-                                <TableRow key={offer.id}>
-                                    <TableCell>{offer.from && offer.from.address}</TableCell>
-                                    <TableCell>{offer.to && offer.to.address}</TableCell>
-                                    <TableCell>{offer.timeframe_1}</TableCell>
-                                    <TableCell>{offer.timeframe_2}</TableCell>
-                                    <TableCell>{offer.free_spots}</TableCell>
-                                    <TableCell>{offer.price}</TableCell>
-                                    <TableCell>{offer.verif_code}</TableCell>
-                                    <TableCell>
-                                        <Checkbox
-                                            checked={selectedIds.includes(offer.id)}
-                                            onChange={(event) => handleCheckbox(event, offer.id)}
-                                        />
-                                    </TableCell>
-                                </TableRow>
-                            ))}
                         </TableHead>
                         <TableBody>
                             {offers.map((offer) => (
@@ -92,9 +75,14 @@ function App() {
                                     <TableCell>{offer.timeframe_1}</TableCell>
                                     <TableCell>{offer.timeframe_2}</TableCell>
                                     <TableCell>{offer.free_spots}</TableCell>
-                                    <TableCell>{offer.price}</TableCell>
+                                    <TableCell>{offer.price}€</TableCell>
                                     <TableCell>{offer.verif_code}</TableCell>
-                                    <TableCell><Checkbox /></TableCell>
+                                    <TableCell>
+                                        <Checkbox
+                                            checked={selectedIds.includes(offer.id)}
+                                            onChange={(event) => handleCheckbox(event, offer.id)}
+                                        />
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -113,8 +101,6 @@ function App() {
                     >
                         Confirm my choice
                     </Button>
-
-
                 </>
             )}
         </div>

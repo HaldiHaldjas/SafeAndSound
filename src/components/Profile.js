@@ -104,14 +104,16 @@ export default function Profile() {
                             <Button
                                 variant="contained"
                                 sx={{
-                                    backgroundColor: "#add8e6",
+                                    fontFamily: 'monospace',
+                                    backgroundColor: "#774e3f",
                                     "&:hover": {
-                                        backgroundColor: "#fff",
-                                        color: "#3c52b2",
+                                        backgroundColor: "#ccada2",
+                                        color: "#3e2723",
                                     },
-                                    width: "180px",
-                                    height: "40px"
-
+                                    width: "200px",
+                                    height: "40px",
+                                    fontWeight: 'bold',
+                                    borderWidth: '2px',
                                 }}
                                 onClick={toOffer}
                             >
@@ -122,13 +124,16 @@ export default function Profile() {
                         <Button
                             variant="contained"
                             sx={{
-                                backgroundColor: "#add8e6",
+                                fontFamily: 'monospace',
+                                backgroundColor: "#774e3f",
                                 "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
                                 },
-                                width: "180px",
-                                height: "40px"
+                                width: "200px",
+                                height: "40px",
+                                fontWeight: 'bold',
+                                borderWidth: '2px',
                                 }}
                             onClick={toRequest}
                         >
@@ -138,14 +143,16 @@ export default function Profile() {
                         <Button
                             variant="contained"
                             sx={{
-                                backgroundColor: "#add8e6",
+                                fontFamily: 'monospace',
+                                backgroundColor: "#774e3f",
                                 "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
                                 },
-                                width: "180px",
-                                height: "40px"
-
+                                width: "200px",
+                                height: "40px",
+                                fontWeight: 'bold',
+                                borderWidth: '2px',
                             }}
                             onClick={toSeeOffers}
                         >
@@ -155,14 +162,16 @@ export default function Profile() {
                         <Button
                             variant="contained"
                             sx={{
-                                backgroundColor: "#add8e6",
+                                fontFamily: 'monospace',
+                                backgroundColor: "#774e3f",
                                 "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
                                 },
-                                width: "180px",
-                                height: "40px"
-
+                                width: "200px",
+                                height: "40px",
+                                fontWeight: 'bold',
+                                borderWidth: '2px',
                             }}
                             onClick={toSeeRequests}
                         >
