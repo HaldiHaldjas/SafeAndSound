@@ -4,7 +4,7 @@ import {database} from "../config/firebase";
 import {useLocation} from 'react-router-dom';
 import Button from "@mui/material/Button";
 import { useNavigate} from "react-router-dom";
-import img5 from "../images/img5.jpg";
+import img9 from "../images/img9.jpg";
 
 
 
@@ -74,7 +74,7 @@ export default function Profile() {
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
-            backgroundImage: `url(${img5})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+            backgroundImage: `url(${img9})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
             }}>
 
             {isSignedIn && (
@@ -85,11 +85,9 @@ export default function Profile() {
                         borderRadius: "20px",
                         padding: "8px",
                         marginTop: "1px",
-                        marginLeft: "40px",
+                        marginLeft: "100px",
                         justifyContent: "center",
-                        alignItems: "center",
-                        display: "flex",
-                        flexDirection: "column"
+                        alignItems: "center"
                     }}>
                     <img src={profilePic} />
                     <h1>{firstName} {lastName}</h1>
@@ -106,7 +104,7 @@ export default function Profile() {
                 </div>
             )}
             <div style={{
-                width: "50%" }}>
+                width: "30%" }}>
                 {isSignedIn && (
                     <>
                         {isUserDriver && (
