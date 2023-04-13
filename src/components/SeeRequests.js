@@ -23,44 +23,16 @@ export default function SeeRequestsForm() {
 
     const navigate = useNavigate();
     const [requests, setRequests] = useState([])
-    // const [isChecked, setIsChecked] = useState([]);
-    // const [checkedRequests, setCheckedRequests] = useState([]);
     const [userProfiles, setUserProfiles] = useState([])
-    //
-    // const [selectedRequest, setSelectedRequest] = useState(null);
-
-    // const [loading, setLoading] = useState(true); // shows the spinner for user
     const [selectedIds, setSelectedIds] = useState([]);
     const [selectedRequest, setSelectedRequest] = useState(null);
     const [open, setOpen] = useState(false)
-    const [selectedUser, setSelectedUser] = useState("")
-
-
-
-
-    // const [submitAccept, setSubmitAccept] = useState("")
-    // const [requestPosition - järjekorranumber tabelis']
-    //  const requestsRequestIdCollectionRef = collection(database, "requests") // see request list from database
-    // function compareOffersAndRequests (if requestId.newPlaceToStart !== offerId.newPlaceToStart) => alert("Did not find any match! New search")
-    // (if requestId.newPlaceToStart === offerId.newPlaceToStart) => {returns offerinfo(offerID), drivers profile link }
-    // const retrieveDriverProfile = collection(database, "requestDriverProfile") // gets drivers profile from database
-
-
-    // const getRequests = async () => {
-    //     await getDocs(collection(database, "requests"))
-    //         .then((querySnapshot) => {
-    //             const newData = querySnapshot.docs
-    //                 .map((doc) => ({...doc.data(), id: doc.id}));
-    //             setRequests(newData);
-    //             // console.log(requests, newData)
-    //         })
-    // }
+    const [selectedUserId, setSelectedUserId] = useState("")
 
     async function fetchRequests() {
         const querySnapshot = await getDocs(collection(database, "requests"));
         const newData = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
         setRequests(newData);
-        // setLoading(false); // set loading state to false when data is fetched
     }
 
     const getUserProfile = async () => {
@@ -69,9 +41,6 @@ export default function SeeRequestsForm() {
                 const newData2 = querySnapshot.docs
                     .map((doc) => ({...doc.data(), id: doc.id}));
                 setUserProfiles(newData2); // (newData2.users.last_name)
-                // console.log(seeDriverProfile, newData2)
-                // const driverInfo = setSeeDriverProfile.
-                // const driverInfo = seeDriverProfile.map((user, index) => )
             })
     }
 
@@ -79,16 +48,6 @@ export default function SeeRequestsForm() {
         fetchRequests();
         getUserProfile();
     }, [])
-
-
-    // const handleCheckBoxChange = (event, requestId) => {
-    //     const checked = event.target.checked;
-    //     if (checked) {
-    //         setCheckedRequests([...checkedRequests, requestId]);
-    //     } else {
-    //         setCheckedRequests(checkedRequests.filter((id) => id !== requestId));
-    //     }
-    // }
 
     const handleCheckbox = (event, id) => {
         console.log(id)
@@ -115,9 +74,8 @@ export default function SeeRequestsForm() {
 
     function showUserInfo(userId) {
 
-
-
-        setSelectedUser()
+        console.log(userId)
+        setSelectedUserId(userId)
         setOpen(true)
     }
 
@@ -154,22 +112,12 @@ export default function SeeRequestsForm() {
                                 <Button
                                     onClick={() => showUserInfo(request.userId)}
                                     variant="outlined">User Profile</Button>
-
-{/*
-                                {seeDriverProfile.length > 0 && seeDriverProfile.map((user, index) key={index}, {user.last_name})}
-*/}
                             </TableCell>
                             <TableCell>
-                                {/*<Checkbox*/}
-                                {/*    checked={isChecked.includes(request.id)}*/}
-                                {/*    onChange={(event) => handleCheckBoxChange(event, request.id)}*/}
-                                {/*    color="success"*/}
-                                {/*/>*/}
                                 <Checkbox
                                     checked={selectedIds.includes(request.id)}
                                     onChange={(event) => handleCheckbox(event, request.id)}
                                 />
-
                              </TableCell>
                         </TableRow>
                       ))}
@@ -191,13 +139,15 @@ export default function SeeRequestsForm() {
             <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
+                fullWidth={true}
+                maxWidth="lg"
                 open={open}
             >
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    Modal title
+                    User info
                 </DialogTitle>
                 <DialogContent dividers>
-                    <ProfileDialog userId={selectedUser}/>
+                    <ProfileDialog userId={selectedUserId} isSignedIn="true"/>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose}>
