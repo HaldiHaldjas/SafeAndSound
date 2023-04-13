@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import {collection, getDocs, query, where} from "firebase/firestore";
-import {database} from "../config/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { database } from "../config/firebase";
 import Button from "@mui/material/Button";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Confirmation() {
 
@@ -15,32 +15,32 @@ function Confirmation() {
     const [driverPhone, setDriverPhone] = useState(0)
     const [driverPic, setDriverPic] = useState("")
 
-    const email = selectedOffer.user_email;
+    const userId = selectedOffer.userId;
 
     const getUserDocument = async () => {
         try {
-            const q = query(collection(database, "users"), where("email", "==", email));
-            const querySnapshot = await getDocs(q);
-            if (querySnapshot.empty) {
-                console.log("User not found, please register.");
-            } else {
-                console.log(querySnapshot.docs[0].data())
-                const userData = querySnapshot.docs[0].data();
+            const userRef = doc(database, "users", userId);
+            const userDoc = await getDoc(userRef);
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
                 setDriverFirstName(userData.first_name)
                 setDriverLastName(userData.last_name)
                 setDriverPhone(userData.phone)
                 setDriverPic(userData.profile_pic)
+            } else {
+                console.log("User document does not exist");
             }
         } catch (err) {
             console.error(err);
         }
     };
 
+
     getUserDocument()
         .then()
 
     const toProfile = () => {
-        navigate("/profile", { state: { email: email, isSignedIn: true } });
+        navigate("/profile", { state: { userId: userId, isSignedIn: true } });
     }
 
     return (
@@ -70,8 +70,8 @@ function Confirmation() {
                 width: "50%" }}>
 
                     <img src={driverPic}></img>
-                    <p>Driver name: {driverFirstName} {driverLastName} </p>
-                    <p>Driver phonenumber: {driverPhone}</p>
+                    <p>Driver's name: {driverFirstName} {driverLastName} </p>
+                    <p>Driver's phone: {driverPhone}</p>
                     <Button
                         variant="contained"
                         sx={{

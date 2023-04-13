@@ -16,7 +16,7 @@ export default function RequestForm() {
     const navigate = useNavigate();
     const location = useLocation();
     const isSignedIn = location.state?.isSignedIn;
-    const email = location.state?.email;
+    const userId = location.state?.userId;
     const [date, setDate] = useState("")
     const [placeToStart, setPlaceToStart] = useState("")
     const [placeToGo, setPlaceToGo] = useState("")
@@ -55,7 +55,7 @@ export default function RequestForm() {
                 timeframe_2: timeToArrive,
                 needed_spots: neededSpots,
                 randomId: randomId,
-                user_email: email
+                userId: userId
 
             });
             document.getElementById("RequestForm").reset();
@@ -94,15 +94,15 @@ export default function RequestForm() {
     };
 
     const toProfile = () => {
-        navigate("/profile", { state: { email: email, isSignedIn: true } });
+        navigate("/profile", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toSeeOffers = () => {
-        navigate("/seeOffers", { state: { email: email, isSignedIn: true } });
+        navigate("/seeOffers", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toSeeRequests = () => {
-        navigate("/seerequests", { state: { email: email, isSignedIn: true } });
+        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
     }
 
 

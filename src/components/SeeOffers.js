@@ -8,8 +8,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import Confirmation from './Confirmation';
-import { Link } from 'react-router-dom';
 import { useNavigate} from "react-router-dom";
 
 function App() {

@@ -15,7 +15,7 @@ function OfferForm() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const email = location.state?.email;
+    const userId = location.state?.userId;
     const [date, setDate] = useState("")
     const [placeToStart, setPlaceToStart] = useState("")
     const [placeToGo, setPlaceToGo] = useState("")
@@ -57,7 +57,7 @@ function OfferForm() {
                 needed_spots: freeSpots,
                 price: price,
                 randomId: randomId,
-                user_email: email
+                userId: userId
             });
             document.getElementById("OfferForm").reset();
             setSubmitOffer(true)
@@ -93,19 +93,19 @@ function OfferForm() {
         });
     };
     const toProfile = () => {
-        navigate("/profile", { state: { email: email, isSignedIn: true } });
+        navigate("/profile", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toRequest = () => {
-        navigate("/request", { state: { email: email, isSignedIn: true } });
+        navigate("/request", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toSeeOffers = () => {
-        navigate("/seeOffers", { state: { email: email, isSignedIn: true } });
+        navigate("/seeOffers", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toSeeRequests = () => {
-        navigate("/seerequests", { state: { email: email, isSignedIn: true } });
+        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
     }
 
     return (
@@ -254,7 +254,6 @@ function OfferForm() {
                         >
                             All requests
                         </Button>
-
             </div>
         </div>
     )

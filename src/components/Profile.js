@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {collection, getDocs, query, where} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import {database} from "../config/firebase";
 import {useLocation} from 'react-router-dom';
 import Button from "@mui/material/Button";
@@ -10,10 +10,11 @@ export default function Profile() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const email = location?.state?.email;
+    const userId = location?.state?.userId;
     const isSignedIn = location.state?.isSignedIn;
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
+    const [email, setEmail] = useState("")
     const [phone, setPhone] = useState(0)
     const [profilePic, setProfilePic] = useState("")
     const [isUserDriver, setIsUserDriver] = useState(false)
@@ -23,43 +24,43 @@ export default function Profile() {
 
     const getUserDocument = async () => {
         try {
-            const q = query(collection(database, "users"), where("email", "==", email));
-            const querySnapshot = await getDocs(q);
-            if (querySnapshot.empty) {
-                console.log("User not found, please register.");
-            } else {
-                console.log(querySnapshot.docs[0].data())
-                const userData = querySnapshot.docs[0].data();
+            const userRef = doc(database, "users", userId);
+            const userDoc = await getDoc(userRef);
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
                 setFirstName(userData.first_name)
                 setLastName(userData.last_name)
+                setEmail(userData.email)
                 setPhone(userData.phone)
                 setProfilePic(userData.profile_pic)
                 setIsUserDriver(userData.driver)
                 setLicencePlate(userData.licence_plate)
                 setLicencePic(userData.driving_licence_pic)
-
+            } else {
+                console.log("User document does not exist");
             }
         } catch (err) {
             console.error(err);
         }
     };
+
     getUserDocument()
         .then()
 
     const toRequest = () => {
-        navigate("/request", { state: { email: email, isSignedIn: true } });
+        navigate("/request", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toOffer = () => {
-        navigate("/offer", { state: { email: email, isSignedIn: true } });
+        navigate("/offer", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toSeeOffers = () => {
-        navigate("/seeOffers", { state: { email: email, isSignedIn: true } });
+        navigate("/seeOffers", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toSeeRequests = () => {
-        navigate("/seerequests", { state: { email: email, isSignedIn: true } });
+        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
     }
 
 
