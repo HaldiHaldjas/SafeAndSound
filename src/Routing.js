@@ -5,7 +5,6 @@ import RegistrationForm from "./components/RegistrationForm";
 import Profile from "./components/Profile";
 import RequestForm from "./components/RequestForm";
 import SeeOffers from "./components/SeeOffers";
-import RequestForm from "./components/Request";
 import OfferForm from "./components/OfferForm";
 import SeeRequestsForm from "./components/SeeRequests";
 import Confirmation from "./components/Confirmation";
@@ -26,3 +25,5 @@ function Routing() {
     );
 }
 export default Routing;
+
+

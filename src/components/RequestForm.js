@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";
 import { useNavigate} from "react-router-dom";
+import CheckIcon from "@mui/icons-material/Check";
 
 
 
@@ -15,7 +16,7 @@ export default function RequestForm() {
     const navigate = useNavigate();
     const location = useLocation();
     const isSignedIn = location.state?.isSignedIn;
-    const email = location.state?.email;
+    const userId = location.state?.userId;
     const [date, setDate] = useState("")
     const [placeToStart, setPlaceToStart] = useState("")
     const [placeToGo, setPlaceToGo] = useState("")
@@ -53,7 +54,8 @@ export default function RequestForm() {
                 timeframe_1: timeToGo,
                 timeframe_2: timeToArrive,
                 needed_spots: neededSpots,
-                randomId: randomId
+                randomId: randomId,
+                userId: userId
 
             });
             document.getElementById("RequestForm").reset();
@@ -92,20 +94,22 @@ export default function RequestForm() {
     };
 
     const toProfile = () => {
-        navigate("/profile", { state: { email: email, isSignedIn: true } });
+        navigate("/profile", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toSeeOffers = () => {
-        navigate("/seeOffers", { state: { email: email, isSignedIn: true } });
+        navigate("/seeOffers", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toSeeRequests = () => {
-        navigate("/seerequests", { state: { email: email, isSignedIn: true } });
+        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
     }
 
 
     return (
         <div style={{
+            width: "70%",
+            margin: "0 auto",
             display: "flex",
             alignItems: "center"
              }}>
@@ -169,7 +173,13 @@ export default function RequestForm() {
                                 }}
                                 onClick={handleRequest}
                         > Submit </Button>
-                        </form>
+                        <br />
+                        {submitRequest &&
+                            <CheckIcon
+                                sx={{color: "green",
+                                    marginBottom: "-5px",
+                                    marginLeft: "10px"}}></CheckIcon>}
+                    </form>
                     </div>
                     <div style={{
                         width: "50%" }}>
@@ -232,6 +242,7 @@ export default function RequestForm() {
                         >
                             All requests
                         </Button>
+
                 </div>
         </div>
     )
