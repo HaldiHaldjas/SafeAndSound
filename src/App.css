@@ -97,4 +97,21 @@ body {
 }
 
 
+/*
+.leftgrid {
+  display: flex;
+  border: 2px solid black;
+  align-content: flex-start;
 
+  color: deeppink;
+
+}
+
+.rightgrid {
+  display: flex;
+  border: 2px solid red;
+  justifyContent: "center";
+  align-content: flex-end;
+
+
+}*/

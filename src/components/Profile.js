@@ -4,7 +4,11 @@ import {database} from "../config/firebase";
 import {useLocation} from 'react-router-dom';
 import Button from "@mui/material/Button";
 import { useNavigate} from "react-router-dom";
-
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import EditProfileDialog from "./EditProfileDialog";
 
 
 
@@ -22,6 +26,7 @@ export default function Profile() {
     const [isUserDriver, setIsUserDriver] = useState(false)
     const [licencePlate, setLicencePlate] = useState("")
     const [licencePic, setLicencePic] = useState("")
+    const [open, setOpen] = useState(false)
 
 
     const getUserDocument = async () => {
@@ -49,6 +54,23 @@ export default function Profile() {
     getUserDocument()
         .then()
 
+
+    const editProfile = () => {
+        setOpen(true)
+        navigate("/profile/edit", { state:
+                {
+                    profilePic: profilePic,
+                    userId: userId,
+                    isSignedIn: true,
+                    firstName: firstName,
+                    lastName: lastName,
+                    phone: phone,
+                    licencePlate: licencePlate,
+                    isUserDriver: isUserDriver
+                } });
+    }
+
+
     const toRequest = () => {
         navigate("/request", { state: { userId: userId, isSignedIn: true } });
     }
@@ -65,8 +87,9 @@ export default function Profile() {
         navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
     }
 
-
-
+    function handleClose() {
+        setOpen(false)
+    }
     return (
         <div style={{
             width: "70%",
@@ -96,6 +119,26 @@ export default function Profile() {
                             <img src={licencePic} />
                         </>
                     )}
+                    <br />
+                    <Button
+                        variant="contained"
+                        sx={{
+                            marginTop: "10px",
+                            fontFamily: 'monospace',
+                            backgroundColor: "#774e3f",
+                            "&:hover": {
+                                backgroundColor: "#ccada2",
+                                color: "#3e2723",
+                            },
+                            width: "80px",
+                            height: "40px",
+                            fontWeight: 'bold',
+                            borderWidth: '2px',
+                        }}
+                        onClick={editProfile}
+                    >
+                        Edit
+                    </Button>
                 </div>
             )}
             <div style={{
@@ -179,6 +222,25 @@ export default function Profile() {
                         >
                             All requests
                         </Button>
+                        <Dialog
+                            onClose={handleClose}
+                            aria-labelledby="customized-dialog-title"
+
+                            maxWidth="100px"
+                            open={open}
+                        >
+                            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                                Edit profile information
+                            </DialogTitle>
+                            <DialogContent dividers>
+                                <EditProfileDialog userId={userId} isSignedIn="true"/>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button autoFocus onClick={handleClose}>
+                                    Close
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </>
                 )}
             </div>
