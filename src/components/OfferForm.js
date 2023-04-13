@@ -110,8 +110,11 @@ function OfferForm() {
 
     return (
         <div style={{
+            width: "70%",
+            margin: "0 auto",
             display: "flex",
             alignItems: "center"
+
         }}>
             <div
                 style={{

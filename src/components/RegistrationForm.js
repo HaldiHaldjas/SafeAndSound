@@ -25,55 +25,6 @@ export default function RegistrationForm() {
     const [isLicencePicUploaded, setIsLicencePicUploaded] = useState(false)
     const [isRegistered, setIsRegistered] = useState(false)
 
-
-
-    const upLoadImage = (file, imageName, setImage, setIsUpLoaded) => {
-        if (file == null)
-            return;
-        const imageRef = ref(storage, `images/${imageName.name + v4() }`);
-        uploadBytes(imageRef, file).then((snapshot) => {
-                getDownloadURL(snapshot.ref).then((url) => {
-                    setImage(url);
-                    setIsUpLoaded(true);
-
-                })
-
-            }
-        )
-    }
-
-/*
-    const upLoadProfilePic = () => {
-        if (ProfilePicUpload == null)
-            return;
-        const imageRef = ref(storage, `images/${ProfilePicUpload.name + v4() }`);
-        uploadBytes(imageRef, ProfilePicUpload).then((snapshot) => {
-            getDownloadURL(snapshot.ref).then((url) => {
-                setNewProfilePic(url);
-                setIsProfilePicUploaded(true);
-
-            })
-
-            }
-        )
-    }
-
-    const upLoadLicencePic = () => {
-        if (licencePicUpload == null)
-            return;
-        const imageRef = ref(storage, `images/${licencePicUpload.name + v4() }`);
-        uploadBytes(imageRef, licencePicUpload).then((snapshot) => {
-                getDownloadURL(snapshot.ref).then((url) => {
-                    setLicencePic(url);
-                    setIsLicencePicUploaded(true);
-
-                })
-
-            }
-        )
-    }
-*/
-
     const usersCollectionRef = collection(database, "users")
 
     const handleRegistration = async () => {
@@ -98,6 +49,21 @@ export default function RegistrationForm() {
         } catch (err) {
             console.error(err)
         }
+    }
+
+    const upLoadImage = (file, imageName, setImage, setIsUpLoaded) => {
+        if (file == null)
+            return;
+        const imageRef = ref(storage, `images/${imageName.name + v4() }`);
+        uploadBytes(imageRef, file).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    setImage(url);
+                    setIsUpLoaded(true);
+
+                })
+
+            }
+        )
     }
 
     const toSignin = () => {
@@ -155,7 +121,7 @@ return (
                             <CheckIcon
                                 sx={{color: "green",
                                     marginBottom: "-5px",
-                                    marginLeft: "-80px"}}></CheckIcon>}
+                                    marginLeft: "-60px"}}></CheckIcon>}
                     </>
                 }
                 <br />

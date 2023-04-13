@@ -67,6 +67,8 @@ export default function Profile() {
 
     return (
         <div style={{
+            width: "70%",
+            margin: "0 auto",
             display: "flex",
             alignItems: "center"
             }}>
@@ -80,8 +82,8 @@ export default function Profile() {
                         marginTop: "40px",
                         marginLeft: "40px"
                     }}>
-                    <h1>{firstName} {lastName}</h1>
                     <img src={profilePic} />
+                    <h1>{firstName} {lastName}</h1>
 
                     <p>E-mail: {email}</p>
                     <p>Phone: {phone}</p>
