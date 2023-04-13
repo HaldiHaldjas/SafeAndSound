@@ -6,6 +6,7 @@ import Profile from "./components/Profile";
 import RequestForm from "./components/RequestForm";
 import SeeData from "./components/SeeData";
 import SeeRequestsForm from "./components/SeeRequests";
+import RequestConfirmation from "./components/RequestConfirmation";
 
 
 function Routing() {
@@ -18,6 +19,7 @@ function Routing() {
             <Route path="request" element={<RequestForm/>}/>
             <Route path="seeRequests" element={<SeeRequestsForm/>}/>
             <Route path="/seedata" element={<SeeData />} />
+            <Route path="/seerequests/confirmation" element={<RequestConfirmation/>}/>
         </Routes>
     );
 }
