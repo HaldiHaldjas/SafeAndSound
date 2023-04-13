@@ -17,19 +17,32 @@ export default function RegistrationForm() {
     const [newEmail, setNewEmail] = useState("")
     const [newPhone, setNewPhone] = useState(0)
     const [newProfilePic, setNewProfilePic] = useState("")
-    const [ProfilePicUpload, setProfilePicUpload] = useState(null)
     const [isProfilePicUploaded, setIsProfilePicUploaded] = useState(false);
     const [isNewUserDriver, setIsNewUserDriver] = useState(false)
     const [newPassword, setNewPassword] = useState("");
-    const [userID, setUserID] = useState("")
     const [licencePlate, setLicencePlate] = useState("")
     const [licencePic, setLicencePic] = useState("")
-    const [licencePicUpload, setLicencePicUpload] = useState(null)
     const [isLicencePicUploaded, setIsLicencePicUploaded] = useState(false)
     const [isRegistered, setIsRegistered] = useState(false)
 
 
 
+    const upLoadImage = (file, imageName, setImage, setIsUpLoaded) => {
+        if (file == null)
+            return;
+        const imageRef = ref(storage, `images/${imageName.name + v4() }`);
+        uploadBytes(imageRef, file).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    setImage(url);
+                    setIsUpLoaded(true);
+
+                })
+
+            }
+        )
+    }
+
+/*
     const upLoadProfilePic = () => {
         if (ProfilePicUpload == null)
             return;
@@ -59,6 +72,7 @@ export default function RegistrationForm() {
             }
         )
     }
+*/
 
     const usersCollectionRef = collection(database, "users")
 
@@ -69,7 +83,6 @@ export default function RegistrationForm() {
         await createUserWithEmailAndPassword(auth, newEmail, newPassword)
             .then((userCredential) => {
 
-             const newDocRef =
                  addDoc(usersCollectionRef, {
                         first_name: newFirstName,
                         last_name: newLastName,
@@ -80,17 +93,12 @@ export default function RegistrationForm() {
                         licence_plate: licencePlate,
                         driving_licence_pic: licencePic,
                  })
-                newDocRef.then((doc) => {
-                    setUserID(doc.id)
-                })});
-
+              });
         setIsRegistered(true)
         } catch (err) {
             console.error(err)
         }
     }
-
-
 
     const toSignin = () => {
         navigate("/signin");
@@ -123,25 +131,14 @@ return (
                 <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
                 <label htmlFor="profilePic">Profile picture:</label>
                 <input placeholder="Profile picture" type="file" id="profilePic"
-                       onChange={(e) => setProfilePicUpload(e.target.files[0])} />
-                <br />
-                <Button variant="contained"
-                        sx={{backgroundColor: "#add8e6",
-                            height: "30px",
-
-                            '&:hover': {
-                                backgroundColor: '#fff',
-                                color: '#3c52b2',
-                                }
-                        }}
-                        onClick={upLoadProfilePic}>
-                        Upload picture
-                </Button>
-                <br />
+                       onChange={(e) =>
+                           upLoadImage(e.target.files[0], "profilePic",
+                               setNewProfilePic, setIsProfilePicUploaded)} />
                 {isProfilePicUploaded &&
                     <CheckIcon
                         sx={{color: "green",
-                            paddingTop: "10px"}}></CheckIcon>}
+                            marginBottom: "-5px",
+                            marginLeft: "-80px"}}></CheckIcon>}
 
                 <br />
                 <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
@@ -151,25 +148,14 @@ return (
                         <input placeholder="Licence plate" onChange={(e) => setLicencePlate(e.target.value)}/> <br />
                         <label for="licencePic">Picture of driving licence:</label>
                         <input placeholder="Picture of driving licence" type="file" id="licencePic"
-                               onChange={(e) => setLicencePicUpload(e.target.files[0])} />
-                        <br />
-                        <Button variant="contained"
-                                sx={{backgroundColor: "#add8e6",
-                                    height: "30px",
-
-                                    '&:hover': {
-                                        backgroundColor: '#fff',
-                                        color: '#3c52b2',
-                                    }
-                                }}
-                                onClick={upLoadLicencePic}>
-                            Upload picture
-                        </Button>
-                        <br />
+                               onChange={(e) =>
+                                   upLoadImage(e.target.files[0], "licencePic",
+                                   setLicencePic, setIsLicencePicUploaded)} />
                         {isLicencePicUploaded &&
                             <CheckIcon
                                 sx={{color: "green",
-                                    paddingTop: "10px"}}></CheckIcon>}
+                                    marginBottom: "-5px",
+                                    marginLeft: "-80px"}}></CheckIcon>}
                     </>
                 }
                 <br />

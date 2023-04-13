@@ -174,7 +174,8 @@ function OfferForm() {
                     {submitOffer &&
                         <CheckIcon
                             sx={{color: "green",
-                                paddingTop: "10px"}}></CheckIcon>}
+                                marginBottom: "-5px",
+                                marginLeft: "10px"}}></CheckIcon>}
                 </form>
                     </div>
                     <div style={{

@@ -175,8 +175,9 @@ export default function RequestForm() {
                         {submitRequest &&
                             <CheckIcon
                                 sx={{color: "green",
-                                    paddingTop: "10px"}}></CheckIcon>}
-                        </form>
+                                    marginBottom: "-5px",
+                                    marginLeft: "10px"}}></CheckIcon>}
+                    </form>
                     </div>
                     <div style={{
                         width: "50%" }}>
