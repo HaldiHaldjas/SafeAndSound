@@ -89,17 +89,15 @@ return (
             justifyContent: "center",
             alignItems: "center"
         }}
-
-
     >
-        <h3>Sign up</h3>
-        <input placeholder="First name" onChange={(e) => setNewFirstName(e.target.value)}/><br />
-        <input placeholder="Last name" onChange={(e) => setNewLastName(e.target.value)}/><br />
-        <input placeholder="Email" onChange={(e) => setNewEmail(e.target.value)}/><br />
-        <input placeholder="Password"  type="password" onChange={(e) => setNewPassword(e.target.value)}/><br />
-        <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
+        <h3>Register here:</h3>
+        <input placeholder="Your first name*" onChange={(e) => setNewFirstName(e.target.value)}/><br />
+        <input placeholder="Your last name*" onChange={(e) => setNewLastName(e.target.value)}/><br />
+        <input placeholder="E-mail address*" onChange={(e) => setNewEmail(e.target.value)}/><br />
+        <input placeholder="Password*"  type="password" onChange={(e) => setNewPassword(e.target.value)}/><br />
+        <input placeholder="Phone number" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
         <label htmlFor="profilePic">Profile picture:</label>
-        <input placeholder="Profile picture" type="file" id="profilePic"
+        <input placeholder="Profile picture (optional)" type="file" id="profilePic"
                onChange={(e) =>
                    upLoadImage(e.target.files[0], "profilePic",
                        setNewProfilePic, setIsProfilePicUploaded)} />
@@ -116,9 +114,9 @@ return (
                 <label>I also want to be a driver</label><br />
                 {isNewUserDriver &&
                     <>
-                        <input placeholder="Licence plate" onChange={(e) => setLicencePlate(e.target.value)}/> <br />
+                        <input placeholder="Licence plate*" onChange={(e) => setLicencePlate(e.target.value)}/> <br />
                         <label for="licencePic">Picture of driving licence:</label>
-                        <input placeholder="Picture of driving licence" type="file" id="licencePic"
+                        <input placeholder="Your driver's licence*" type="file" id="licencePic"
                                onChange={(e) =>
                                    upLoadImage(e.target.files[0], "licencePic",
                                    setLicencePic, setIsLicencePicUploaded)} />
@@ -131,12 +129,12 @@ return (
                 }
                 <br />
                 <Button variant="contained"
-                        sx={{backgroundColor: "#add8e6",
+                        sx={{backgroundColor: "#896c63",
+                            fontFamily: 'monospace',
+                            fontWeight: 600,
                             width: "180px",
                             height: "40px",
-                            '&:hover': {
-                                backgroundColor: '#fff',
-                                color: '#3c52b2',}}}
+                            color: '#fbf6f4',}}
                         onClick={handleRegistration}>
                     Register
                 </Button>
@@ -148,12 +146,12 @@ return (
                             paddingTop: "10px"}}></CheckIcon>
                     <br /><br />
                     <Button variant="contained"
-                            sx={{backgroundColor: "#add8e6",
+                            sx={{backgroundColor: "#896c63",
+                                fontFamily: 'monospace',
+                                fontWeight: 600,
                                 width: "180px",
                                 height: "40px",
-                                '&:hover': {
-                                backgroundColor: '#fff',
-                                color: '#3c52b2',}}}
+                                color: '#fbf6f4',}}
                                 onClick={toSignin}>
                             Sign in
                     </Button></>}

@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import img1 from '../images/img1.jpg';
+import img10 from '../images/img10.jpg';
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { database } from "../config/firebase";
 
@@ -51,11 +51,25 @@ import { database } from "../config/firebase";
 
 
     return (
-        <div className="signin-container" style={{backgroundImage: `url(${img1})`}}>
-            {isSignedIn ? (
-                <Profile userId={userId} />
-            ) : (
-                <div className="signin-form" style={{backgroundImage: `url(${img1})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"}}>
+        <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundImage: `url(${img10})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+        }}>
+            <div
+                style={{
+                    width: "50%",
+                    backgroundColor: "rgba(255, 255, 255, 0.7)",
+                    borderRadius: "20px",
+                    padding: "8px",
+                    marginTop: "1px",
+                    marginLeft: "40px",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}
+            >
+                <h3>Already have an account? Sign in:</h3>
                     <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                     <input
                         placeholder="Password"
@@ -67,15 +81,13 @@ import { database } from "../config/firebase";
                         variant="outlined"
                         color="primary"
                         onClick={signIn}
-                        sx={{ fontFamily: 'Roboto Mono', fontWeight: 700 }}
+                        sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63" }}
                     >
                         Sign in
                     </Button>
                     <br />
                     <br />
                 </div>
-
-            )}
         </div>
     );
 };

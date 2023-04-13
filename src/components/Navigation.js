@@ -9,18 +9,15 @@ import MenuItem from '@mui/material/MenuItem';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import Button from '@mui/material/Button';
 
-
 function Navigation() {
 
     const navigate = useNavigate();
-
-
     return(
-        <AppBar position="static" sx={{backgroundColor: 'darkgrey'}}>
+        <AppBar position="static" sx={{backgroundColor: '#c8cbad'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters >
                     <DirectionsCarIcon
-                        sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+                        sx={{ display: { xs: 'none', md: 'flex' }, mr: 3 }}>
                     </DirectionsCarIcon>
                      <Typography
                         variant="h6"
@@ -28,13 +25,13 @@ function Navigation() {
                         component="a"
                         href="/"
                         sx={{
-                            mr: 2,
+                            mr: 3,
                             display: { xs: 'none', md: 'flex' },
-                            paddingLeft: "20px",
+                            paddingLeft: "30px",
                             fontFamily: 'monospace',
-                            fontWeight: 700,
+                            fontWeight: 600,
                             letterSpacing: '.3rem',
-                            color: 'inherit',
+                            color: '#896c63',
                             textDecoration: 'none',
                         }}
                     >
@@ -46,12 +43,11 @@ function Navigation() {
                         justifyContent: { xs: "flex-start", md: "flex-end"},
                         alignItems: "center",
                     }}>
-
                         <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('signin')} sx={{ fontFamily: 'monospace' }}>Sign in</Button>
+                            <Button variant='outlined' color='primary' onClick={() => navigate('signin')} sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63" }}>Sign in</Button>
                         </MenuItem>
                         <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('register')} sx={{ fontFamily: 'monospace' }}>Register</Button>
+                            <Button variant='outlined' color='primary' onClick={() => navigate('register')} sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63" }}>Register</Button>
                         </MenuItem>
              {/*           <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('request')}>Request</Button>
