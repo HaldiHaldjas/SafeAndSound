@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { doc, getDoc } from "firebase/firestore";
+import {collection, doc, getDoc, setDoc} from "firebase/firestore";
 import {database} from "../config/firebase";
 import {useLocation} from 'react-router-dom';
 import { useNavigate} from "react-router-dom";
@@ -27,13 +27,27 @@ export default function EditProfileDialog(props) {
 
 
 
-    function submit() {
+const submit = async () => {
 
-    }
+        try {
+            const userRef = doc(database, "users", userId);
+            await setDoc(userRef, {
+                first_name: newFirstName,
+                last_name: newLastName,
+                phone: newPhone,
+                profile_pic: newProfilePic,
+                licence_plate: newLicencePlate,
+                driving_licence_pic: newLicencePic,
+            });
+        }
+     catch (err) {
+                console.error(err);
+            }
+    };
 
     return (
         <div style={{
-            width: "90%",
+            width: "50%",
             margin: "0 auto",
             display: "flex",
             textAlign: "center",
@@ -47,10 +61,11 @@ export default function EditProfileDialog(props) {
                     <Box sx={{
                         display: "flex",
                         flexDirection: "column",
-                        width: "50%",
+                        width: "60%",
                         margin: "0 auto",
                         justifyContent: "center",
-                        alignItems: "center"
+                        alignItems: "center",
+                        textAlign: "right",
 
                     }}>
 
@@ -66,7 +81,7 @@ export default function EditProfileDialog(props) {
                             <Grid item xs={6} sm={6} md={6} >
                                <p>First name:</p>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={6} >
+                            <Grid item xs={6} sm={6} md={6} sx={{textAlign: "left"}}>
                                 <input placeholder={firstName}
                                     onChange={(e) => setNewFirstName(e.target.value)}
                                 />
@@ -75,16 +90,16 @@ export default function EditProfileDialog(props) {
                                 <p>Last name:</p>
 
                             </Grid>
-                            <Grid item xs={6} sm={6} md={6} >
+                            <Grid item xs={6} sm={6} md={6} sx={{textAlign: "left"}} >
                                 <input placeholder={lastName}
                                      onChange={(e) => setNewLastName(e.target.value)}
                                 />
                             </Grid>
-                            <Grid item xs={6} sm={6} md={6} >
+                            <Grid item xs={6} sm={6} md={6}  >
                                 <p>Phone:</p>
 
                             </Grid>
-                            <Grid item xs={6} sm={6} md={6} >
+                            <Grid item xs={6} sm={6} md={6} sx={{textAlign: "left"}} >
                                 <input placeholder={phone}
                                      onChange={(e) => setNewPhone(e.target.value)}
                                 />
@@ -96,7 +111,7 @@ export default function EditProfileDialog(props) {
                                         <p>Licence plate:</p>
 
                                 </Grid>
-                                <Grid item xs={6} sm={6} md={6} >
+                                <Grid item xs={6} sm={6} md={6} sx={{textAlign: "left"}}>
                                         <input placeholder={licencePlate}
                                          onChange={(e) => setNewLicencePlate(e.target.value)}
                                         />
@@ -108,6 +123,7 @@ export default function EditProfileDialog(props) {
                                 <Grid item xs={6} sm={6} md={6} >
                                 <input placeholder={firstName} type="file"
                                     // onChange={(e) => setNewFirstName(e.target.value)}
+
                                 /></Grid>
                             </>
 

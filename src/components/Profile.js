@@ -225,8 +225,13 @@ export default function Profile() {
                         <Dialog
                             onClose={handleClose}
                             aria-labelledby="customized-dialog-title"
-
                             maxWidth="100px"
+                            sx={{
+                                width: "60%",
+                                margin: "0 auto",
+                                display: "flex",
+                                alignItems: "center"
+                            }}
                             open={open}
                         >
                             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
