@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {doc, getDocs, collection} from "firebase/firestore";
 import {database} from "../config/firebase";
 import Table from '@mui/material/Table';
@@ -9,6 +9,15 @@ import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import {useNavigate} from "react-router-dom";
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from "@mui/material/Typography";
+import ProfileDialog from "./ProfileDialog";
+
 
 export default function SeeRequestsForm() {
 
@@ -16,13 +25,15 @@ export default function SeeRequestsForm() {
     const [requests, setRequests] = useState([])
     // const [isChecked, setIsChecked] = useState([]);
     // const [checkedRequests, setCheckedRequests] = useState([]);
-    const [seeDriverProfile, setSeeDriverProfile] = useState([])
+    const [userProfiles, setUserProfiles] = useState([])
     //
     // const [selectedRequest, setSelectedRequest] = useState(null);
 
-    // const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true); // shows the spinner for user
     const [selectedIds, setSelectedIds] = useState([]);
     const [selectedRequest, setSelectedRequest] = useState(null);
+    const [open, setOpen] = useState(false)
+    const [selectedUser, setSelectedUser] = useState("")
 
 
 
@@ -52,12 +63,12 @@ export default function SeeRequestsForm() {
         // setLoading(false); // set loading state to false when data is fetched
     }
 
-    const getDriverProfile = async () => {
+    const getUserProfile = async () => {
         await getDocs(collection(database, "users"))
             .then((querySnapshot) => {
                 const newData2 = querySnapshot.docs
                     .map((doc) => ({...doc.data(), id: doc.id}));
-                setSeeDriverProfile(newData2); // (newData2.users.last_name)
+                setUserProfiles(newData2); // (newData2.users.last_name)
                 // console.log(seeDriverProfile, newData2)
                 // const driverInfo = setSeeDriverProfile.
                 // const driverInfo = seeDriverProfile.map((user, index) => )
@@ -66,7 +77,7 @@ export default function SeeRequestsForm() {
 
     useEffect(() => {
         fetchRequests();
-        getDriverProfile();
+        getUserProfile();
     }, [])
 
 
@@ -86,32 +97,32 @@ export default function SeeRequestsForm() {
             setSelectedIds((prevSelectedIds) => [...prevSelectedIds, id]);
             setSelectedRequest(requests.find((request) => request.id === id));
 
-
-
         } else {
             setSelectedIds((prevSelectedIds) => prevSelectedIds.filter((selectedId) => selectedId !== id));
             setSelectedRequest(null);
         }
     };
 
-  /*  const handleButtonClick = (event) => {
-        if (event === handleCheckBoxChange) {
-            alert("So this is your choice?")
-        } else {
-            alert("Going alone?")
-        }
-    }*/
-
-    // const handleButtonClick = () => {
-    //     navigate("/seerequests/confirmation", {state: {checkedRequests: checkedRequests} });
-    // }
     const submit = () => {
         navigate("/seerequests/confirmation", { state: { selectedRequest: selectedRequest } });
     }
 
     // console.log(requests)
 
-    console.log(selectedRequest)
+    function handleClose() {
+        setOpen(false) // false at the beginning and false when closed
+    }
+
+    function showUserInfo(userId) {
+
+
+
+        setSelectedUser()
+        setOpen(true)
+    }
+
+    // console.log(selectedRequest)
+    // console.log(userProfiles)
 
     return (
         <div className="Requests list">
@@ -139,7 +150,11 @@ export default function SeeRequestsForm() {
                              <TableCell>{request.timeframe_1}</TableCell>
                              <TableCell>{request.timeframe_2}</TableCell>
                              <TableCell>{request.needed_spots}</TableCell>
-                            <TableCell>User Profile
+                            <TableCell>
+                                <Button
+                                    onClick={() => showUserInfo(request.userId)}
+                                    variant="outlined">User Profile</Button>
+
 {/*
                                 {seeDriverProfile.length > 0 && seeDriverProfile.map((user, index) key={index}, {user.last_name})}
 */}
@@ -171,6 +186,25 @@ export default function SeeRequestsForm() {
                         color: "#3c52b2",
                     },
                 }}>Offer a ride</Button>
+
+
+            <Dialog
+                onClose={handleClose}
+                aria-labelledby="customized-dialog-title"
+                open={open}
+            >
+                <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                    Modal title
+                </DialogTitle>
+                <DialogContent dividers>
+                    <ProfileDialog userId={selectedUser}/>
+                </DialogContent>
+                <DialogActions>
+                    <Button autoFocus onClick={handleClose}>
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }
