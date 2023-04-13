@@ -11,6 +11,7 @@ import SeeRequestsForm from "./components/SeeRequests";
 import Confirmation from "./components/Confirmation";
 import Profile from "./components/Profile";
 import Routing from "./Routing";
+import RequestConfirmation from "./components/RequestConfirmation";
 
 
 function App() {
