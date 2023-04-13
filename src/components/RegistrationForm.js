@@ -29,12 +29,12 @@ export default function RegistrationForm() {
 
     const handleRegistration = async () => {
 
-    try {
+        try {
 
-        await createUserWithEmailAndPassword(auth, newEmail, newPassword)
-            .then((userCredential) => {
+            await createUserWithEmailAndPassword(auth, newEmail, newPassword)
+                .then((userCredential) => {
 
-                 addDoc(usersCollectionRef, {
+                    addDoc(usersCollectionRef, {
                         first_name: newFirstName,
                         last_name: newLastName,
                         email: newEmail,
@@ -43,9 +43,9 @@ export default function RegistrationForm() {
                         driver: isNewUserDriver,
                         licence_plate: licencePlate,
                         driving_licence_pic: licencePic,
-                 })
-              });
-        setIsRegistered(true)
+                    })
+                });
+            setIsRegistered(true)
         } catch (err) {
             console.error(err)
         }
@@ -71,60 +71,45 @@ export default function RegistrationForm() {
     }
 
 
-return (
-    <div style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundImage: `url(${img10})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
-    }}>
-    <div
-        style={{
-            width: "50%",
-            backgroundColor: "rgba(255, 255, 255, 0.7)",
-            borderRadius: "20px",
-            padding: "8px",
-            marginTop: "1px",
-            marginLeft: "40px",
+    return (
+        <div style={{
+            display: "flex",
+            alignItems: "center",
             justifyContent: "center",
-            alignItems: "center"
-        }}
-
-
-    >
-        <h3>Sign up</h3>
-        <input placeholder="First name" onChange={(e) => setNewFirstName(e.target.value)}/><br />
-        <input placeholder="Last name" onChange={(e) => setNewLastName(e.target.value)}/><br />
-        <input placeholder="Email" onChange={(e) => setNewEmail(e.target.value)}/><br />
-        <input placeholder="Password"  type="password" onChange={(e) => setNewPassword(e.target.value)}/><br />
-        <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
-        <label htmlFor="profilePic">Profile picture:</label>
-        <input placeholder="Profile picture" type="file" id="profilePic"
-               onChange={(e) =>
-                   upLoadImage(e.target.files[0], "profilePic",
-                       setNewProfilePic, setIsProfilePicUploaded)} />
-        {isProfilePicUploaded &&
-            <CheckIcon
-                sx={{color: "green",
-                    marginBottom: "-5px",
-                    marginLeft: "-80px"}}></CheckIcon>}
-        <Button variant="contained"
-                sx={{backgroundColor: "#add8e6",
-                    height: "30px",
-
-                    '&:hover': {
-                        backgroundColor: '#fff',
-                        color: '#3c52b2',
-                        }
+            backgroundImage: `url(${img10})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+        }}>
+            <div
+                style={{
+                    width: "50%",
+                    backgroundColor: "rgba(255, 255, 255, 0.7)",
+                    borderRadius: "20px",
+                    padding: "8px",
+                    marginTop: "1px",
+                    marginLeft: "40px",
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}
-                onClick={upLoadProfilePic}>
-                Upload picture
-        </Button>
-        <br />
-        {isProfilePicUploaded &&
-            <CheckIcon
-                sx={{color: "green",
-                    paddingTop: "10px"}}></CheckIcon>}
+
+
+            >
+                <h3>Sign up</h3>
+                <input placeholder="First name" onChange={(e) => setNewFirstName(e.target.value)}/><br />
+                <input placeholder="Last name" onChange={(e) => setNewLastName(e.target.value)}/><br />
+                <input placeholder="Email" onChange={(e) => setNewEmail(e.target.value)}/><br />
+                <input placeholder="Password"  type="password" onChange={(e) => setNewPassword(e.target.value)}/><br />
+                <input placeholder="Phone" type="number"onChange={(e) => setNewPhone(Number(e.target.value))}/><br />
+                <label htmlFor="profilePic">Profile picture:</label>
+                <input placeholder="Profile picture" type="file" id="profilePic"
+                       onChange={(e) =>
+                           upLoadImage(e.target.files[0], "profilePic",
+                               setNewProfilePic, setIsProfilePicUploaded)} />
+                {isProfilePicUploaded &&
+                    <CheckIcon
+                        sx={{color: "green",
+                            marginBottom: "-5px",
+                            marginLeft: "-80px"}}></CheckIcon>}
+                <br />
+
 
                 <br />
                 <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
@@ -136,7 +121,7 @@ return (
                         <input placeholder="Picture of driving licence" type="file" id="licencePic"
                                onChange={(e) =>
                                    upLoadImage(e.target.files[0], "licencePic",
-                                   setLicencePic, setIsLicencePicUploaded)} />
+                                       setLicencePic, setIsLicencePicUploaded)} />
                         {isLicencePicUploaded &&
                             <CheckIcon
                                 sx={{color: "green",
@@ -158,21 +143,21 @@ return (
                 <br />
                 {isRegistered &&
                     <>
-                    <CheckIcon
-                        sx={{color: "green",
-                            paddingTop: "10px"}}></CheckIcon>
-                    <br /><br />
-                    <Button variant="contained"
-                            sx={{backgroundColor: "#add8e6",
-                                width: "180px",
-                                height: "40px",
-                                '&:hover': {
-                                backgroundColor: '#fff',
-                                color: '#3c52b2',}}}
+                        <CheckIcon
+                            sx={{color: "green",
+                                paddingTop: "10px"}}></CheckIcon>
+                        <br /><br />
+                        <Button variant="contained"
+                                sx={{backgroundColor: "#add8e6",
+                                    width: "180px",
+                                    height: "40px",
+                                    '&:hover': {
+                                        backgroundColor: '#fff',
+                                        color: '#3c52b2',}}}
                                 onClick={toSignin}>
                             Sign in
-                    </Button></>}
-                </div>
+                        </Button></>}
             </div>
-        )
+        </div>
+    )
 }

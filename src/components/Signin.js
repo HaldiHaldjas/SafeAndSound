@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import img1 from '../images/img1.jpg';
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { database } from "../config/firebase";
 
     export const Signin = () => {
 
@@ -54,7 +55,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
             {isSignedIn ? (
                 <Profile userId={userId} />
             ) : (
-                <div ref={signinRef} className="signin-form" style={{backgroundImage: `url(${img1})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"}}>
+                <div className="signin-form" style={{backgroundImage: `url(${img1})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"}}>
                     <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                     <input
                         placeholder="Password"
