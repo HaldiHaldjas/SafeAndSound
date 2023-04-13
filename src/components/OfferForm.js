@@ -9,8 +9,6 @@ import { useLocation } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 
 
-
-
 function OfferForm() {
 
     const navigate = useNavigate();
