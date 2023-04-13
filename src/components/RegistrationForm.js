@@ -7,6 +7,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import CheckIcon from '@mui/icons-material/Check';
 import { useNavigate} from "react-router-dom";
+import Profile from "./Profile";
 
 
 export default function RegistrationForm() {
@@ -34,7 +35,8 @@ export default function RegistrationForm() {
         await createUserWithEmailAndPassword(auth, newEmail, newPassword)
             .then((userCredential) => {
 
-                 addDoc(usersCollectionRef, {
+                const newDocRef =
+                    addDoc(usersCollectionRef, {
                         first_name: newFirstName,
                         last_name: newLastName,
                         email: newEmail,
@@ -44,8 +46,12 @@ export default function RegistrationForm() {
                         licence_plate: licencePlate,
                         driving_licence_pic: licencePic,
                  })
-              });
-        setIsRegistered(true)
+                newDocRef.then((doc) => {
+                    const userId = doc.id
+                    setIsRegistered(true)
+                    navigate("/profile", { state: { userId: userId, isSignedIn: true } });
+
+                })});
         } catch (err) {
             console.error(err)
         }
@@ -72,6 +78,11 @@ export default function RegistrationForm() {
 
 
 return (
+    <div>
+        {isRegistered ? (
+            <Profile />
+        ) : (
+            <>
             <div style={{
                 display: "flex",
                 alignItems: "center",
@@ -136,13 +147,8 @@ return (
                     Register
                 </Button>
                 <br />
-                {isRegistered &&
-                    <>
-                    <CheckIcon
-                        sx={{color: "green",
-                            paddingTop: "10px"}}></CheckIcon>
-                    <br /><br />
-                    <Button variant="contained"
+                <br />
+                     <Button variant="contained"
                             sx={{backgroundColor: "#add8e6",
                                 width: "180px",
                                 height: "40px",
@@ -150,9 +156,12 @@ return (
                                 backgroundColor: '#fff',
                                 color: '#3c52b2',}}}
                                 onClick={toSignin}>
-                            Sign in
-                    </Button></>}
+                            Back to signing in
+                    </Button>
                 </div>
             </div>
-        )
+            </>
+        )}
+    </div>
+    )
 }

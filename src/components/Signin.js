@@ -49,7 +49,7 @@
         return (
             <div>
                 {isSignedIn ? (
-                    <Profile userId={userId} />
+                    <Profile />
                 ) : (
                     <>
                         <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
@@ -66,8 +66,6 @@
                                     fontWeight: 700 }}>
                                 Sign in
                         </Button>
-                        <br />
-                        <br />
                     </>
                 )}
             </div>
