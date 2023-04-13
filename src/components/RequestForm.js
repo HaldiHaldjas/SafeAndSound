@@ -54,9 +54,7 @@ export default function RequestForm() {
                 timeframe_1: timeToGo,
                 timeframe_2: timeToArrive,
                 needed_spots: neededSpots,
-                randomId: randomId,
-                userId: userId
-
+                randomId: randomId
             });
             document.getElementById("RequestForm").reset();
             setSubmitRequest(true);
@@ -215,6 +213,9 @@ export default function RequestForm() {
                                 backgroundColor: "#add8e6",
                                 "&:hover": {
                                     backgroundColor: "#fff",
+
+
+
                                     color: "#3c52b2",
                                 },
                                 width: "180px",
