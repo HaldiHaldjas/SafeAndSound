@@ -8,8 +8,6 @@ import { useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 
-
-
 function OfferForm() {
 
     const navigate = useNavigate();

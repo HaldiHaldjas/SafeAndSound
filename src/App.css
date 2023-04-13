@@ -39,14 +39,14 @@
   }
 }
 
-body {
-  background-image: url('/src/images/img1.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  /* Set background image to fixed (don't scroll along with the page) */
-  background-attachment: fixed;
-}
+/*body {*/
+/*  background-image: url('/src/images/img1.jpg');*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: cover;*/
+/*  background-position: center center;*/
+/*  !* Set background image to fixed (don't scroll along with the page) *!*/
+/*  background-attachment: fixed;*/
+/*}*/
 
 img {
   width: 150px;
@@ -95,3 +95,6 @@ body {
 .MuiTableBody-root {
   font-family: 'Roboto Mono', monospace;
 }
+
+
+
