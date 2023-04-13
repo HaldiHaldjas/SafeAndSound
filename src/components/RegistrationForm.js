@@ -7,8 +7,8 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import CheckIcon from '@mui/icons-material/Check';
 import { useNavigate} from "react-router-dom";
-import img10 from '../images/img10.jpg';
 import Profile from "./Profile";
+
 
 export default function RegistrationForm() {
 
@@ -30,28 +30,28 @@ export default function RegistrationForm() {
 
     const handleRegistration = async () => {
 
-    try {
+        try {
 
-        await createUserWithEmailAndPassword(auth, newEmail, newPassword)
-            .then((userCredential) => {
+            await createUserWithEmailAndPassword(auth, newEmail, newPassword)
+                .then((userCredential) => {
 
-                const newDocRef =
-                    addDoc(usersCollectionRef, {
-                        first_name: newFirstName,
-                        last_name: newLastName,
-                        email: newEmail,
-                        phone: newPhone,
-                        profile_pic: newProfilePic,
-                        driver: isNewUserDriver,
-                        licence_plate: licencePlate,
-                        driving_licence_pic: licencePic,
-                 })
-                newDocRef.then((doc) => {
-                    const userId = doc.id
-                    setIsRegistered(true)
-                    navigate("/profile", { state: { userId: userId, isSignedIn: true } });
+                    const newDocRef =
+                        addDoc(usersCollectionRef, {
+                            first_name: newFirstName,
+                            last_name: newLastName,
+                            email: newEmail,
+                            phone: newPhone,
+                            profile_pic: newProfilePic,
+                            driver: isNewUserDriver,
+                            licence_plate: licencePlate,
+                            driving_licence_pic: licencePic,
+                        })
+                    newDocRef.then((doc) => {
+                        const userId = doc.id
+                        setIsRegistered(true)
+                        navigate("/profile", { state: { userId: userId, isSignedIn: true } });
 
-                })});
+                    })});
         } catch (err) {
             console.error(err)
         }
