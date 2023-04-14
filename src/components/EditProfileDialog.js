@@ -6,6 +6,7 @@ import { useNavigate} from "react-router-dom";
 import {Button} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Box from '@mui/material/Box';
+import CheckIcon from "@mui/icons-material/Check";
 
 export default function EditProfileDialog(props) {
     const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function EditProfileDialog(props) {
     const [newProfilePic, setNewProfilePic] = useState("")
     const [newLicencePlate, setNewLicencePlate] = useState("")
     const [newLicencePic, setNewLicencePic] = useState("")
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
 
 
@@ -31,14 +33,15 @@ const submit = async () => {
 
         try {
             const userRef = doc(database, "users", userId);
-            await setDoc(userRef, {
-                first_name: newFirstName,
-                last_name: newLastName,
-                phone: newPhone,
-                profile_pic: newProfilePic,
-                licence_plate: newLicencePlate,
-                driving_licence_pic: newLicencePic,
-            });
+            const docSnapshot = await getDoc(userRef);
+
+            const data = docSnapshot.data();
+
+            const newData = {
+            };
+
+            await setDoc(userRef, newData);
+            setIsSubmitted()
         }
      catch (err) {
                 console.error(err);
@@ -47,7 +50,7 @@ const submit = async () => {
 
     return (
         <div style={{
-            width: "50%",
+            width: "70%",
             margin: "0 auto",
             display: "flex",
             textAlign: "center",
@@ -140,6 +143,9 @@ const submit = async () => {
                         >
                             Submit
                         </Button>
+                        {isSubmitted &&
+                            <CheckIcon
+                                sx={{color: "green"}}></CheckIcon>}
                     </Box>
 
                 </div>

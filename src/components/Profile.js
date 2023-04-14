@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { doc, getDoc } from "firebase/firestore";
 import {database} from "../config/firebase";
 import {useLocation} from 'react-router-dom';
@@ -53,7 +53,6 @@ export default function Profile() {
 
     getUserDocument()
         .then()
-
 
     const editProfile = () => {
         setOpen(true)

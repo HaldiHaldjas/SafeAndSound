@@ -27,36 +27,36 @@ export default function SeeOffers1() {
         () => [
             {
                 header: 'Day',
-                accessorKey: 'day', //simple accessorKey pointing to flat data
+                accessorKey: 'day',
                 muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
             },
             {
                 header: 'From',
-                accessorKey: 'from.address', //simple accessorKey pointing to flat data
+                accessorKey: 'from.address'
             },
             {
                 header: 'To',
-                accessorKey: 'to.address', //simple accessorKey pointing to flat data
+                accessorKey: 'to.address'
             },
             {
                 header: 'Timeframe 1',
-                accessorKey: 'timeframe_1', //simple accessorKey pointing to flat data
+                accessorKey: 'timeframe_1'
             },
             {
                 header: 'Timeframe 2',
-                accessorKey: 'timeframe_2', //simple accessorKey pointing to flat data
+                accessorKey: 'timeframe_2'
             },
             {
                 header: 'Free seats',
-                accessorKey: 'needed_spots', //simple accessorKey pointing to flat data
+                accessorKey: 'needed_spots'
             },
             {
                 header: 'Price',
-                accessorKey: 'price', //simple accessorKey pointing to flat data
+                accessorKey: 'price'
             },
             {
                 header: 'Driver',
-                accessorKey: 'Driver', //simple accessorKey pointing to flat data
+                accessorKey: 'Driver'
             },
         ],
         [],
