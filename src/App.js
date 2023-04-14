@@ -12,7 +12,7 @@ import Confirmation from "./components/Confirmation";
 import Profile from "./components/Profile";
 import Routing from "./Routing";
 import RequestConfirmation from "./components/RequestConfirmation";
-import img10 from './images/img10.jpg';
+import img2 from './images/img2.jpg';
 
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              backgroundImage: `url(${img10})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+              backgroundImage: `url(${img2})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
           }}>
               <div
                   style={{
