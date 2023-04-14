@@ -4,6 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { database } from "../config/firebase";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import img2 from "../images/img2.jpg";
 
 function Confirmation() {
 
@@ -45,47 +46,49 @@ function Confirmation() {
 
     return (
         <div style={{
-            width: "70%",
+            width: "100%",
             margin: "0 auto",
             display: "flex",
-            alignItems: "center"
+            alignItems: "center",
+            backgroundImage: `url(${img2})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
         }}>
             <div
                 style={{
                     width: "50%",
-                    backgroundColor: "#fff",
-                    borderRadius: "10px",
-                    padding: "20px",
-                    marginTop: "40px",
-                    marginLeft: "40px"
+                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    borderRadius: "20px",
+                    padding: "25px",
+                    marginTop: "1px",
+                    marginLeft: "90px",
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}>
-                <h3>Selected offer:</h3>
+                <h3>Your selected offer:</h3>
                 <p>From: {selectedOffer.from && selectedOffer.from.address}</p>
                 <p>To: {selectedOffer.to && selectedOffer.to.address}</p>
-                <p>Timeframe 1: {selectedOffer.timeframe_1}</p>
-                <p>Timeframe 2: {selectedOffer.timeframe_2}</p>
-                <p>Free spots: {selectedOffer.free_spots}</p>
-                <p>Price: {selectedOffer.price}</p>
+                <p>Starting time: {selectedOffer.timeframe_1}</p>
+                <p>Latest arrival:: {selectedOffer.timeframe_2}</p>
+                <p>Number of free spots: {selectedOffer.free_spots}</p>
+                <p>Price: {selectedOffer.price}€</p>
                 <p>Verification code: {selectedOffer.randomId}</p>
                 </div>
-            <div style={{
-                width: "50%" }}>
+            <div
+                style={{
+                    width: "20%",
+                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    borderRadius: "20px",
+                    padding: "25px",
+                    marginTop: "1px",
+                    marginLeft: "90px",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
 
                     <img src={driverPic}></img>
                     <p>Driver's name: {driverFirstName} {driverLastName} </p>
                     <p>Driver's phone: {driverPhone}</p>
                     <Button
                         variant="contained"
-                        sx={{
-                            backgroundColor: "#add8e6",
-                            "&:hover": {
-                                backgroundColor: "#fff",
-                                color: "#3c52b2",
-                            },
-                            width: "180px",
-                            height: "40px"
-
-                        }}
                         onClick={toProfile}>
                         Driver's profile
                     </Button>

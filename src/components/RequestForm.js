@@ -153,11 +153,12 @@ export default function RequestForm() {
                             <input type="text" placeholder="Endpoint*" />
                         </Autocomplete>
                         </LoadScript>
-                        <label style={{ fontSize: "12px" }}>What time do you need the ride? Please choose the earliest starting time and the latest time of arrival:</label>
+                        <label style={{ fontSize: "12px" }}>What time do you need the ride? Please choose the earliest starting time:</label>
                         <input
                             type="time"
                             placeholder="Departure time*"
                             onChange={(e) => setTimeToGo(e.target.value)}/><br />
+                        <label style={{ fontSize: "12px" }}>And the latest time of arrival:</label>
                         <input
                             type="time"
                             placeholder="Time of arrival*"
@@ -172,13 +173,7 @@ export default function RequestForm() {
                             onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
 
                         <Button variant="contained"
-                                sx={{backgroundColor: "#add8e6",
-                                '&:hover': {
-                                    backgroundColor: '#fff',
-                                    color: '#3c52b2',},
-                                    width: "180px",
-                                    height: "40px"
-                                }}
+
                                 onClick={handleRequest}
                         > Submit </Button>
                         <br />
@@ -193,42 +188,18 @@ export default function RequestForm() {
                         width: "50%" }}>
                          <Button
                              variant="contained"
-                             sx={{
-                                 backgroundColor: "#add8e6",
-                                 "&:hover": {
-                                     backgroundColor: "#fff",
-                                     color: "#3c52b2",
-                                 },
-                                 width: "180px",
-                                 height: "40px"
-
-                             }}onClick={toProfile}>
+                             onClick={toProfile}>
                              Go to profile
                          </Button>
                         <br /><br />
                         <Button variant="contained"
-                                sx={{backgroundColor: "#add8e6",
-                                    '&:hover': {
-                                        backgroundColor: '#fff',
-                                        color: '#3c52b2',},
-                                    width: "180px",
-                                    height: "40px"
-                                }}
+
                             // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
                         > Previous drives </Button>
                         <br /><br />
                         <Button
                             variant="contained"
-                            sx={{
-                                backgroundColor: "#add8e6",
-                                "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
-                                },
-                                width: "180px",
-                                height: "40px"
 
-                            }}
                             onClick={toSeeOffers}
                         >
                             All offers
@@ -236,16 +207,7 @@ export default function RequestForm() {
                         <br /><br />
                         <Button
                             variant="contained"
-                            sx={{
-                                backgroundColor: "#add8e6",
-                                "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
-                                },
-                                width: "180px",
-                                height: "40px"
 
-                            }}
                             onClick={toSeeRequests}
                         >
                             All requests
