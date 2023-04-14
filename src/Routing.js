@@ -24,10 +24,8 @@ function Routing() {
             <Route path="request" element={<RequestForm/>}/>
             <Route path="offer" element={<OfferForm/>}/>
             <Route path="seerequests" element={<SeeRequests1/>}/>
-            <Route path="/seeOffers/*" element={<SeeOffers />} />
-            <Route path="/seeOffers1" element={<SeeOffers1 />} />
-            <Route path="/seeOffers2" element={<SeeOffers2 />} />
-            <Route path="/seeOffers/confirmation" element={<OfferConfirmation/>}/>
+            <Route path="/seeoffers/*" element={<SeeOffers2 />} />
+            <Route path="/seeoffers/confirmation" element={<OfferConfirmation/>}/>
             <Route path="/seerequests/confirmation" element={<RequestConfirmation/>}/>
             <Route path="/profile/edit" element={<Profile />}/>
         </Routes>
