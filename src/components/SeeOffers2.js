@@ -74,35 +74,35 @@ export default function SeeOffers2() {
                     ),
                     },
                                        {
-                        header: 'From',
+                        header: 'From:',
                         accessorKey: 'from'
                     },
                     {
-                        header: 'To',
+                        header: 'To:',
                         accessorKey: 'to'
                     },
                     {
                         accessorKey: "day",
-                        header: "Day",
+                        header: "Day:",
                     },
                     {
-                        header: 'Timeframe 1',
+                        header: 'Starting time:',
                         accessorKey: 'timeframe_1'
                     },
                     {
-                        header: 'Timeframe 2',
+                        header: 'Latest time of arrival:',
                         accessorKey: 'timeframe_2'
                     },
                     {
-                        header: 'Free seats',
+                        header: 'Free seats:',
                         accessorKey: 'needed_spots'
                     },
                     {
-                        header: 'Price',
+                        header: 'Price:',
                         accessorKey: 'price'
                     },
                     {
-                        header: 'Verification code',
+                        header: 'Verification code:',
                         accessorKey: 'randomId'
                     },
                 ]
@@ -201,19 +201,17 @@ export default function SeeOffers2() {
                             color="info"
                             disabled={!table.getIsSomeRowsSelected()}
                             onClick={confirmChoice}
-                            variant="contained"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
                         >
                             Confirm choice
                         </Button>
-                        <Button
-                            color="success"
-                            nClick={toProfile}
-                            variant="contained"
-                        >
-                            Back
-                        </Button>
-
-
                     </div>
                 );
             }}

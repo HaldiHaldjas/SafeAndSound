@@ -136,9 +136,11 @@ export default function EditProfileDialog(props) {
                             variant="outlined"
                             color="primary"
                             onClick={submit}
-                            sx={{
-                                fontFamily: 'Roboto Mono',
-                                fontWeight: 700,
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
                             }}
                         >
                             Submit

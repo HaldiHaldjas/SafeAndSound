@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import EditProfileDialog from "./EditProfileDialog";
-import img5 from "../images/img5.jpg";
+import img14 from "../images/img14.jpg";
 
 
 
@@ -96,17 +96,19 @@ export default function Profile() {
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
-            backgroundImage: `url(${img5})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+            backgroundImage: `url(${img14})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
         }}>
             {isSignedIn && (
                 <div
                     style={{
-                        width: "50%",
-                        backgroundColor: "#fff",
-                        borderRadius: "10px",
-                        padding: "20px",
-                        marginTop: "40px",
-                        marginLeft: "40px"
+                        width: "40%",
+                        backgroundColor: "rgba(255, 255, 255, 0.8)",
+                        borderRadius: "20px",
+                        padding: "25px",
+                        marginTop: "-20px",
+                        marginLeft: "500px",
+                        justifyContent: "center",
+                        alignItems: "center",
                     }}>
                     <img src={profilePic} />
                     <h1>{firstName} {lastName}</h1>
@@ -122,20 +124,16 @@ export default function Profile() {
                     )}
                     <br />
                    <Button
-                        variant="contained"
-                        sx={{
-                            marginTop: "10px",
-                            fontFamily: 'monospace',
-                            backgroundColor: "#774e3f",
-                            "&:hover": {
-                                backgroundColor: "#ccada2",
-                                color: "#3e2723",
-                            },
-                            width: "80px",
-                            height: "40px",
-                            fontWeight: 'bold',
-                            borderWidth: '2px',
-                        }}
+                       variant="outlined"
+                       color="primary"
+                       sx={{ fontFamily: 'monospace',
+                           width: "180px",
+                           height: "40px",
+                           fontWeight: 600,
+                           color: "#fbf6f4",
+                           backgroundColor: "#896c63",
+                           borderRadius: "8px"
+                       }}
                         onClick={editProfile}
                     >
                         Edit
@@ -143,23 +141,24 @@ export default function Profile() {
                 </div>
             )}
             <div style={{
-                width: "50%" }}>
+                width: "20%",
+                position: "absolute",
+                top: "30%",
+                left: "10%"
+            }}>
                 {isSignedIn && (
                     <>
                         {isUserDriver && (
                             <Button
-                                variant="contained"
-                                sx={{
-                                    fontFamily: 'monospace',
-                                    backgroundColor: "#774e3f",
-                                    "&:hover": {
-                                        backgroundColor: "#ccada2",
-                                        color: "#3e2723",
-                                    },
-                                    width: "200px",
+                                variant="outlined"
+                                color="primary"
+                                sx={{ fontFamily: 'monospace',
+                                    width: "180px",
                                     height: "40px",
-                                    fontWeight: 'bold',
-                                    borderWidth: '2px',
+                                    fontWeight: 600,
+                                    color: "#fbf6f4",
+                                    backgroundColor: "#896c63",
+                                    borderRadius: "8px"
                                 }}
                                 onClick={toOffer}
                             >
@@ -168,18 +167,15 @@ export default function Profile() {
                         )}
                         <br /><br />
                         <Button
-                            variant="contained"
-                            sx={{
-                                fontFamily: 'monospace',
-                                backgroundColor: "#774e3f",
-                                "&:hover": {
-                                    backgroundColor: "#ccada2",
-                                    color: "#3e2723",
-                                },
-                                width: "200px",
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
                                 height: "40px",
-                                fontWeight: 'bold',
-                                borderWidth: '2px',
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
                             }}
                             onClick={toRequest}
                         >
@@ -187,18 +183,15 @@ export default function Profile() {
                         </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
-                            sx={{
-                                fontFamily: 'monospace',
-                                backgroundColor: "#774e3f",
-                                "&:hover": {
-                                    backgroundColor: "#ccada2",
-                                    color: "#3e2723",
-                                },
-                                width: "200px",
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
                                 height: "40px",
-                                fontWeight: 'bold',
-                                borderWidth: '2px',
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
                             }}
                             onClick={toSeeOffers}
                         >
@@ -206,18 +199,15 @@ export default function Profile() {
                         </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
-                            sx={{
-                                fontFamily: 'monospace',
-                                backgroundColor: "#774e3f",
-                                "&:hover": {
-                                    backgroundColor: "#ccada2",
-                                    color: "#3e2723",
-                                },
-                                width: "200px",
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
                                 height: "40px",
-                                fontWeight: 'bold',
-                                borderWidth: '2px',
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
                             }}
                             onClick={toSeeRequests}
                         >

@@ -46,7 +46,7 @@ function RequestConfirmation() {
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
-            backgroundImage: `url(${img14})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+            backgroundImage: `url(${img2})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
         }}>
             <div
                 style={{
@@ -59,15 +59,15 @@ function RequestConfirmation() {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-            <h3>Your selected request:</h3>
-            <p>Date: {selectedRequest.day}</p>
-            <p>From: {selectedRequest.from}</p>
-            <p>To: {selectedRequest.to}</p>
-            <p>Starting time: {selectedRequest.timeframe_1}</p>
-            <p>Latest arrival: {selectedRequest.timeframe_2}</p>
-            <p>Number of the spots: {selectedRequest.needed_spots}</p>
+                <h3>Your selected request:</h3>
+                <p>Date: {selectedRequest.day}</p>
+                <p>From: {selectedRequest.from}</p>
+                <p>To: {selectedRequest.to}</p>
+                <p>Starting time: {selectedRequest.timeframe_1}</p>
+                <p>Latest arrival: {selectedRequest.timeframe_2}</p>
+                <p>Number of the spots: {selectedRequest.needed_spots}</p>
                 <p>Verification code: {selectedRequest.randomId}</p>
-        </div>
+            </div>
             <div
                 style={{
                     width: "20%",
@@ -84,7 +84,14 @@ function RequestConfirmation() {
                 <p>User's name: {userData.user_first_name} {userData.user_last_name} </p>
                 <p>User's phone: {userData.user_phone}</p>
                 <Button
-                    variant="contained"
+                    variant="outlined"
+                    color="primary"
+                    sx={{ fontFamily: 'monospace',
+                        width: "180px",
+                        height: "40px",
+                        fontWeight: 600, color: "#fbf6f4",
+                        backgroundColor: "#896c63", borderRadius: "8px"
+                    }}
                     onClick={toProfile}>
                     User's profile
                 </Button>

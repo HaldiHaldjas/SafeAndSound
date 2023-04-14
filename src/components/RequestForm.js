@@ -192,8 +192,14 @@ export default function RequestForm() {
                             style={{width: "20px"}}
                             onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
 
-                        <Button variant="contained"
-
+                        <Button variant="outlined"
+                                color="primary"
+                                sx={{ fontFamily: 'monospace',
+                                    width: "180px",
+                                    height: "40px",
+                                    fontWeight: 600, color: "#fbf6f4",
+                                    backgroundColor: "#896c63", borderRadius: "8px"
+                                }}
                                 onClick={handleRequest}
                         > Submit </Button>
                         <br />
@@ -207,18 +213,39 @@ export default function RequestForm() {
                     <div style={{
                         width: "50%" }}>
                          <Button
-                             variant="contained"
+                             variant="outlined"
+                             color="primary"
+                             sx={{ fontFamily: 'monospace',
+                                 width: "180px",
+                                 height: "40px",
+                                 fontWeight: 600, color: "#fbf6f4",
+                                 backgroundColor: "#896c63", borderRadius: "8px"
+                             }}
                              onClick={toProfile}>
                              Go to profile
                          </Button>
                         <br /><br />
-                        <Button variant="contained"
+                        <Button vvariant="outlined"
+                                color="primary"
+                                sx={{ fontFamily: 'monospace',
+                                    width: "180px",
+                                    height: "40px",
+                                    fontWeight: 600, color: "#fbf6f4",
+                                    backgroundColor: "#896c63", borderRadius: "8px"
+                                }}
 
                             // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
                         > Previous drives </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
 
                             onClick={toSeeOffers}
                         >
@@ -226,7 +253,14 @@ export default function RequestForm() {
                         </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
 
                             onClick={toSeeRequests}
                         >

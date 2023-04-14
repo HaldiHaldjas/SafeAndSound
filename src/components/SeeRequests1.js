@@ -184,7 +184,14 @@ export default function SeeRequests1() {
                             color="info"
                             disabled={!table.getIsSomeRowsSelected()}
                             onClick={confirmChoice}
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
                         >
                             Confirm choice
                         </Button>

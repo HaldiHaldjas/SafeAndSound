@@ -133,25 +133,27 @@ export default function RegistrationForm() {
                                 </>
                             }
                             <br />
-                            <Button variant="contained"
-                                    sx={{backgroundColor: "#896c63",
-                                        fontFamily: 'monospace',
-                                        fontWeight: 600,
+                            <Button variant="outlined"
+                                    color="primary"
+                                    sx={{ fontFamily: 'monospace',
                                         width: "180px",
                                         height: "40px",
-                                        color: '#fbf6f4',}}
+                                        fontWeight: 600, color: "#fbf6f4",
+                                        backgroundColor: "#896c63", borderRadius: "8px"
+                                    }}
                                     onClick={handleRegistration}>
                                 Register
                             </Button>
                             <br />
                             <br />
-                            <Button variant="contained"
-                                    sx={{backgroundColor: "#896c63",
-                                        fontFamily: 'monospace',
-                                        fontWeight: 600,
+                            <Button variant="outlined"
+                                    color="primary"
+                                    sx={{ fontFamily: 'monospace',
                                         width: "180px",
                                         height: "40px",
-                                        color: '#fbf6f4',}}
+                                        fontWeight: 600, color: "#fbf6f4",
+                                        backgroundColor: "#896c63", borderRadius: "8px"
+                                    }}
                                     onClick={toSignin}>
                                 Back to signing in
                             </Button>

@@ -49,17 +49,21 @@ function Navigation() {
                             <MenuItem >
                                 <Button variant='outlined' color='primary' onClick={() => navigate('signin')}
                                         sx={{ fontFamily: 'monospace',
+                                            width: "180px",
+                                            height: "40px",
                                             fontWeight: 600, color: "#fbf6f4",
-                                            backgroundColor: "#896c63" }}>
+                                            backgroundColor: "#896c63", borderRadius: "8px"}}>
                                     Sign in
                                 </Button>
                             </MenuItem>
                             <MenuItem >
                                 <Button variant='outlined' color='primary' onClick={() => navigate('register')}
                                         sx={{ fontFamily: 'monospace',
-                                            fontWeight: 600,
-                                            color: "#fbf6f4",
-                                            backgroundColor: "#896c63" }}>
+                                            width: "180px",
+                                            height: "40px",
+                                            fontWeight: 600, color: "#fbf6f4",
+                                            backgroundColor: "#896c63", borderRadius: "8px"
+                                        }}>
                                     Register
                                 </Button>
                             </MenuItem>
@@ -68,9 +72,11 @@ function Navigation() {
                             <MenuItem >
                                 <Button variant='outlined' color='primary' onClick={() => navigate('request')}
                                         sx={{ fontFamily: 'monospace',
-                                            fontWeight: 600,
-                                            color: "#fbf6f4",
-                                            backgroundColor: "#896c63" }}>
+                                            width: "180px",
+                                            height: "40px",
+                                            fontWeight: 600, color: "#fbf6f4",
+                                            backgroundColor: "#896c63", borderRadius: "8px"
+                                        }}>
                                     Back
                                 </Button>
                             </MenuItem>
@@ -78,9 +84,11 @@ function Navigation() {
                             <MenuItem >
                                 <Button variant='outlined' color='primary' onClick={() => navigate('offer')}
                                         sx={{ fontFamily: 'monospace',
-                                            fontWeight: 600,
-                                            color: "#fbf6f4",
-                                            backgroundColor: "#896c63" }}>
+                                            width: "180px",
+                                            height: "40px",
+                                            fontWeight: 600, color: "#fbf6f4",
+                                            backgroundColor: "#896c63", borderRadius: "8px"
+                                        }}>
                                     Back
                                 </Button>
 
@@ -88,10 +96,12 @@ function Navigation() {
                             ) : (
                                 <MenuItem >
                                     <Button variant='outlined' color='primary' onClick={() => navigate('home')}
-                                            sx={{
-                                                fontFamily: 'monospace',
+                                            sx={{ fontFamily: 'monospace',
+                                                width: "180px",
+                                                height: "40px",
                                                 fontWeight: 600, color: "#fbf6f4",
-                                                backgroundColor: "#896c63" }}>
+                                                backgroundColor: "#896c63", borderRadius: "8px"
+                                            }}>
                                         Sign out
                                     </Button>
                                 </MenuItem>

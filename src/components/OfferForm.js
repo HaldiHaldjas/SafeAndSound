@@ -142,8 +142,8 @@ function OfferForm() {
                     backgroundColor: "rgba(255, 255, 255, 0.8)",
                     borderRadius: "20px",
                     padding: "25px",
-                    marginTop: "1px",
-                    marginLeft: "90px",
+                    marginTop: "-20px",
+                    marginLeft: "40px",
                     justifyContent: "center",
                     alignItems: "center"
                 }}
@@ -174,8 +174,9 @@ function OfferForm() {
                             <input type="text" placeholder="Endpoint*" style={{ borderRadius: "8px" }}/>
                         </Autocomplete>
                     </LoadScript>
-                    <label style={{ fontSize: "12px" }}>What time would you like to offer the ride? Please choose the earliest starting time and the latest time of arrival:</label>
+                    <label style={{ fontSize: "12px" }}>What time would you like to offer the ride? Please choose the earliest starting time:</label>
                     <input type="time" placeholder="Departure time*" style={{ borderRadius: "8px" }} onChange={(e) => setTimeToGo(e.target.value)}/><br />
+                    <label style={{ fontSize: "12px" }}>And the latest time of arrival:</label>
                     <input type="time" placeholder="Time of arrival*" style={{ borderRadius: "8px" }} onChange={(e) => setTimeToArrive(e.target.value)}/><br />
                     <label style={{ fontSize: "12px" }}>How many free spots you have in your car? Insert the number:</label>
                     <input
@@ -192,9 +193,12 @@ function OfferForm() {
                     </span>
                         <Button variant="outlined"
                                 color="primary"
-                                sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
+                                sx={{ fontFamily: 'monospace',
                                     width: "180px",
-                                    height: "40px"}}
+                                    height: "40px",
+                                    fontWeight: 600, color: "#fbf6f4",
+                                    backgroundColor: "#896c63", borderRadius: "8px"
+                                }}
                             onClick={handleRequest}
                     > Submit </Button>
                     <br />
@@ -206,17 +210,20 @@ function OfferForm() {
                 </form>
                     </div>
                     <div style={{
-                        width: "10%",
+                        width: "5%",
                         position: "absolute",
-                        top: "15%",
-                        right: "10%",
+                        top: "18%",
+                        left: "10%"
                     }}>
                         <Button
                             variant="outlined"
                             color="primary"
-                            sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
+                            sx={{ fontFamily: 'monospace',
                                 width: "180px",
-                                height: "40px"}}
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
                             onClick={ toProfile }
                         >
                             Go to profile
@@ -225,9 +232,12 @@ function OfferForm() {
                         <Button
                             variant="outlined"
                             color="primary"
-                            sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
+                            sx={{ fontFamily: 'monospace',
                                 width: "180px",
-                                height: "40px"}}
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
                             onClick={ toRequest }
                         >
                             Insert a request
@@ -235,18 +245,24 @@ function OfferForm() {
                         <br /><br />
                         <Button variant="outlined"
                                 color="primary"
-                                sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
+                                sx={{ fontFamily: 'monospace',
                                     width: "180px",
-                                    height: "40px"}}
+                                    height: "40px",
+                                    fontWeight: 600, color: "#fbf6f4",
+                                    backgroundColor: "#896c63", borderRadius: "8px"
+                                }}
                             // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
                         > Previous drives </Button>
                         <br /><br />
                         <Button
                             variant="outlined"
                             color="primary"
-                            sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
+                            sx={{ fontFamily: 'monospace',
                                 width: "180px",
-                                height: "40px"}}
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
                             onClick={ toSeeOffers }
 
                         >
@@ -256,9 +272,12 @@ function OfferForm() {
                         <Button
                             variant="outlined"
                             color="primary"
-                            sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
+                            sx={{ fontFamily: 'monospace',
                                 width: "180px",
-                                height: "40px"}}
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
                             onClick={ toSeeRequests }
                         >
                             All requests
