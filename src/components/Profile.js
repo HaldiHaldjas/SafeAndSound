@@ -1,9 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { doc, getDoc } from "firebase/firestore";
 import {database} from "../config/firebase";
 import {useLocation} from 'react-router-dom';
 import Button from "@mui/material/Button";
 import { useNavigate} from "react-router-dom";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import EditProfileDialog from "./EditProfileDialog";
 import img11 from "../images/img11.jpg";
 import '../App.css'
 
@@ -23,6 +28,7 @@ export default function Profile() {
     const [isUserDriver, setIsUserDriver] = useState(false)
     const [licencePlate, setLicencePlate] = useState("")
     const [licencePic, setLicencePic] = useState("")
+    const [open, setOpen] = useState(false)
 
 
     const getUserDocument = async () => {
@@ -50,6 +56,22 @@ export default function Profile() {
     getUserDocument()
         .then()
 
+    const editProfile = () => {
+        setOpen(true)
+        navigate("/profile/edit", { state:
+                {
+                    profilePic: profilePic,
+                    userId: userId,
+                    isSignedIn: true,
+                    firstName: firstName,
+                    lastName: lastName,
+                    phone: phone,
+                    licencePlate: licencePlate,
+                    isUserDriver: isUserDriver
+                } });
+    }
+
+
     const toRequest = () => {
         navigate("/request", { state: { userId: userId, isSignedIn: true } });
     }
@@ -62,12 +84,21 @@ export default function Profile() {
         navigate("/seeOffers", { state: { userId: userId, isSignedIn: true } });
     }
 
+    const toSeeOffers1 = () => {
+        navigate("/seeOffers1", { state: { userId: userId, isSignedIn: true } });
+    }
+
+    const toSeeOffers2 = () => {
+        navigate("/seeOffers2", { state: { userId: userId, isSignedIn: true } });
+    }
+
     const toSeeRequests = () => {
         navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
     }
 
-
-
+    function handleClose() {
+        setOpen(false)
+    }
     return (
         <div style={{
             width: "100%",
@@ -101,6 +132,26 @@ export default function Profile() {
                             <img src={licencePic} />
                         </>
                     )}
+                    <br />
+                    <Button
+                        variant="contained"
+                        sx={{
+                            marginTop: "10px",
+                            fontFamily: 'monospace',
+                            backgroundColor: "#774e3f",
+                            "&:hover": {
+                                backgroundColor: "#ccada2",
+                                color: "#3e2723",
+                            },
+                            width: "80px",
+                            height: "40px",
+                            fontWeight: 'bold',
+                            borderWidth: '2px',
+                        }}
+                        onClick={editProfile}
+                    >
+                        Edit
+                    </Button>
                 </div>
             )}
             <div style={{

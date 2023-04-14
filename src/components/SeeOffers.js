@@ -24,8 +24,6 @@ function App() {
         if (event.target.checked) {
             setSelectedIds((prevSelectedIds) => [...prevSelectedIds, id]);
             setSelectedOffer(offers.find((offer) => offer.id === id));
-            console.log(selectedOffer)
-
 
         } else {
             setSelectedIds((prevSelectedIds) => prevSelectedIds.filter((selectedId) => selectedId !== id));
