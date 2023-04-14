@@ -1,48 +1,47 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
-import { doc, getDoc } from "firebase/firestore";
+import {collection, doc, getDoc, getDocs, query, where} from "firebase/firestore";
 import { database } from "../config/firebase";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import img2 from "../images/img2.jpg";
 
-function Confirmation() {
+function OfferConfirmation() {
 
     const navigate = useNavigate();
     const location = useLocation();
     const selectedOffer = location?.state?.selectedOffer;
-    const [driverFirstName, setDriverFirstName] = useState("")
-    const [driverLastName, setDriverLastName] = useState("")
-    const [driverPhone, setDriverPhone] = useState(0)
     const [driverPic, setDriverPic] = useState("")
+    const [driverData, setDriverData] = useState("")
 
-    const userId = selectedOffer.userId;
+
 
     const getUserDocument = async () => {
         try {
-            const userRef = doc(database, "users", userId);
-            const userDoc = await getDoc(userRef);
-            if (userDoc.exists()) {
-                const userData = userDoc.data();
-                setDriverFirstName(userData.first_name)
-                setDriverLastName(userData.last_name)
-                setDriverPhone(userData.phone)
-                setDriverPic(userData.profile_pic)
+            const q = query(collection(database, "offers"),
+                where("randomId", "==", selectedOffer.randomId));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                console.log("User not found, please register.");
             } else {
-                console.log("User document does not exist");
+                const dataRef= querySnapshot.docs[0].data()
+                setDriverData(dataRef)
+
             }
         } catch (err) {
             console.error(err);
         }
     };
-
-
-    getUserDocument()
-        .then()
+    useEffect(() => {
+        getUserDocument();
+        }, [])
 
     const toProfile = () => {
-        navigate("/profile", { state: { userId: userId, isSignedIn: true } });
+        navigate("/profile", { state: { userId: driverData.userId, isSignedIn: true } });
     }
+
+
+
 
     return (
         <div style={{
@@ -64,11 +63,12 @@ function Confirmation() {
                     alignItems: "center"
                 }}>
                 <h3>Your selected offer:</h3>
-                <p>From: {selectedOffer.from && selectedOffer.from.address}</p>
-                <p>To: {selectedOffer.to && selectedOffer.to.address}</p>
+                <p>Date: {selectedOffer.day}</p>
+                <p>From: {selectedOffer.from}</p>
+                <p>To: {selectedOffer.to}</p>
                 <p>Starting time: {selectedOffer.timeframe_1}</p>
                 <p>Latest arrival:: {selectedOffer.timeframe_2}</p>
-                <p>Number of free spots: {selectedOffer.free_spots}</p>
+                <p>Number of free spots: {selectedOffer.needed_spots}</p>
                 <p>Price: {selectedOffer.price}€</p>
                 <p>Verification code: {selectedOffer.randomId}</p>
                 </div>
@@ -84,9 +84,9 @@ function Confirmation() {
                     alignItems: "center"
                 }}>
 
-                    <img src={driverPic}></img>
-                    <p>Driver's name: {driverFirstName} {driverLastName} </p>
-                    <p>Driver's phone: {driverPhone}</p>
+                    <img src={driverData.user_profile_pic}></img>
+                    <p>Driver's name: {driverData.user_first_name} {driverData.user_last_name} </p>
+                    <p>Driver's phone: {driverData.user_phone}</p>
                     <Button
                         variant="contained"
                         onClick={toProfile}>
@@ -96,4 +96,4 @@ function Confirmation() {
         </div>
     );
 }
-export default Confirmation;
+export default OfferConfirmation;

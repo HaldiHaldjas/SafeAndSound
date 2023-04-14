@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import React, {useState, useRef, useEffect} from "react";
+import {addDoc, collection, doc, getDoc} from "firebase/firestore";
 import { database } from "../config/firebase";
 import { useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -18,6 +18,7 @@ export default function RequestForm() {
     const location = useLocation();
     const isSignedIn = location.state?.isSignedIn;
     const userId = location.state?.userId;
+    const [userData, setUserData] = useState(null)
     const [date, setDate] = useState("")
     const [placeToStart, setPlaceToStart] = useState("")
     const [placeToGo, setPlaceToGo] = useState("")
@@ -49,14 +50,21 @@ export default function RequestForm() {
 
         try {
             await addDoc(requestsCollectionRef, {
-                date: date,
+                day: date,
                 from: placeToStart,
                 to: placeToGo,
                 timeframe_1: timeToGo,
                 timeframe_2: timeToArrive,
                 needed_spots: neededSpots,
                 randomId: randomId,
-                userId: userId
+                userId: userId,
+                user_first_name: userData.first_name,
+                user_last_name: userData.last_name,
+                user_email: userData.email,
+                user_phone: userData.phone,
+                user_profile_pic: userData.profile_pic,
+                user_licence_plate: userData.licence_plate,
+                user_licence_Pic: userData.driving_licence_pic,
 
             });
             document.getElementById("RequestForm").reset();
@@ -74,11 +82,7 @@ export default function RequestForm() {
             console.error('Invalid place object:', place);
             return;
         }
-        setPlaceToStart({
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-            address: place.formatted_address,
-        });
+        setPlaceToStart(place.formatted_address);
     }
 
     const handlePlaceToGoSelect = () => {
@@ -87,12 +91,28 @@ export default function RequestForm() {
             console.error('Invalid place object:', place);
             return;
         }
-        setPlaceToGo({
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-            address: place.formatted_address,
-        });
+        setPlaceToGo(place.formatted_address);
     };
+
+
+    const getUserDocument = async () => {
+        try {
+            const userRef = doc(database, "users", userId);
+            const userDoc = await getDoc(userRef);
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                setUserData(userData)
+            } else {
+                console.log("User document does not exist");
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    useEffect(() => {
+        getUserDocument(userId);
+    },[]);
 
     const toProfile = () => {
         navigate("/profile", { state: { userId: userId, isSignedIn: true } });

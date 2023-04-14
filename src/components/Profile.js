@@ -80,15 +80,7 @@ export default function Profile() {
     }
 
     const toSeeOffers = () => {
-        navigate("/seeOffers", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeOffers1 = () => {
-        navigate("/seeOffers1", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeOffers2 = () => {
-        navigate("/seeOffers2", { state: { userId: userId, isSignedIn: true } });
+        navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toSeeRequests = () => {
@@ -129,7 +121,7 @@ export default function Profile() {
                         </>
                     )}
                     <br />
-                    <Button
+                   <Button
                         variant="contained"
                         sx={{
                             marginTop: "10px",
@@ -233,44 +225,7 @@ export default function Profile() {
                         </Button>
                         <br />
                         <br />
-                        <Button
-                            variant="contained"
-                            sx={{
-                                fontFamily: 'monospace',
-                                backgroundColor: "#774e3f",
-                                "&:hover": {
-                                    backgroundColor: "#ccada2",
-                                    color: "#3e2723",
-                                },
-                                width: "200px",
-                                height: "40px",
-                                fontWeight: 'bold',
-                                borderWidth: '2px',
-                            }}
-                            onClick={toSeeOffers1}
-                        >
-                            See offers in Material React Table
-                        </Button>
-                        <br />
-                        <br />
-                        <Button
-                            variant="contained"
-                            sx={{
-                                fontFamily: 'monospace',
-                                backgroundColor: "#774e3f",
-                                "&:hover": {
-                                    backgroundColor: "#ccada2",
-                                    color: "#3e2723",
-                                },
-                                width: "200px",
-                                height: "40px",
-                                fontWeight: 'bold',
-                                borderWidth: '2px',
-                            }}
-                            onClick={toSeeOffers2}
-                        >
-                            Offers Advanced Table
-                        </Button>
+
                         <Dialog
                             onClose={handleClose}
                             aria-labelledby="customized-dialog-title"

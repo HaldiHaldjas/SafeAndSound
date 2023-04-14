@@ -16,64 +16,64 @@ import { useNavigate} from "react-router-dom";
 
 
 
-export default function SeeOffers2() {
+export default function SeeRequests1() {
 
     const navigate = useNavigate();
-    const [offers, setOffers] = useState([]);
+    const [requests, setRequests] = useState([]);
 
 
 
-    async function fetchOffers() {
-        const querySnapshot = await getDocs(collection(database, "offers"));
+    async function fetchRequests() {
+        const querySnapshot = await getDocs(collection(database, "requests"));
         const newData = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
-        setOffers(newData);
+        setRequests(newData);
     }
 
 
 
     useEffect(() => {
-        fetchOffers();
+        fetchRequests();
 
     }, [])
 
 
 
-        const columns = useMemo(
-            () => [
+    const columns = useMemo(
+        () => [
 
-                {
-                id: "Here we display offers from verified drivers",
-                header: "Offers",
+            {
+                id: "Here we display ride requests from users",
+                header: "Requests",
                 columns: [
                     {
-                     accessorFn: (row) => `${row.user_first_name} ${row.user_last_name}`, //accessorFn used to join multiple data into a single cell
-                     id: 'name', //id is still required when using accessorFn instead of accessorKey
-                     header: 'Driver',
-                     size: 250,
+                        accessorFn: (row) => `${row.user_first_name} ${row.user_last_name}`, //accessorFn used to join multiple data into a single cell
+                        id: 'name', //id is still required when using accessorFn instead of accessorKey
+                        header: 'User',
+                        size: 250,
                         Cell: ({ renderedCellValue, row }) => (
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '1rem',
-                            }}
-                        >
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '1rem',
+                                }}
+                            >
 
-                            <Avatar
+                                <Avatar
 
-                                alt="avatar"
-                                height={30}
-                                src={row.user_profile_pic}
-                                loading="lazy"
-                                style={{borderRadius: '50%' }}
-                            />
+                                    alt="avatar"
+                                    height={30}
+                                    src={row.user_profile_pic}
+                                    loading="lazy"
+                                    style={{borderRadius: '50%' }}
+                                />
 
-                            {/* using renderedCellValue instead of cell.getValue() preserves filter match highlighting */}
-                            <span>{renderedCellValue}</span>
-                        </Box>
-                    ),
+                                {/* using renderedCellValue instead of cell.getValue() preserves filter match highlighting */}
+                                <span>{renderedCellValue}</span>
+                            </Box>
+                        ),
                     },
-                                       {
+                    {
                         header: 'From',
                         accessorKey: 'from'
                     },
@@ -94,24 +94,21 @@ export default function SeeOffers2() {
                         accessorKey: 'timeframe_2'
                     },
                     {
-                        header: 'Free seats',
+                        header: 'Seats needed',
                         accessorKey: 'needed_spots'
                     },
-                    {
-                        header: 'Price',
-                        accessorKey: 'price'
-                    },
+
                     {
                         header: 'Verification code',
                         accessorKey: 'randomId'
                     },
                 ]
 
-                }
+            }
 
 
-            ]
-        )
+        ]
+    )
 
 
 
@@ -119,7 +116,7 @@ export default function SeeOffers2() {
     return (
         <MaterialReactTable
             columns={columns}
-            data={offers}
+            data={requests}
             enableColumnFilterModes
             enableColumnOrdering
             enableGrouping
@@ -175,29 +172,11 @@ export default function SeeOffers2() {
             ]}
             renderTopToolbarCustomActions={({ table }) => {
                 const confirmChoice = () => {
-                   console.log(table.getSelectedRowModel().flatRows[0]._valuesCache)
-                    navigate("/seeOffers/confirmation",  { state: { selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache }});
-
-
-                    /*
-                                        table.getSelectedRowModel().flatRows.map((row) => {
-                                            alert('deactivating ' + row.getValue('name'));
-                                    }
-                    */
+                    console.log(table.getSelectedRowModel().flatRows[0]._valuesCache)
+                    navigate("/seerequests/confirmation",  { state: { selectedRequest: table.getSelectedRowModel().flatRows[0]._valuesCache }});
 
                 };
 
-                const handleActivate = () => {
-                    table.getSelectedRowModel().flatRows.map((row) => {
-                        alert('activating ' + row.getValue('name'));
-                    });
-                };
-
-                const handleContact = () => {
-                    table.getSelectedRowModel().flatRows.map((row) => {
-                        alert('contact ' + row.getValue('name'));
-                    });
-                };
 
                 return (
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
