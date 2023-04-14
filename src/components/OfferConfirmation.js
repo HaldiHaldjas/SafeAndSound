@@ -16,34 +16,6 @@ function OfferConfirmation() {
 
 
 
-   /* const getUserDocument = async () => {
-        try {
-            const userRef = doc(database, "users", userId);
-            const userDoc = await getDoc(userRef);
-            if (userDoc.exists()) {
-                const userData = userDoc.data();
-                setDriverFirstName(userData.first_name)
-                setDriverLastName(userData.last_name)
-                setDriverPhone(userData.phone)
-                setDriverPic(userData.profile_pic)
-            } else {
-                console.log("User document does not exist");
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
-
-    getUserDocument()
-        .then()*/
-
-    const toProfile = () => {
-        navigate("/profile", { state: { userId: driverData.userId, isSignedIn: true } });
-    }
-
-
-
     const getUserDocument = async () => {
         try {
             const q = query(collection(database, "offers"),
@@ -60,9 +32,13 @@ function OfferConfirmation() {
             console.error(err);
         }
     };
+    useEffect(() => {
+        getUserDocument();
+        }, [])
 
-   getUserDocument()
-       .then()
+    const toProfile = () => {
+        navigate("/profile", { state: { userId: driverData.userId, isSignedIn: true } });
+    }
 
 
 
@@ -87,6 +63,7 @@ function OfferConfirmation() {
                     alignItems: "center"
                 }}>
                 <h3>Your selected offer:</h3>
+                <p>Date: {selectedOffer.day}</p>
                 <p>From: {selectedOffer.from}</p>
                 <p>To: {selectedOffer.to}</p>
                 <p>Starting time: {selectedOffer.timeframe_1}</p>

@@ -110,6 +110,7 @@ function OfferForm() {
     useEffect(() => {
         getUserDocument(userId);
     }, []);
+
     const toProfile = () => {
         navigate("/profile", { state: { userId: userId, isSignedIn: true } });
     }

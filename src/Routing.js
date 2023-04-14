@@ -12,6 +12,7 @@ import RequestConfirmation from "./components/RequestConfirmation";
 import EditProfileDialog from "./components/EditProfileDialog";
 import SeeOffers1 from "./components/SeeOffers1"
 import SeeOffers2 from "./components/SeeOffers2"
+import SeeRequests1 from "./components/SeeRequests1";
 
 function Routing() {
     return (
@@ -22,7 +23,7 @@ function Routing() {
             <Route path="/profile/*" element={<Profile />}/>
             <Route path="request" element={<RequestForm/>}/>
             <Route path="offer" element={<OfferForm/>}/>
-            <Route path="seeRequests" element={<SeeRequestsForm/>}/>
+            <Route path="seerequests" element={<SeeRequests1/>}/>
             <Route path="/seeOffers/*" element={<SeeOffers />} />
             <Route path="/seeOffers1" element={<SeeOffers1 />} />
             <Route path="/seeOffers2" element={<SeeOffers2 />} />

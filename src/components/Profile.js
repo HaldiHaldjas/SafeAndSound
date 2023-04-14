@@ -127,7 +127,7 @@ export default function Profile() {
                         </>
                     )}
                     <br />
-                   {/* <Button
+                   <Button
                         variant="contained"
                         sx={{
                             marginTop: "10px",
@@ -145,7 +145,7 @@ export default function Profile() {
                         onClick={editProfile}
                     >
                         Edit
-                    </Button>*/}
+                    </Button>
                 </div>
             )}
             <div style={{
