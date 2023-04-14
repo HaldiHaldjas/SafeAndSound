@@ -62,7 +62,7 @@ export default function SeeOffers2() {
                                 height={30}
                                 src={row.user_profile_pic}
                                 loading="lazy"
-                                style={{ borderRadius: '50%' }}
+                                style={{borderRadius: '50%' }}
                             />
 
                             {/* using renderedCellValue instead of cell.getValue() preserves filter match highlighting */}
