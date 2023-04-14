@@ -9,8 +9,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import EditProfileDialog from "./EditProfileDialog";
-import img11 from "../images/img11.jpg";
-import '../App.css'
 
 
 
@@ -101,24 +99,20 @@ export default function Profile() {
     }
     return (
         <div style={{
-            width: "100%",
+            width: "70%",
             margin: "0 auto",
             display: "flex",
-            alignItems: "center",
-            backgroundImage: `url(${img11})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
-            }}>
-
+            alignItems: "center"
+        }}>
             {isSignedIn && (
                 <div
                     style={{
                         width: "50%",
-                        backgroundColor: "rgba(255, 255, 255, 0.8)",
-                        borderRadius: "20px",
-                        padding: "25px",
-                        marginTop: "1px",
-                        marginLeft: "90px",
-                        justifyContent: "center",
-                        alignItems: "center"
+                        backgroundColor: "#fff",
+                        borderRadius: "10px",
+                        padding: "20px",
+                        marginTop: "40px",
+                        marginLeft: "40px"
                     }}>
                     <img src={profilePic} />
                     <h1>{firstName} {lastName}</h1>
@@ -155,11 +149,7 @@ export default function Profile() {
                 </div>
             )}
             <div style={{
-                width: "10%",
-                position: "absolute",
-                top: "20%",
-                right: "10%",
-            }}>
+                width: "50%" }}>
                 {isSignedIn && (
                     <>
                         {isUserDriver && (
@@ -167,7 +157,7 @@ export default function Profile() {
                                 variant="contained"
                                 sx={{
                                     fontFamily: 'monospace',
-                                    backgroundColor: "#896c63",
+                                    backgroundColor: "#774e3f",
                                     "&:hover": {
                                         backgroundColor: "#ccada2",
                                         color: "#3e2723",
@@ -187,7 +177,7 @@ export default function Profile() {
                             variant="contained"
                             sx={{
                                 fontFamily: 'monospace',
-                                backgroundColor: "#896c63",
+                                backgroundColor: "#774e3f",
                                 "&:hover": {
                                     backgroundColor: "#ccada2",
                                     color: "#3e2723",
@@ -196,7 +186,7 @@ export default function Profile() {
                                 height: "40px",
                                 fontWeight: 'bold',
                                 borderWidth: '2px',
-                                }}
+                            }}
                             onClick={toRequest}
                         >
                             Insert a request
@@ -206,7 +196,7 @@ export default function Profile() {
                             variant="contained"
                             sx={{
                                 fontFamily: 'monospace',
-                                backgroundColor: "#896c63",
+                                backgroundColor: "#774e3f",
                                 "&:hover": {
                                     backgroundColor: "#ccada2",
                                     color: "#3e2723",
@@ -225,7 +215,7 @@ export default function Profile() {
                             variant="contained"
                             sx={{
                                 fontFamily: 'monospace',
-                                backgroundColor: "#896c63",
+                                backgroundColor: "#774e3f",
                                 "&:hover": {
                                     backgroundColor: "#ccada2",
                                     color: "#3e2723",
@@ -239,6 +229,70 @@ export default function Profile() {
                         >
                             All requests
                         </Button>
+                        <br />
+                        <br />
+                        <Button
+                            variant="contained"
+                            sx={{
+                                fontFamily: 'monospace',
+                                backgroundColor: "#774e3f",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
+                                width: "200px",
+                                height: "40px",
+                                fontWeight: 'bold',
+                                borderWidth: '2px',
+                            }}
+                            onClick={toSeeOffers1}
+                        >
+                            See offers in Material React Table
+                        </Button>
+                        <br />
+                        <br />
+                        <Button
+                            variant="contained"
+                            sx={{
+                                fontFamily: 'monospace',
+                                backgroundColor: "#774e3f",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
+                                width: "200px",
+                                height: "40px",
+                                fontWeight: 'bold',
+                                borderWidth: '2px',
+                            }}
+                            onClick={toSeeOffers2}
+                        >
+                            Offers Advanced Table
+                        </Button>
+                        <Dialog
+                            onClose={handleClose}
+                            aria-labelledby="customized-dialog-title"
+                            maxWidth="100px"
+                            sx={{
+                                width: "60%",
+                                margin: "0 auto",
+                                display: "flex",
+                                alignItems: "center"
+                            }}
+                            open={open}
+                        >
+                            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                                Edit profile information
+                            </DialogTitle>
+                            <DialogContent dividers>
+                                <EditProfileDialog userId={userId} isSignedIn="true"/>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button autoFocus onClick={handleClose}>
+                                    Close
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </>
                 )}
             </div>

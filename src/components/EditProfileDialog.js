@@ -29,7 +29,7 @@ export default function EditProfileDialog(props) {
 
 
 
-const submit = async () => {
+    const submit = async () => {
 
         try {
             const userRef = doc(database, "users", userId);
@@ -43,9 +43,9 @@ const submit = async () => {
             await setDoc(userRef, newData);
             setIsSubmitted()
         }
-     catch (err) {
-                console.error(err);
-            }
+        catch (err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -82,11 +82,11 @@ const submit = async () => {
                                 />
                             </Grid>
                             <Grid item xs={6} sm={6} md={6} >
-                               <p>First name:</p>
+                                <p>First name:</p>
                             </Grid>
                             <Grid item xs={6} sm={6} md={6} sx={{textAlign: "left"}}>
                                 <input placeholder={firstName}
-                                    onChange={(e) => setNewFirstName(e.target.value)}
+                                       onChange={(e) => setNewFirstName(e.target.value)}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={6} md={6} >
@@ -95,7 +95,7 @@ const submit = async () => {
                             </Grid>
                             <Grid item xs={6} sm={6} md={6} sx={{textAlign: "left"}} >
                                 <input placeholder={lastName}
-                                     onChange={(e) => setNewLastName(e.target.value)}
+                                       onChange={(e) => setNewLastName(e.target.value)}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={6} md={6}  >
@@ -104,33 +104,33 @@ const submit = async () => {
                             </Grid>
                             <Grid item xs={6} sm={6} md={6} sx={{textAlign: "left"}} >
                                 <input placeholder={phone}
-                                     onChange={(e) => setNewPhone(e.target.value)}
+                                       onChange={(e) => setNewPhone(e.target.value)}
                                 />
                             </Grid>
-                                {isUserDriver && (
-                                    <>
+                            {isUserDriver && (
+                                <>
 
-                                <Grid item xs={6} sm={6} md={6} >
+                                    <Grid item xs={6} sm={6} md={6} >
                                         <p>Licence plate:</p>
 
-                                </Grid>
-                                <Grid item xs={6} sm={6} md={6} sx={{textAlign: "left"}}>
+                                    </Grid>
+                                    <Grid item xs={6} sm={6} md={6} sx={{textAlign: "left"}}>
                                         <input placeholder={licencePlate}
-                                         onChange={(e) => setNewLicencePlate(e.target.value)}
+                                               onChange={(e) => setNewLicencePlate(e.target.value)}
                                         />
 
-                                </Grid>
-                                <Grid item xs={6} sm={6} md={6} >
-                                <p>Change driving licence:</p>
-                                </Grid>
-                                <Grid item xs={6} sm={6} md={6} >
-                                <input placeholder={firstName} type="file"
-                                    // onChange={(e) => setNewFirstName(e.target.value)}
+                                    </Grid>
+                                    <Grid item xs={6} sm={6} md={6} >
+                                        <p>Change driving licence:</p>
+                                    </Grid>
+                                    <Grid item xs={6} sm={6} md={6} >
+                                        <input placeholder={firstName} type="file"
+                                            // onChange={(e) => setNewFirstName(e.target.value)}
 
-                                /></Grid>
-                            </>
+                                        /></Grid>
+                                </>
 
-                        )}
+                            )}
                         </Grid>
                         <Button
                             variant="outlined"
