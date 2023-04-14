@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import EditProfileDialog from "./EditProfileDialog";
+import img5 from "../images/img5.jpg";
 
 
 
@@ -99,10 +100,11 @@ export default function Profile() {
     }
     return (
         <div style={{
-            width: "70%",
+            width: "100%",
             margin: "0 auto",
             display: "flex",
-            alignItems: "center"
+            alignItems: "center",
+            backgroundImage: `url(${img5})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
         }}>
             {isSignedIn && (
                 <div

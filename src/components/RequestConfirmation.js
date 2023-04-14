@@ -4,7 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { database } from "../config/firebase";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import img2 from "../images/img2.jpg";
+import img14 from "../images/img14.jpg";
 
 function RequestConfirmation() {
     const navigate = useNavigate();
@@ -51,7 +51,7 @@ function RequestConfirmation() {
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
-            backgroundImage: `url(${img2})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+            backgroundImage: `url(${img14})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
         }}>
             <div
                 style={{
