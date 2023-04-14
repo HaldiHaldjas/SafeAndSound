@@ -120,7 +120,7 @@ function OfferForm() {
     }
 
     const toSeeOffers = () => {
-        navigate("/seeOffers", { state: { userId: userId, isSignedIn: true } });
+        navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
     }
 
     const toSeeRequests = () => {
@@ -217,6 +217,7 @@ function OfferForm() {
                             sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
                                 width: "180px",
                                 height: "40px"}}
+                            onClick={ toProfile }
                         >
                             Go to profile
                         </Button>
@@ -227,7 +228,7 @@ function OfferForm() {
                             sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
                                 width: "180px",
                                 height: "40px"}}
-                            onClick={toRequest}
+                            onClick={ toRequest }
                         >
                             Insert a request
                         </Button>
@@ -246,7 +247,7 @@ function OfferForm() {
                             sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
                                 width: "180px",
                                 height: "40px"}}
-                            onClick={toSeeOffers}
+                            onClick={ toSeeOffers }
 
                         >
                             All offers
@@ -258,7 +259,7 @@ function OfferForm() {
                             sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
                                 width: "180px",
                                 height: "40px"}}
-                            onClick={toSeeRequests}
+                            onClick={ toSeeRequests }
                         >
                             All requests
                         </Button>

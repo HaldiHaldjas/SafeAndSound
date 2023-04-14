@@ -63,8 +63,6 @@ function App() {
                   justifyContent: "center",
                  backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
               }}>
-
-
           </div>
           ) : ( location.pathname === "/seeoffers/confirmation" || location.pathname === "/seerequests/confirmation") ? (
               <div style={{
@@ -73,9 +71,6 @@ function App() {
                   justifyContent: "center",
                   backgroundImage: `url(${img10})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
               }}>
-
-
-
               </div>
           ) : (
               <div style={{
@@ -84,9 +79,6 @@ function App() {
                   justifyContent: "center",
                   backgroundImage: `url(${img1})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
               }}>
-
-
-
               </div>
           )
           }

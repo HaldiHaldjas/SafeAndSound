@@ -12,16 +12,16 @@ import {
 import { AccountCircle, Send } from '@mui/icons-material';
 import { database } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, useLocation} from "react-router-dom";
 
 
 
 export default function SeeOffers2() {
 
+    const location = useLocation();
     const navigate = useNavigate();
     const [offers, setOffers] = useState([]);
-
-
+    const userId = location.state.userId;
 
     async function fetchOffers() {
         const querySnapshot = await getDocs(collection(database, "offers"));
@@ -175,18 +175,14 @@ export default function SeeOffers2() {
             ]}
             renderTopToolbarCustomActions={({ table }) => {
                 const confirmChoice = () => {
-                   console.log(table.getSelectedRowModel().flatRows[0]._valuesCache)
-                    navigate("/seeOffers/confirmation",  { state: { selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache }});
-
-
-                    /*
-                                        table.getSelectedRowModel().flatRows.map((row) => {
-                                            alert('deactivating ' + row.getValue('name'));
-                                    }
-                    */
+                    navigate("/seeOffers/confirmation",
+                        { state: { userId: userId,
+                                selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache }});
 
                 };
-
+                const toProfile = () => {
+                    navigate("/profile", { state: { userId: userId, isSignedIn: true } });
+                }
                 const handleActivate = () => {
                     table.getSelectedRowModel().flatRows.map((row) => {
                         alert('activating ' + row.getValue('name'));
@@ -209,6 +205,14 @@ export default function SeeOffers2() {
                         >
                             Confirm choice
                         </Button>
+                        <Button
+                            color="success"
+                            nClick={toProfile}
+                            variant="contained"
+                        >
+                            Back
+                        </Button>
+
 
                     </div>
                 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 
 function Navigation() {
 
+    const location = useLocation();
     const navigate = useNavigate();
     return(
         <AppBar position="static" sx={{backgroundColor: '#c8cbad'}}>
@@ -43,12 +44,61 @@ function Navigation() {
                         justifyContent: { xs: "flex-start", md: "flex-end"},
                         alignItems: "center",
                     }}>
-                        <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('signin')} sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63" }}>Sign in</Button>
-                        </MenuItem>
-                        <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('register')} sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63" }}>Register</Button>
-                        </MenuItem>
+                        {( location.pathname === "/home" || location.pathname === "/" || location.pathname === "/signin" || location.pathname === "/register" ) ? (
+                        <>
+                            <MenuItem >
+                                <Button variant='outlined' color='primary' onClick={() => navigate('signin')}
+                                        sx={{ fontFamily: 'monospace',
+                                            fontWeight: 600, color: "#fbf6f4",
+                                            backgroundColor: "#896c63" }}>
+                                    Sign in
+                                </Button>
+                            </MenuItem>
+                            <MenuItem >
+                                <Button variant='outlined' color='primary' onClick={() => navigate('register')}
+                                        sx={{ fontFamily: 'monospace',
+                                            fontWeight: 600,
+                                            color: "#fbf6f4",
+                                            backgroundColor: "#896c63" }}>
+                                    Register
+                                </Button>
+                            </MenuItem>
+                        </>
+                            ) : ( location.pathname === "/seerequests" ) ? (
+                            <MenuItem >
+                                <Button variant='outlined' color='primary' onClick={() => navigate('request')}
+                                        sx={{ fontFamily: 'monospace',
+                                            fontWeight: 600,
+                                            color: "#fbf6f4",
+                                            backgroundColor: "#896c63" }}>
+                                    Back
+                                </Button>
+                            </MenuItem>
+                        ) : ( location.pathname === "/seeoffers" ) ? (
+                            <MenuItem >
+                                <Button variant='outlined' color='primary' onClick={() => navigate('offer')}
+                                        sx={{ fontFamily: 'monospace',
+                                            fontWeight: 600,
+                                            color: "#fbf6f4",
+                                            backgroundColor: "#896c63" }}>
+                                    Back
+                                </Button>
+
+                            </MenuItem>
+                            ) : (
+                                <MenuItem >
+                                    <Button variant='outlined' color='primary' onClick={() => navigate('home')}
+                                            sx={{
+                                                fontFamily: 'monospace',
+                                                fontWeight: 600, color: "#fbf6f4",
+                                                backgroundColor: "#896c63" }}>
+                                        Sign out
+                                    </Button>
+                                </MenuItem>
+
+
+
+                        )}
              {/*           <MenuItem >
                             <Button variant='outlined' color='primary' onClick={() => navigate('request')}>Request</Button>
                         </MenuItem>
