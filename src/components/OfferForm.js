@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import React, {useState, useRef, useEffect} from "react";
+import {addDoc, collection, doc, getDoc} from "firebase/firestore";
 import { database } from "../config/firebase";
 import Button from "@mui/material/Button";
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
@@ -14,6 +14,7 @@ function OfferForm() {
     const navigate = useNavigate();
     const location = useLocation();
     const userId = location.state?.userId;
+    const [userData, setUserData] = useState(null)
     const [date, setDate] = useState("")
     const [placeToStart, setPlaceToStart] = useState("")
     const [placeToGo, setPlaceToGo] = useState("")
@@ -55,7 +56,14 @@ function OfferForm() {
                 needed_spots: freeSpots,
                 price: price,
                 randomId: randomId,
-                userId: userId
+                userId: userId,
+                user_first_name: userData.first_name,
+                user_last_name: userData.last_name,
+                user_email: userData.email,
+                user_phone: userData.phone,
+                user_profile_pic: userData.profile_pic,
+                user_licence_plate: userData.licence_plate,
+                user_licence_Pic: userData.driving_licence_pic,
             });
             document.getElementById("OfferForm").reset();
             setSubmitOffer(true)
@@ -90,6 +98,25 @@ function OfferForm() {
             address: place.formatted_address,
         });
     };
+
+    const getUserDocument = async () => {
+        try {
+            const userRef = doc(database, "users", userId);
+            const userDoc = await getDoc(userRef);
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                setUserData(userData)
+            } else {
+                console.log("User document does not exist");
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    useEffect(() => {
+        getUserDocument(userId);
+    }, []);
     const toProfile = () => {
         navigate("/profile", { state: { userId: userId, isSignedIn: true } });
     }
