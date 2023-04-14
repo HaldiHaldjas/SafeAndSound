@@ -17,6 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from "@mui/material/Typography";
 import ProfileDialog from "./ProfileDialog";
+import img5 from "../images/img5.jpg";
 
 
 export default function SeeRequestsForm() {
@@ -83,6 +84,28 @@ export default function SeeRequestsForm() {
     // console.log(userProfiles)
 
     return (
+        <div style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundImage: `url(${img5})`,
+            backgroundAttachment: "fixed",
+            backgroundSize: "cover",
+            height: "100vh"
+        }}>
+            <div
+                style={{
+                    width: "50%",
+                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    borderRadius: "20px",
+                    padding: "8px",
+                    marginTop: "1px",
+                    marginLeft: "40px",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}
+            >
         <div className="Requests list">
             <Table>
                 <TableHead>
@@ -126,14 +149,7 @@ export default function SeeRequestsForm() {
             <Button
                 onClick={submit}
                 variant="contained"
-                sx={{
-                    backgroundColor: "#F8F8F8",
-                    color: "#383838",
-                    "&:hover": {
-                        backgroundColor: "#fff",
-                        color: "#3c52b2",
-                    },
-                }}>Offer a ride</Button>
+                >Confirm my choice</Button>
 
 
             <Dialog
@@ -156,5 +172,7 @@ export default function SeeRequestsForm() {
                 </DialogActions>
             </Dialog>
         </div>
-    )
+            </div>
+        </div>
+    );
 }

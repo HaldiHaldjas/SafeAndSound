@@ -7,7 +7,8 @@ import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import { googleMapsApiKey } from "../config/config";
 import { useNavigate} from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
-
+import '../App.css'
+import img13 from "../images/img13.jpg";
 
 
 
@@ -108,23 +109,28 @@ export default function RequestForm() {
 
     return (
         <div style={{
-            width: "70%",
-            margin: "0 auto",
+            width: "100%",
             display: "flex",
-            alignItems: "center"
-             }}>
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundImage: `url(${img13})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+
+        }}>
             <div
                 style={{
-                    width: "50%",
-                    backgroundColor: "#fff",
-                    borderRadius: "10px",
-                    padding: "10px",
-                    marginTop: "20px",
-                    marginLeft: "40px"
-                    }}
-                >
+                    width: "45%",
+                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    borderRadius: "20px",
+                    padding: "25px",
+                    marginTop: "1px",
+                    marginLeft: "90px",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}
+            >
                     <form id="RequestForm">
-                        <h3>Where do you want to go? Insert request</h3>
+                        <h3>Do you need a ride? Insert your request here:</h3>
+                        <label style={{ fontSize: "12px" }}>Date of the ride:</label>
                         <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
 
                         <LoadScript
@@ -136,7 +142,7 @@ export default function RequestForm() {
                             onPlaceChanged={handlePlaceToStartSelect}
                             options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
                         >
-                            <input type="text" placeholder="From" />
+                            <input type="text" placeholder="Starting point*" />
                         </Autocomplete>
 
                         <Autocomplete
@@ -144,23 +150,25 @@ export default function RequestForm() {
                             onPlaceChanged={handlePlaceToGoSelect}
                             options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
                         >
-                            <input type="text" placeholder="To" />
+                            <input type="text" placeholder="Endpoint*" />
                         </Autocomplete>
                         </LoadScript>
+                        <label style={{ fontSize: "12px" }}>What time do you need the ride? Please choose the earliest starting time and the latest time of arrival:</label>
                         <input
                             type="time"
-                            placeholder="Departure time"
+                            placeholder="Departure time*"
                             onChange={(e) => setTimeToGo(e.target.value)}/><br />
                         <input
                             type="time"
-                            placeholder="ETA - estimated arrival time"
+                            placeholder="Time of arrival*"
                             onChange={(e) => setTimeToArrive(e.target.value)}/><br />
+                        <label style={{ fontSize: "12px" }}>How many people need the ride? Insert the number:</label>
                         <input
                             type="number"
-                            placeholder="Needed spots"
+                            placeholder="*"
                             min="1"
                             max="9"
-                            style={{width: "90px", height: "22px"}}
+                            style={{width: "20px"}}
                             onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
 
                         <Button variant="contained"

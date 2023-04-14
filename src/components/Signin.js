@@ -70,7 +70,7 @@ import { database } from "../config/firebase";
                 }}
             >
                 <h3>Already have an account? Sign in:</h3>
-                    <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                    <input placeholder="E-mail address" onChange={(e) => setEmail(e.target.value)} />
                     <input
                         placeholder="Password"
                         type="password"

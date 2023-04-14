@@ -5,7 +5,7 @@ import {useLocation} from 'react-router-dom';
 import Button from "@mui/material/Button";
 import { useNavigate} from "react-router-dom";
 import img11 from "../images/img11.jpg";
-
+import '../App.css'
 
 
 
@@ -81,7 +81,7 @@ export default function Profile() {
                 <div
                     style={{
                         width: "50%",
-                        backgroundColor: "rgba(255, 255, 255, 0.7)",
+                        backgroundColor: "rgba(255, 255, 255, 0.8)",
                         borderRadius: "20px",
                         padding: "25px",
                         marginTop: "1px",

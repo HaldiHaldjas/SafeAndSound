@@ -29,14 +29,6 @@ body {
 nav {
   font-family: 'Roboto Mono', sans-serif;
 }
-button {
-  font-size: 14px;
-  border-width: 2px;
-}
-button {
-  font-family: 'Roboto Mono', monospace;
-}
-/* app.css */
 table {
   font-family: 'Roboto Mono', monospace;
   font-size: 16px;
@@ -58,6 +50,32 @@ body {
 .MuiTableBody-root {
   font-family: 'Roboto Mono', monospace;
 }
+input {
+  border: 1px solid #896c63;
+  border-radius: 8px;
+  padding: 8px;
+}
+button {
+  font-family: 'RobotoMono-Regular', monospace !important;
+background-Color: #896c63 !important;
+width: 180px !important;
+height: 40px !important;
+font-weight: 600 !important;
+border-Width: 2px !important;
+  border-radius: 8px !important;
+  /*font-family: monospace !important;*/
+  /*font-weight: 600 !important;*/
+  /*color: #fbf6f4 !important;*/
+  /*background-color: #896c63 !important;*/
+  /*width: 180px !important;*/
+  /*height: 40px !important;*/
+  /*border: 2px solid #1976d2 !important;*/
+  /*border-radius: 5px !important;*/
+  /*font-size: 12px !important;*/
+}
 
 
-
+button:hover {
+  background-color: #1976d2;
+  color: #fff;
+}

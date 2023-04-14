@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import { useNavigate} from "react-router-dom";
+import img5 from "../images/img5.jpg";
 
 function App() {
 
@@ -46,6 +47,28 @@ function App() {
     }
 
     return (
+        <div style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundImage: `url(${img5})`,
+            backgroundAttachment: "fixed",
+            backgroundSize: "cover",
+            height: "100vh"
+        }}>
+            <div
+                style={{
+                    width: "50%",
+                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    borderRadius: "20px",
+                    padding: "8px",
+                    marginTop: "1px",
+                    marginLeft: "40px",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}
+            >
         <div className="App">
             {loading ? (
                 <p>Loading...</p>
@@ -89,20 +112,14 @@ function App() {
                     </Table>
                     <Button
                         variant="contained"
-                        sx={{
-                            backgroundColor: "#F8F8F8",
-                            color: "#383838",
-                            "&:hover": {
-                                backgroundColor: "#fff",
-                                color: "#3c52b2",
-                            },
-                        }}
                         onClick={submit}
                     >
                         Confirm my choice
                     </Button>
                 </>
             )}
+        </div>
+        </div>
         </div>
     );
 }

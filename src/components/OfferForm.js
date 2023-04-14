@@ -7,7 +7,8 @@ import { googleMapsApiKey } from "../config/config";
 import { useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
-
+import img1 from "../images/img1.jpg";
+import '../App.css'
 
 function OfferForm() {
 
@@ -108,25 +109,30 @@ function OfferForm() {
 
     return (
         <div style={{
-            width: "70%",
-            margin: "0 auto",
+            width: "100%",
             display: "flex",
-            alignItems: "center"
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundImage: `url(${img1})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
 
         }}>
             <div
                 style={{
-                    width: "50%",
-                    backgroundColor: "#fff",
-                    borderRadius: "10px",
-                    padding: "10px",
-                    marginTop: "20px",
-                    marginLeft: "40px"
+                    width: "45%",
+                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    borderRadius: "20px",
+                    padding: "25px",
+                    marginTop: "1px",
+                    marginLeft: "90px",
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}
             >
                 <form id="OfferForm">
-                    <h3>You would like to share Your ride? Insert offer</h3>
-                    <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
+                    <h3>You would like to share your ride? Insert an offer here:</h3>
+                    <label style={{ fontSize: "12px" }}>Date of the ride:</label>
+
+                        <input type="date" style={{ borderRadius: "8px" }} onChange={(e) => setDate(e.target.value)} />
 
                     <LoadScript
                         googleMapsApiKey={googleMapsApiKey}
@@ -137,7 +143,7 @@ function OfferForm() {
                             onPlaceChanged={handlePlaceToStartSelect}
                             options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
                         >
-                            <input type="text" placeholder="From" />
+                            <input type="text" placeholder="Starting point*" style={{ borderRadius: "8px" }} />
                         </Autocomplete>
 
                         <Autocomplete
@@ -145,30 +151,30 @@ function OfferForm() {
                             onPlaceChanged={handlePlaceToGoSelect}
                             options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
                         >
-                            <input type="text" placeholder="To" />
+                            <input type="text" placeholder="Endpoint*" style={{ borderRadius: "8px" }}/>
                         </Autocomplete>
                     </LoadScript>
-                    <input type="time" placeholder="Departure time" onChange={(e) => setTimeToGo(e.target.value)}/><br />
-                    <input type="time" placeholder="ETA - estimated arrival time" onChange={(e) => setTimeToArrive(e.target.value)}/><br />
+                    <label style={{ fontSize: "12px" }}>What time would you like to offer the ride? Please choose the earliest starting time and the latest time of arrival:</label>
+                    <input type="time" placeholder="Departure time*" style={{ borderRadius: "8px" }} onChange={(e) => setTimeToGo(e.target.value)}/><br />
+                    <input type="time" placeholder="Time of arrival*" style={{ borderRadius: "8px" }} onChange={(e) => setTimeToArrive(e.target.value)}/><br />
+                    <label style={{ fontSize: "12px" }}>How many free spots you have in your car? Insert the number:</label>
                     <input
                         type="number"
-                        placeholder="Free spots"
+                        placeholder="*"
+                        style={{ borderRadius: "8px" }}
                         type="number"
                         min="1"
                         max="9"
                         sx={{width: "20px"}}
                         onChange={(e) => setFreeSpots(Number(e.target.value))}/><br />
                     <span className="input-symbol-euro">
-                        <input placeholder="Price" type="text" onChange={(e) => setPrice(Number(e.target.value))}/><br />
+                        <input placeholder="Price for one person*" style={{ borderRadius: "8px" }} type="text" onChange={(e) => setPrice(Number(e.target.value))}/><br />
                     </span>
-                        <Button variant="contained"
-                                sx={{backgroundColor: "#add8e6",
-                                    '&:hover': {
-                                        backgroundColor: '#fff',
-                                        color: '#3c52b2',},
+                        <Button variant="outlined"
+                                color="primary"
+                                sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
                                     width: "180px",
-                                    height: "40px"
-                                }}
+                                    height: "40px"}}
                             onClick={handleRequest}
                     > Submit </Button>
                     <br />
@@ -180,78 +186,58 @@ function OfferForm() {
                 </form>
                     </div>
                     <div style={{
-                        width: "50%" }}>
+                        width: "10%",
+                        position: "absolute",
+                        top: "15%",
+                        right: "10%",
+                    }}>
                         <Button
-                            variant="contained"
-                            sx={{
-                                backgroundColor: "#add8e6",
-                                "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
-                                },
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
                                 width: "180px",
-                                height: "40px"
-
-                            }}onClick={toProfile}>
+                                height: "40px"}}
+                        >
                             Go to profile
                         </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
-                            sx={{
-                                backgroundColor: "#add8e6",
-                                "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
-                                },
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
                                 width: "180px",
-                                height: "40px"
-                            }}
+                                height: "40px"}}
                             onClick={toRequest}
                         >
                             Insert a request
                         </Button>
                         <br /><br />
-                        <Button variant="contained"
-                                sx={{backgroundColor: "#add8e6",
-                                    '&:hover': {
-                                        backgroundColor: '#fff',
-                                        color: '#3c52b2',},
+                        <Button variant="outlined"
+                                color="primary"
+                                sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
                                     width: "180px",
-                                    height: "40px"
-                                }}
+                                    height: "40px"}}
                             // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
                         > Previous drives </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
-                            sx={{
-                                backgroundColor: "#add8e6",
-                                "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
-                                },
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
                                 width: "180px",
-                                height: "40px"
-
-                            }}
+                                height: "40px"}}
                             onClick={toSeeOffers}
+
                         >
                             All offers
                         </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
-                            sx={{
-                                backgroundColor: "#add8e6",
-                                "&:hover": {
-                                    backgroundColor: "#fff",
-                                    color: "#3c52b2",
-                                },
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace', fontWeight: 600, color: "#fbf6f4", backgroundColor: "#896c63",
                                 width: "180px",
-                                height: "40px"
-
-                            }}
+                                height: "40px"}}
                             onClick={toSeeRequests}
                         >
                             All requests

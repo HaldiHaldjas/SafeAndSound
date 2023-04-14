@@ -81,7 +81,7 @@ return (
     <div
         style={{
             width: "50%",
-            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
             borderRadius: "20px",
             padding: "8px",
             marginTop: "1px",
@@ -90,7 +90,7 @@ return (
             alignItems: "center"
         }}
     >
-        <h3>Register here:</h3>
+        <h3>New here? Please register:</h3>
         <input placeholder="Your first name*" onChange={(e) => setNewFirstName(e.target.value)}/><br />
         <input placeholder="Your last name*" onChange={(e) => setNewLastName(e.target.value)}/><br />
         <input placeholder="E-mail address*" onChange={(e) => setNewEmail(e.target.value)}/><br />
@@ -111,11 +111,11 @@ return (
 
                 <br />
                 <input type="checkbox" onChange={(e) => setIsNewUserDriver(e.target.checked)}/>
-                <label>I also want to be a driver</label><br />
+                <label style={{ fontSize: "15px" }}>I also want to be a driver</label><br />
                 {isNewUserDriver &&
                     <>
                         <input placeholder="Licence plate*" onChange={(e) => setLicencePlate(e.target.value)}/> <br />
-                        <label for="licencePic">Picture of driving licence:</label>
+                        <label for="licencePic" style={{ fontSize: "15px" }}>Add a photo of your driver's licence*:</label>
                         <input placeholder="Your driver's licence*" type="file" id="licencePic"
                                onChange={(e) =>
                                    upLoadImage(e.target.files[0], "licencePic",
