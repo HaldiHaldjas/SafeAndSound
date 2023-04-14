@@ -8,7 +8,7 @@ import RequestForm from "./components/RequestForm";
 import SeeOffers from "./components/SeeOffers";
 import OfferForm from "./components/OfferForm";
 import SeeRequestsForm from "./components/SeeRequests";
-import Confirmation from "./components/Confirmation";
+import OfferConfirmation from "./components/OfferConfirmation";
 import Profile from "./components/Profile";
 import Routing from "./Routing";
 import RequestConfirmation from "./components/RequestConfirmation";

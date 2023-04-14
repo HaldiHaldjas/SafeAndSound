@@ -12,12 +12,14 @@ import {
 import { AccountCircle, Send } from '@mui/icons-material';
 import {database} from "../config/firebase";
 import {collection, getDocs} from "firebase/firestore";
+import { useNavigate} from "react-router-dom";
 
 
 
 
 export default function SeeOffers2() {
 
+    const navigate = useNavigate();
     const [offers, setOffers] = useState([]);
 
 
@@ -57,7 +59,9 @@ export default function SeeOffers2() {
                                 gap: '1rem',
                             }}
                         >
+
                             <Avatar
+
                                 alt="avatar"
                                 height={30}
                                 src={row.user_profile_pic}
@@ -72,11 +76,11 @@ export default function SeeOffers2() {
                     },
                                        {
                         header: 'From',
-                        accessorKey: 'from.address'
+                        accessorKey: 'from'
                     },
                     {
                         header: 'To',
-                        accessorKey: 'to.address'
+                        accessorKey: 'to'
                     },
                     {
                         accessorKey: "day",
@@ -98,7 +102,10 @@ export default function SeeOffers2() {
                         header: 'Price',
                         accessorKey: 'price'
                     },
-
+                    {
+                        header: 'Verification code',
+                        accessorKey: 'randomId'
+                    },
                 ]
 
                 }
@@ -168,10 +175,17 @@ export default function SeeOffers2() {
                 </MenuItem>,
             ]}
             renderTopToolbarCustomActions={({ table }) => {
-                const handleDeactivate = () => {
-                    table.getSelectedRowModel().flatRows.map((row) => {
-                        alert('deactivating ' + row.getValue('name'));
-                    });
+                const confirmChoice = () => {
+                   console.log(table.getSelectedRowModel().flatRows[0]._valuesCache)
+                    navigate("/seeOffers/confirmation",  { state: { selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache }});
+
+
+                    /*
+                                        table.getSelectedRowModel().flatRows.map((row) => {
+                                            alert('deactivating ' + row.getValue('name'));
+                                    }
+                    */
+
                 };
 
                 const handleActivate = () => {
@@ -189,29 +203,14 @@ export default function SeeOffers2() {
                 return (
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                         <Button
-                            color="error"
-                            disabled={!table.getIsSomeRowsSelected()}
-                            onClick={handleDeactivate}
-                            variant="contained"
-                        >
-                            Deactivate
-                        </Button>
-                        <Button
-                            color="success"
-                            disabled={!table.getIsSomeRowsSelected()}
-                            onClick={handleActivate}
-                            variant="contained"
-                        >
-                            Activate
-                        </Button>
-                        <Button
                             color="info"
                             disabled={!table.getIsSomeRowsSelected()}
-                            onClick={handleContact}
+                            onClick={confirmChoice}
                             variant="contained"
                         >
-                            Contact
+                            Confirm choice
                         </Button>
+
                     </div>
                 );
             }}

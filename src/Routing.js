@@ -7,7 +7,7 @@ import RequestForm from "./components/RequestForm";
 import SeeOffers from "./components/SeeOffers";
 import OfferForm from "./components/OfferForm";
 import SeeRequestsForm from "./components/SeeRequests";
-import Confirmation from "./components/Confirmation";
+import OfferConfirmation from "./components/OfferConfirmation";
 import RequestConfirmation from "./components/RequestConfirmation";
 import EditProfileDialog from "./components/EditProfileDialog";
 import SeeOffers1 from "./components/SeeOffers1"
@@ -26,7 +26,7 @@ function Routing() {
             <Route path="/seeOffers/*" element={<SeeOffers />} />
             <Route path="/seeOffers1" element={<SeeOffers1 />} />
             <Route path="/seeOffers2" element={<SeeOffers2 />} />
-            <Route path="/seeOffers/confirmation" element={<Confirmation/>}/>
+            <Route path="/seeOffers/confirmation" element={<OfferConfirmation/>}/>
             <Route path="/seerequests/confirmation" element={<RequestConfirmation/>}/>
             <Route path="/profile/edit" element={<Profile />}/>
         </Routes>

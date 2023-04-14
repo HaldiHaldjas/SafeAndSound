@@ -80,11 +80,7 @@ function OfferForm() {
             console.error('Invalid place object:', place);
             return;
         }
-        setPlaceToStart({
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-            address: place.formatted_address,
-        });
+        setPlaceToStart(place.formatted_address);
     }
 
     const handlePlaceToGoSelect = () => {
@@ -93,11 +89,7 @@ function OfferForm() {
             console.error('Invalid place object:', place);
             return;
         }
-        setPlaceToGo({
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-            address: place.formatted_address,
-        });
+        setPlaceToGo(place.formatted_address);
     };
 
     const getUserDocument = async () => {
