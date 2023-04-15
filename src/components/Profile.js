@@ -9,10 +9,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import EditProfileDialog from "./EditProfileDialog";
-import img13 from "../images/img13.jpg";
-import img10 from '../images/img10.jpg';
-import img2 from '../images/img2.jpg';
-import img14 from "../images/img14.jpg";
+import img1 from '../images/img1.jpg';
+
 
 
 
@@ -82,7 +80,7 @@ export default function Profile() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundImage: `url(${img10})`,
+            backgroundImage: `url(${img1})`,
             backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
 
         }}>
@@ -92,17 +90,17 @@ export default function Profile() {
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
-            backgroundImage: `url(${img14})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+            backgroundImage: `url(${img1})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
         }}>
             {isSignedIn && (
                 <div
                     style={{
-                        width: "40%",
+                        width: "45%",
                         backgroundColor: "rgba(255, 255, 255, 0.8)",
                         borderRadius: "20px",
-                        padding: "25px",
+                        padding: "35px",
                         marginTop: "-20px",
-                        marginLeft: "500px",
+                        marginLeft: "400px",
                         justifyContent: "center",
                         alignItems: "center",
                     }}>
@@ -137,9 +135,9 @@ export default function Profile() {
                 </div>
             )}
             <div style={{
-                width: "20%",
+                width: "5%",
                 position: "absolute",
-                top: "30%",
+                top: "18%",
                 left: "10%"
             }}>
                 {isSignedIn && (

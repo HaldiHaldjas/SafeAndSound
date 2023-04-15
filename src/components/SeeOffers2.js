@@ -193,8 +193,16 @@ export default function SeeOffers2() {
                             Confirm choice
                         </Button>
                         <Button
-                            color="info"
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/offer",
                                     { state: { userId: userId, isSignedIn: true } });
@@ -203,8 +211,16 @@ export default function SeeOffers2() {
                             Insert an offer
                         </Button>
                         <Button
-                            color="info"
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/profile",
                                     { state: { userId: userId, isSignedIn: true } });

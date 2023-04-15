@@ -13,11 +13,9 @@ import Profile from "./components/Profile";
 import Routing from "./Routing";
 import RequestConfirmation from "./components/RequestConfirmation";
 import img10 from './images/img10.jpg';
-import img13 from './images/img13.jpg';
 import img2 from './images/img2.jpg';
 import img1 from './images/img1.jpg';
-import { useLocation } from 'react-router-dom';
-
+import img5 from './images/img5.jpg';
 
 
 
@@ -65,7 +63,7 @@ function App() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundImage: `url(${img1})`,
+                  backgroundImage: `url(${img10})`,
                   backgroundAttachment:"fixed",
                   backgroundSize: "cover",
                   height: "100vh"
@@ -77,6 +75,7 @@ function App() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  // backgroundImage: `url(${img5})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
               }}>
               </div>
           ) : ( location.pathname === "/seeoffers/confirmation" || location.pathname === "/seerequests/confirmation") ? (
@@ -84,7 +83,7 @@ function App() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundImage: `url(${img10})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+                  // backgroundImage: `url(${img5})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
               }}>
               </div>
           ) : (

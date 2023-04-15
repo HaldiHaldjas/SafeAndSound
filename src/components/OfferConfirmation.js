@@ -4,7 +4,6 @@ import {collection, doc, getDoc, getDocs, query, where} from "firebase/firestore
 import { database } from "../config/firebase";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import img2 from "../images/img2.jpg";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -72,7 +71,7 @@ function OfferConfirmation() {
                     backgroundColor: "rgba(255, 255, 255, 0.8)",
                     borderRadius: "20px",
                     padding: "25px",
-                    marginTop: "-205px",
+                    marginTop: "1px",
                     marginLeft: "90px",
                     justifyContent: "center",
                     alignItems: "center"
@@ -87,7 +86,16 @@ function OfferConfirmation() {
                 <p>Price: {selectedOffer.price}€</p>
                 <p>Verification code: {selectedOffer.randomId}</p>
                 <Button
-                    variant="contained"
+                    variant="outlined"
+                    color="primary"
+                    sx={{ fontFamily: 'monospace',
+                        width: "180px",
+                        height: "40px",
+                        fontWeight: 600,
+                        color: "#fbf6f4",
+                        backgroundColor: "#896c63",
+                        borderRadius: "8px"
+                    }}
                     onClick={() => {
                         navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
                     }}
@@ -103,7 +111,7 @@ function OfferConfirmation() {
                     backgroundColor: "rgba(255, 255, 255, 0.8)",
                     borderRadius: "20px",
                     padding: "25px",
-                    marginTop: "-205px",
+                    marginTop: "1px",
                     marginLeft: "90px",
                     justifyContent: "center",
                     alignItems: "center"
@@ -137,7 +145,7 @@ function OfferConfirmation() {
                     open={open}
                     PaperProps={{
                         style: {
-                            backgroundColor: "rgba(255, 255, 255, 0.8)",
+                            backgroundColor: "rgba(255, 255, 255)",
                             borderRadius: "20px",
                             padding: "25px",
                             justifyContent: "center",

@@ -265,11 +265,13 @@ function OfferForm() {
                         <Button
                             variant="outlined"
                             color="primary"
-                            sx={{ ontFamily: 'monospace',
+                            sx={{ fontFamily: 'monospace',
                                 width: "180px",
                                 height: "40px",
-                                fontWeight: 600, color: "#fbf6f4",
-                                backgroundColor: "#896c63", borderRadius: "8px"
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
                             }}
                             onClick={() => {
                                 navigate("/request", { state: { userId: userId, isSignedIn: true } });
