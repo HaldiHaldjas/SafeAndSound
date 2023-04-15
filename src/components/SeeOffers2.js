@@ -170,44 +170,38 @@ export default function SeeOffers2() {
                 </MenuItem>,
             ]}
             renderTopToolbarCustomActions={({ table }) => {
-                const confirmChoice = () => {
-                    navigate("/seeoffers/confirmation",
-                        { state: { userId: userId,
-                                selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache }});
-
-                };
-                const toProfile = () => {
-                    navigate("/profile",
-                        { state: { userId: userId, isSignedIn: true } });
-                }
-
-                const toOffer = () => {
-                    navigate("/offer",
-                        { state: { userId: userId, isSignedIn: true } });
-                }
-
 
                 return (
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                         <Button
                             color="info"
                             disabled={!table.getIsSomeRowsSelected()}
-                            onClick={ confirmChoice }
                             variant="contained"
+                            onClick={() => {
+                                navigate("/seeoffers/confirmation",
+                                    { state: { userId: userId,
+                                            selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache }});
+                            }}
                         >
                             Confirm choice
                         </Button>
                         <Button
                             color="info"
-                            onClick={ toOffer }
                             variant="contained"
+                            onClick={() => {
+                                navigate("/offer",
+                                    { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             Insert an offer
                         </Button>
                         <Button
                             color="info"
-                            onClick={ toProfile }
                             variant="contained"
+                            onClick={() => {
+                                navigate("/profile",
+                                    { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             Profile
                         </Button>

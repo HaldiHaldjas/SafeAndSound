@@ -173,43 +173,37 @@ export default function SeeRequests1() {
                 </MenuItem>,
             ]}
             renderTopToolbarCustomActions={({ table }) => {
-                const confirmChoice = () => {
-                    console.log(table.getSelectedRowModel().flatRows[0]._valuesCache)
-                    navigate("/seerequests/confirmation",  { state: { selectedRequest: table.getSelectedRowModel().flatRows[0]._valuesCache }});
-
-                };
-                const toProfile = () => {
-                    navigate("/profile",
-                        { state: { userId: userId, isSignedIn: true } });
-                }
-
-                const toRequest = () => {
-                    navigate("/request",
-                        { state: { userId: userId, isSignedIn: true } });
-                }
-
 
                 return (
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                         <Button
                             color="info"
                             disabled={!table.getIsSomeRowsSelected()}
-                            onClick={confirmChoice}
                             variant="contained"
+                            onClick={() => {
+                                navigate("/seerequests/confirmation",
+                                    { state: { selectedRequest: table.getSelectedRowModel().flatRows[0]._valuesCache }});
+                            }}
                         >
                             Confirm choice
                         </Button>
                         <Button
                             color="info"
-                            onClick={ toRequest }
                             variant="contained"
+                            onClick={() => {
+                                navigate("/request",
+                                    { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             Insert a request
                         </Button>
                         <Button
                             color="info"
-                            onClick={ toProfile }
                             variant="contained"
+                            onClick={() => {
+                                navigate("/profile",
+                                    { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             Profile
                         </Button>

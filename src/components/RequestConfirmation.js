@@ -35,10 +35,6 @@ function RequestConfirmation() {
         getUserDocument();
     }, [])
 
-    const toProfile = () => {
-        navigate("/profile", { state: { userId: userData.userId, isSignedIn: true } });
-    }
-
 
     return (
         <div style={{
@@ -85,7 +81,10 @@ function RequestConfirmation() {
                 <p>User's phone: {userData.user_phone}</p>
                 <Button
                     variant="contained"
-                    onClick={toProfile}>
+                    onClick={() => {
+                        navigate("/profile", { state: { userId: userData.userId, isSignedIn: true } });
+                    }}
+                    >
                     User's profile
                 </Button>
             </div>

@@ -114,18 +114,6 @@ export default function RequestForm() {
         getUserDocument(userId);
     },[]);
 
-    const toProfile = () => {
-        navigate("/profile", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeOffers = () => {
-        navigate("/seeOffers", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeRequests = () => {
-        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
-    }
-
 
     return (
         <div style={{
@@ -240,7 +228,10 @@ export default function RequestForm() {
                         width: "50%" }}>
                          <Button
                              variant="contained"
-                             onClick={toProfile}>
+                             onClick={() => {
+                                 navigate("/profile", { state: { userId: userId, isSignedIn: true } });
+                             }}
+                             >
                              Go to profile
                          </Button>
                         <br /><br />
@@ -251,16 +242,18 @@ export default function RequestForm() {
                         <br /><br />
                         <Button
                             variant="contained"
-
-                            onClick={toSeeOffers}
+                            onClick={() => {
+                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             All offers
                         </Button>
                         <br /><br />
                         <Button
                             variant="contained"
-
-                            onClick={toSeeRequests}
+                            onClick={() => {
+                                navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             All requests
                         </Button>

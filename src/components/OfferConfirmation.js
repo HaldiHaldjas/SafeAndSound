@@ -36,13 +36,6 @@ function OfferConfirmation() {
         getUserDocument();
         }, [])
 
-    const toProfile = () => {
-        navigate("/profile", { state: { userId: driverData.userId, isSignedIn: true } });
-    }
-
-
-
-
     return (
         <div style={{
             width: "100%",
@@ -89,7 +82,10 @@ function OfferConfirmation() {
                     <p>Driver's phone: {driverData.user_phone}</p>
                     <Button
                         variant="contained"
-                        onClick={toProfile}>
+                        onClick={() => {
+                            navigate("/profile", { state: { userId: driverData.userId, isSignedIn: true } });
+                        }}
+                        >
                         Driver's profile
                     </Button>
             </div>

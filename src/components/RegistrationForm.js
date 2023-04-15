@@ -72,11 +72,6 @@ export default function RegistrationForm() {
         )
     }
 
-    const toSignin = () => {
-        navigate("/signin");
-    }
-
-
     return (
         <div>
             {isRegistered ? (
@@ -198,7 +193,10 @@ export default function RegistrationForm() {
                                         width: "180px",
                                         height: "40px",
                                         color: '#fbf6f4',}}
-                                    onClick={ toSignin }>
+                                    onClick={() => {
+                                        navigate("/signin");
+                                    }}
+                                    >
                                 Back to signing in
                             </Button>
                         </div>

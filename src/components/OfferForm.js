@@ -111,22 +111,6 @@ function OfferForm() {
         getUserDocument(userId);
     }, []);
 
-    const toProfile = () => {
-        navigate("/profile", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toRequest = () => {
-        navigate("/request", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeOffers = () => {
-        navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeRequests = () => {
-        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
-    }
-
     return (
         <div style={{
             width: "100%",
@@ -271,7 +255,9 @@ function OfferForm() {
                                 backgroundColor: "#896c63",
                                 width: "180px",
                                 height: "40px"}}
-                            onClick={ toProfile }
+                            onClick={() => {
+                                navigate("/profile", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             Go to profile
                         </Button>
@@ -285,7 +271,9 @@ function OfferForm() {
                                 backgroundColor: "#896c63",
                                 width: "180px",
                                 height: "40px"}}
-                            onClick={ toRequest }
+                            onClick={() => {
+                                navigate("/request", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             Insert a request
                         </Button>
@@ -310,8 +298,9 @@ function OfferForm() {
                                 backgroundColor: "#896c63",
                                 width: "180px",
                                 height: "40px"}}
-                            onClick={ toSeeOffers }
-
+                            onClick={() => {
+                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             All offers
                         </Button>
@@ -325,7 +314,9 @@ function OfferForm() {
                                 backgroundColor: "#896c63",
                                 width: "180px",
                                 height: "40px"}}
-                            onClick={ toSeeRequests }
+                            onClick={() => {
+                                navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             All requests
                         </Button>

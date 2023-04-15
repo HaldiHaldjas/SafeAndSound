@@ -71,24 +71,7 @@ export default function Profile() {
                     isUserDriver: isUserDriver
                 } });
     }
-
-
-    const toRequest = () => {
-        navigate("/request", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toOffer = () => {
-        navigate("/offer", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeOffers = () => {
-        navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeRequests = () => {
-        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
-    }
-
+    
     function handleClose() {
         setOpen(false)
     }
@@ -172,7 +155,9 @@ export default function Profile() {
                                     fontWeight: 'bold',
                                     borderWidth: '2px',
                                 }}
-                                onClick={ toOffer }
+                                onClick={() => {
+                                    navigate("/offer", { state: { userId: userId, isSignedIn: true } });
+                                }}
                             >
                                 Insert an offer
                             </Button>
@@ -192,7 +177,9 @@ export default function Profile() {
                                 fontWeight: 'bold',
                                 borderWidth: '2px',
                             }}
-                            onClick={ toRequest }
+                            onClick={() => {
+                                navigate("/request", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             Insert a request
                         </Button>
@@ -211,8 +198,9 @@ export default function Profile() {
                                 fontWeight: 'bold',
                                 borderWidth: '2px',
                             }}
-                            onClick={ toSeeOffers }
-                        >
+                            onClick={() => {
+                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                            }}                        >
                             All offers
                         </Button>
                         <br /><br />
@@ -230,8 +218,9 @@ export default function Profile() {
                                 fontWeight: 'bold',
                                 borderWidth: '2px',
                             }}
-                            onClick={ toSeeRequests }
-                        >
+                            onClick={() => {
+                                navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
+                            }}                        >
                             All requests
                         </Button>
                         <br />
