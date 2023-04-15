@@ -232,7 +232,7 @@ export default function RequestForm() {
                                  navigate("/profile", { state: { userId: userId, isSignedIn: true } });
                              }}
                              >
-                             Go to profile
+                             Home
                          </Button>
                         <br /><br />
                         <Button variant="contained"
