@@ -12,14 +12,16 @@ import {
 import { AccountCircle, Send } from '@mui/icons-material';
 import { database } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 
 
 export default function SeeRequests1() {
 
+    const location = useLocation();
     const navigate = useNavigate();
     const [requests, setRequests] = useState([]);
+    const userId = location.state.userId;
 
 
 
@@ -171,19 +173,12 @@ export default function SeeRequests1() {
                 </MenuItem>,
             ]}
             renderTopToolbarCustomActions={({ table }) => {
-                const confirmChoice = () => {
-                    console.log(table.getSelectedRowModel().flatRows[0]._valuesCache)
-                    navigate("/seerequests/confirmation",  { state: { selectedRequest: table.getSelectedRowModel().flatRows[0]._valuesCache }});
-
-                };
-
 
                 return (
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                         <Button
                             color="info"
                             disabled={!table.getIsSomeRowsSelected()}
-                            onClick={confirmChoice}
                             variant="outlined"
                             color="primary"
                             sx={{ fontFamily: 'monospace',
@@ -192,8 +187,32 @@ export default function SeeRequests1() {
                                 fontWeight: 600, color: "#fbf6f4",
                                 backgroundColor: "#896c63", borderRadius: "8px"
                             }}
+                            onClick={() => {
+                                navigate("/seerequests/confirmation",
+                                    { state: { selectedRequest: table.getSelectedRowModel().flatRows[0]._valuesCache }});
+                            }}
                         >
                             Confirm choice
+                        </Button>
+                        <Button
+                            color="info"
+                            variant="contained"
+                            onClick={() => {
+                                navigate("/request",
+                                    { state: { userId: userId, isSignedIn: true } });
+                            }}
+                        >
+                            Insert a request
+                        </Button>
+                        <Button
+                            color="info"
+                            variant="contained"
+                            onClick={() => {
+                                navigate("/profile",
+                                    { state: { userId: userId, isSignedIn: true } });
+                            }}
+                        >
+                            Home
                         </Button>
 
                     </div>

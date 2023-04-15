@@ -4,6 +4,12 @@ import {collection, doc, getDoc, getDocs, query, where} from "firebase/firestore
 import { database } from "../config/firebase";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import img2 from "../images/img2.jpg";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import ProfileDialog from "./ProfileDialog";
+import DialogActions from "@mui/material/DialogActions";
 import img5 from "../images/img5.jpg";
 
 function OfferConfirmation() {
@@ -11,8 +17,13 @@ function OfferConfirmation() {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedOffer = location?.state?.selectedOffer;
-    const [driverPic, setDriverPic] = useState("")
-    const [driverData, setDriverData] = useState("")
+    const userId = location?.state?.userId;
+    const [driverPic, setDriverPic] = useState("");
+    const [driverData, setDriverData] = useState("");
+    const [open, setOpen] = useState(false);
+    const [selectedDriverId, setSelectedDriverId] = useState("");
+
+
 
 
 
@@ -36,11 +47,15 @@ function OfferConfirmation() {
         getUserDocument();
         }, [])
 
-    const toProfile = () => {
-        navigate("/profile", { state: { userId: driverData.userId, isSignedIn: true } });
+    function handleClose() {
+        setOpen(false) // false at the beginning and false when closed
     }
 
+    function showUserInfo(userId) {
 
+        setSelectedDriverId(userId)
+        setOpen(true)
+    }
 
 
     return (
@@ -71,7 +86,17 @@ function OfferConfirmation() {
                 <p>Number of free spots: {selectedOffer.needed_spots}</p>
                 <p>Price: {selectedOffer.price}€</p>
                 <p>Verification code: {selectedOffer.randomId}</p>
-                </div>
+                <Button
+                    variant="contained"
+                    onClick={() => {
+                        navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                    }}
+
+                >
+                    Back
+                </Button>
+
+            </div>
             <div
                 style={{
                     width: "20%",
@@ -98,9 +123,47 @@ function OfferConfirmation() {
                             backgroundColor: "#896c63",
                             borderRadius: "8px"
                         }}
-                        onClick={toProfile}>
+                        onClick={() => {
+                            showUserInfo(driverData.userId)}}
+                        >
                         Driver's profile
                     </Button>
+
+
+                <Dialog
+                    onClose={handleClose}
+                    aria-labelledby="customized-dialog-title"
+                    fullWidth={true}
+                    open={open}
+                    PaperProps={{
+                        style: {
+                            backgroundColor: "rgba(255, 255, 255, 0.8)",
+                            borderRadius: "20px",
+                            padding: "25px",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            width: "500px"
+                        }
+                    }}
+                >
+                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                        User info
+                    </DialogTitle>
+                    <DialogContent
+                        style={{
+                            width: "900px",
+                            marginLeft: "200px"
+                        }}
+                    >
+                        <ProfileDialog
+                            userId={selectedDriverId} isSignedIn="true"/>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button autoFocus onClick={handleClose}>
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         </div>
     );

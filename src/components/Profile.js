@@ -9,6 +9,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import EditProfileDialog from "./EditProfileDialog";
+import img13 from "../images/img13.jpg";
+import img10 from '../images/img10.jpg';
+import img2 from '../images/img2.jpg';
 import img14 from "../images/img14.jpg";
 
 
@@ -70,27 +73,20 @@ export default function Profile() {
                 } });
     }
 
-
-    const toRequest = () => {
-        navigate("/request", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toOffer = () => {
-        navigate("/offer", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeOffers = () => {
-        navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeRequests = () => {
-        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
-    }
-
     function handleClose() {
         setOpen(false)
     }
     return (
+        <div style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundImage: `url(${img10})`,
+            backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+
+        }}>
+
         <div style={{
             width: "100%",
             margin: "0 auto",
@@ -160,7 +156,9 @@ export default function Profile() {
                                     backgroundColor: "#896c63",
                                     borderRadius: "8px"
                                 }}
-                                onClick={toOffer}
+                                onClick={() => {
+                                    navigate("/offer", { state: { userId: userId, isSignedIn: true } });
+                                }}
                             >
                                 Insert an offer
                             </Button>
@@ -177,7 +175,9 @@ export default function Profile() {
                                 backgroundColor: "#896c63",
                                 borderRadius: "8px"
                             }}
-                            onClick={toRequest}
+                            onClick={() => {
+                                navigate("/request", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             Insert a request
                         </Button>
@@ -193,8 +193,9 @@ export default function Profile() {
                                 backgroundColor: "#896c63",
                                 borderRadius: "8px"
                             }}
-                            onClick={toSeeOffers}
-                        >
+                            onClick={() => {
+                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                            }}                        >
                             All offers
                         </Button>
                         <br /><br />
@@ -209,15 +210,16 @@ export default function Profile() {
                                 backgroundColor: "#896c63",
                                 borderRadius: "8px"
                             }}
-                            onClick={toSeeRequests}
-                        >
+                            onClick={() => {
+                                navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
+                            }}                        >
                             All requests
                         </Button>
                         <br />
                         <br />
 
                         <Dialog
-                            onClose={handleClose}
+                            onClose={ handleClose }
                             aria-labelledby="customized-dialog-title"
                             maxWidth="100px"
                             sx={{
@@ -226,16 +228,16 @@ export default function Profile() {
                                 display: "flex",
                                 alignItems: "center"
                             }}
-                            open={open}
+                            open={ open }
                         >
-                            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                            <DialogTitle id="customized-dialog-title" onClose={ handleClose }>
                                 Edit profile information
                             </DialogTitle>
                             <DialogContent dividers>
                                 <EditProfileDialog userId={userId} isSignedIn="true"/>
                             </DialogContent>
                             <DialogActions>
-                                <Button autoFocus onClick={handleClose}>
+                                <Button autoFocus onClick={ handleClose }>
                                     Close
                                 </Button>
                             </DialogActions>
@@ -243,6 +245,7 @@ export default function Profile() {
                     </>
                 )}
             </div>
+        </div>
         </div>
     );
 

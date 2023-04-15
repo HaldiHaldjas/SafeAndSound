@@ -95,7 +95,7 @@ function Navigation() {
                             </MenuItem>
                             ) : (
                                 <MenuItem >
-                                    <Button variant='outlined' color='primary' onClick={() => navigate('home')}
+                                    <Button variant='outlined' color='primary' onClick={() => navigate('/')}
                                             sx={{ fontFamily: 'monospace',
                                                 width: "180px",
                                                 height: "40px",

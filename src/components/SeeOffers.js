@@ -40,9 +40,6 @@ function App() {
         fetchOffers();
     }, []);
 
-    const submit = () => {
-        navigate("/seeOffers/confirmation", { state: { selectedOffer: selectedOffer } });
-    }
 
     return (
         <div style={{
@@ -110,7 +107,9 @@ function App() {
                     </Table>
                     <Button
                         variant="contained"
-                        onClick={submit}
+                        onClick={() => {
+                            navigate("/seeOffers/confirmation", { state: { selectedOffer: selectedOffer } })
+                        }}
                     >
                         Confirm my choice
                     </Button>

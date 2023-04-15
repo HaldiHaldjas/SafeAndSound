@@ -29,7 +29,7 @@ function OfferForm() {
     const placeToGoRef = useRef(null);
 
 
-    const requestsCollectionRef = collection(database, "offers") // see users requests collection from database
+    const requestsCollectionRef = collection(database, "offers")
 
     const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -111,29 +111,14 @@ function OfferForm() {
         getUserDocument(userId);
     }, []);
 
-    const toProfile = () => {
-        navigate("/profile", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toRequest = () => {
-        navigate("/request", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeOffers = () => {
-        navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
-    }
-
-    const toSeeRequests = () => {
-        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
-    }
-
     return (
         <div style={{
             width: "100%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundImage: `url(${img1})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+             backgroundImage: `url(${img1})`,
+             backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
 
         }}>
             <div
@@ -150,35 +135,74 @@ function OfferForm() {
             >
                 <form id="OfferForm">
                     <h3>You would like to share your ride? Insert an offer here:</h3>
-                    <label style={{ fontSize: "12px" }}>Date of the ride:</label>
-
-                        <input type="date" style={{ borderRadius: "8px" }} onChange={(e) => setDate(e.target.value)} />
+                    <label
+                        style={{ fontSize: "12px" }}>
+                        Date of the ride:
+                    </label>
+                    <br />
+                        <input
+                            type="date"
+                            style={{ borderRadius: "8px" }}
+                            onChange={(e) =>
+                                setDate(e.target.value)} />
 
                     <LoadScript
                         googleMapsApiKey={googleMapsApiKey}
                         libraries={['places']}
-                    >
+                    ><label
+                        style={{ fontSize: "12px" }}>
+                        From:
+                    </label>
                         <Autocomplete
                             onLoad={(ref) =>  placeToStartRef.current = ref}
-                            onPlaceChanged={handlePlaceToStartSelect}
+                            onPlaceChanged={ handlePlaceToStartSelect }
                             options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
                         >
                             <input type="text" placeholder="Starting point*" style={{ borderRadius: "8px" }} />
                         </Autocomplete>
 
+                        <label
+                            style={{ fontSize: "12px" }}>
+                            To:
+                        </label>
                         <Autocomplete
                             onLoad={(ref) => placeToGoRef.current = ref}
-                            onPlaceChanged={handlePlaceToGoSelect}
+                            onPlaceChanged={ handlePlaceToGoSelect }
                             options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
                         >
                             <input type="text" placeholder="Endpoint*" style={{ borderRadius: "8px" }}/>
                         </Autocomplete>
                     </LoadScript>
-                    <label style={{ fontSize: "12px" }}>What time would you like to offer the ride? Please choose the earliest starting time:</label>
-                    <input type="time" placeholder="Departure time*" style={{ borderRadius: "8px" }} onChange={(e) => setTimeToGo(e.target.value)}/><br />
-                    <label style={{ fontSize: "12px" }}>And the latest time of arrival:</label>
-                    <input type="time" placeholder="Time of arrival*" style={{ borderRadius: "8px" }} onChange={(e) => setTimeToArrive(e.target.value)}/><br />
-                    <label style={{ fontSize: "12px" }}>How many free spots you have in your car? Insert the number:</label>
+                    <label
+                        style={{ fontSize: "12px" }}>
+                        What time would you like to offer the ride?
+                        Please choose the earliest starting time:
+                    </label>
+                    <br />
+                    <input
+                        type="time"
+                        placeholder="Departure time*"
+                        style={{ borderRadius: "8px" }}
+                        onChange={(e) =>
+                            setTimeToGo(e.target.value)}/>
+                    <br />
+                    <label
+                        style={{ fontSize: "12px" }}>
+                        The latest time of arrival:
+                    </label>
+                    <br />
+                    <input
+                        type="time"
+                        placeholder="Time of arrival*"
+                        style={{ borderRadius: "8px" }}
+                        onChange={(e) =>
+                            setTimeToArrive(e.target.value)}/>
+                    <br />
+                    <label
+                        style={{ fontSize: "12px" }}>
+                        How many free seats do you have in your car? Insert the number:
+                    </label>
+                    <br />
                     <input
                         type="number"
                         placeholder="*"
@@ -188,8 +212,15 @@ function OfferForm() {
                         max="9"
                         sx={{width: "20px"}}
                         onChange={(e) => setFreeSpots(Number(e.target.value))}/><br />
+                    <label
+                        style={{ fontSize: "12px" }}>
+                        Price for one person:
+                    </label>
+                    <br />
                     <span className="input-symbol-euro">
-                        <input placeholder="Price for one person*" style={{ borderRadius: "8px" }} type="text" onChange={(e) => setPrice(Number(e.target.value))}/><br />
+                        <input placeholder="Price*"
+                               style={{ borderRadius: "8px" }} type="text"
+                               onChange={(e) => setPrice(Number(e.target.value))}/><br />
                     </span>
                         <Button variant="outlined"
                                 color="primary"
@@ -199,7 +230,7 @@ function OfferForm() {
                                     fontWeight: 600, color: "#fbf6f4",
                                     backgroundColor: "#896c63", borderRadius: "8px"
                                 }}
-                            onClick={handleRequest}
+                            onClick={ handleRequest }
                     > Submit </Button>
                     <br />
                     {submitOffer &&
@@ -224,21 +255,25 @@ function OfferForm() {
                                 fontWeight: 600, color: "#fbf6f4",
                                 backgroundColor: "#896c63", borderRadius: "8px"
                             }}
-                            onClick={ toProfile }
+                            onClick={() => {
+                                navigate("/profile", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
-                            Go to profile
+                            Home
                         </Button>
                         <br /><br />
                         <Button
                             variant="outlined"
                             color="primary"
-                            sx={{ fontFamily: 'monospace',
+                            sx={{ ontFamily: 'monospace',
                                 width: "180px",
                                 height: "40px",
                                 fontWeight: 600, color: "#fbf6f4",
                                 backgroundColor: "#896c63", borderRadius: "8px"
                             }}
-                            onClick={ toRequest }
+                            onClick={() => {
+                                navigate("/request", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             Insert a request
                         </Button>
@@ -251,8 +286,8 @@ function OfferForm() {
                                     fontWeight: 600, color: "#fbf6f4",
                                     backgroundColor: "#896c63", borderRadius: "8px"
                                 }}
-                            // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
-                        > Previous drives </Button>
+                        > Previous drives
+                        </Button>
                         <br /><br />
                         <Button
                             variant="outlined"
@@ -263,8 +298,9 @@ function OfferForm() {
                                 fontWeight: 600, color: "#fbf6f4",
                                 backgroundColor: "#896c63", borderRadius: "8px"
                             }}
-                            onClick={ toSeeOffers }
-
+                            onClick={() => {
+                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             All offers
                         </Button>
@@ -278,7 +314,9 @@ function OfferForm() {
                                 fontWeight: 600, color: "#fbf6f4",
                                 backgroundColor: "#896c63", borderRadius: "8px"
                             }}
-                            onClick={ toSeeRequests }
+                            onClick={() => {
+                                navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
+                            }}
                         >
                             All requests
                         </Button>

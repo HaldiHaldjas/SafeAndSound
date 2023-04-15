@@ -106,14 +106,9 @@ export default function SeeOffers2() {
                         accessorKey: 'randomId'
                     },
                 ]
-
                 }
-
-
             ]
         )
-
-
 
 
     return (
@@ -129,6 +124,7 @@ export default function SeeOffers2() {
             initialState={{ showColumnFilters: true }}
             positionToolbarAlertBanner="bottom"
             renderDetailPanel={({ row }) => (
+
                 <Box
                     sx={{
                         display: 'flex',
@@ -174,33 +170,12 @@ export default function SeeOffers2() {
                 </MenuItem>,
             ]}
             renderTopToolbarCustomActions={({ table }) => {
-                const confirmChoice = () => {
-                    navigate("/seeOffers/confirmation",
-                        { state: { userId: userId,
-                                selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache }});
-
-                };
-                const toProfile = () => {
-                    navigate("/profile", { state: { userId: userId, isSignedIn: true } });
-                }
-                const handleActivate = () => {
-                    table.getSelectedRowModel().flatRows.map((row) => {
-                        alert('activating ' + row.getValue('name'));
-                    });
-                };
-
-                const handleContact = () => {
-                    table.getSelectedRowModel().flatRows.map((row) => {
-                        alert('contact ' + row.getValue('name'));
-                    });
-                };
 
                 return (
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                         <Button
                             color="info"
                             disabled={!table.getIsSomeRowsSelected()}
-                            onClick={confirmChoice}
                             sx={{ fontFamily: 'monospace',
                                 width: "180px",
                                 height: "40px",
@@ -209,9 +184,36 @@ export default function SeeOffers2() {
                                 backgroundColor: "#896c63",
                                 borderRadius: "8px"
                             }}
+                            onClick={() => {
+                                navigate("/seeoffers/confirmation",
+                                    { state: { userId: userId,
+                                            selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache }});
+                            }}
                         >
                             Confirm choice
                         </Button>
+                        <Button
+                            color="info"
+                            variant="contained"
+                            onClick={() => {
+                                navigate("/offer",
+                                    { state: { userId: userId, isSignedIn: true } });
+                            }}
+                        >
+                            Insert an offer
+                        </Button>
+                        <Button
+                            color="info"
+                            variant="contained"
+                            onClick={() => {
+                                navigate("/profile",
+                                    { state: { userId: userId, isSignedIn: true } });
+                            }}
+                        >
+                            Home
+                        </Button>
+
+
                     </div>
                 );
             }}
