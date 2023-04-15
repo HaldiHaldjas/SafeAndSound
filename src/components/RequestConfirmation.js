@@ -16,6 +16,7 @@ function RequestConfirmation() {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedRequest = location?.state?.selectedRequest;
+    const userId = location?.state?.userId;
     const [userData, setUserData] = useState("")
     const [open, setOpen] = useState(false)
     const [selectedUserId, setSelectedUserId] = useState("")
@@ -81,7 +82,17 @@ function RequestConfirmation() {
             <p>Latest arrival: {selectedRequest.timeframe_2}</p>
             <p>Number of the spots: {selectedRequest.needed_spots}</p>
                 <p>Verification code: {selectedRequest.randomId}</p>
-        </div>
+                <Button
+                    variant="contained"
+                    onClick={() => {
+                        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
+                    }}
+
+                >
+                    Back
+                </Button>
+
+            </div>
             <div
                 style={{
                     width: "20%",

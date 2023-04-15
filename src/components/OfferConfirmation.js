@@ -16,10 +16,11 @@ function OfferConfirmation() {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedOffer = location?.state?.selectedOffer;
-    const [driverPic, setDriverPic] = useState("")
-    const [driverData, setDriverData] = useState("")
-    const [open, setOpen] = useState(false)
-    const [selectedDriverId, setSelectedDriverId] = useState("")
+    const userId = location?.state?.userId;
+    const [driverPic, setDriverPic] = useState("");
+    const [driverData, setDriverData] = useState("");
+    const [open, setOpen] = useState(false);
+    const [selectedDriverId, setSelectedDriverId] = useState("");
 
 
 
@@ -84,7 +85,17 @@ function OfferConfirmation() {
                 <p>Number of free spots: {selectedOffer.needed_spots}</p>
                 <p>Price: {selectedOffer.price}€</p>
                 <p>Verification code: {selectedOffer.randomId}</p>
-                </div>
+                <Button
+                    variant="contained"
+                    onClick={() => {
+                        navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                    }}
+
+                >
+                    Back
+                </Button>
+
+            </div>
             <div
                 style={{
                     width: "20%",
@@ -107,6 +118,7 @@ function OfferConfirmation() {
                         >
                         Driver's profile
                     </Button>
+
 
                 <Dialog
                     onClose={handleClose}

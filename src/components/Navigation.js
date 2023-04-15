@@ -64,19 +64,9 @@ function Navigation() {
                                 </Button>
                             </MenuItem>
                         </>
-                            ) : ( location.pathname === "/seerequests" ) ? (
-                            <MenuItem >
-                                <Button variant='outlined' color='primary' onClick={() => navigate('request')}
-                                        sx={{ fontFamily: 'monospace',
-                                            fontWeight: 600,
-                                            color: "#fbf6f4",
-                                            backgroundColor: "#896c63" }}>
-                                    Back
-                                </Button>
-                            </MenuItem>
-                        ) : (
+                            ) : (
                                 <MenuItem >
-                                    <Button variant='outlined' color='primary' onClick={() => navigate('home')}
+                                    <Button variant='outlined' color='primary' onClick={() => navigate('/')}
                                             sx={{
                                                 fontFamily: 'monospace',
                                                 fontWeight: 600, color: "#fbf6f4",

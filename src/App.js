@@ -29,7 +29,7 @@ function App() {
              <main>
                 <Routing />
              </main>
-          {(location.pathname === "/home" || location.pathname === "/" ) ? (
+          {(location.pathname === "/" ) ? (
 
           <div style={{
               display: "flex",

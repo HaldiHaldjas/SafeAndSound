@@ -203,7 +203,7 @@ export default function SeeOffers2() {
                                     { state: { userId: userId, isSignedIn: true } });
                             }}
                         >
-                            Profile
+                            Home
                         </Button>
 
 
