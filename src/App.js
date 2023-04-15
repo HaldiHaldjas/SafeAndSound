@@ -57,8 +57,7 @@ function App() {
                       Our app connects you with a network of cars near you. Say goodbye to the hassle of car ownership and hello to the freedom of car sharing.</p>
       </div>
       </div>
-          ):( location.pathname === "/signin" || location.pathname === "/register" ||
-              location.pathname === "/request" || location.pathname === "/offer") ? (
+          ):( location.pathname === "/signin" || location.pathname === "/register" ) ? (
               <div style={{
                   display: "flex",
                   alignItems: "center",
@@ -69,6 +68,13 @@ function App() {
                   height: "100vh"
               }}>
           </div>
+          ) : ( location.pathname === "/offer" || location.pathname === "/request") ? (
+              <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+              }}>
+              </div>
           ) : ( location.pathname === "/seeoffers/confirmation" || location.pathname === "/seerequests/confirmation") ? (
               <div style={{
                   display: "flex",

@@ -149,23 +149,42 @@ export default function RequestForm() {
                 }}
             >
                     <form id="RequestForm">
-                        <h3>Do you need a ride? Insert your request here:</h3>
-                        <label style={{ fontSize: "12px" }}>Date of the ride:</label>
-                        <input type="date" placeholder="Day" onChange={(e) => setDate(e.target.value)}/>
+                        <h3>Do you need a ride?
+                            <br />
+                            Insert your request here:</h3>
+                        <label
+                            style={{ fontSize: "12px" }}>
+                            Date of the ride:
+                        </label>
+                        <br />
+                        <input
+                            type="date"
+                            placeholder="Day"
+                            onChange={(e) =>
+                                setDate(e.target.value)}/>
 
                         <LoadScript
                             googleMapsApiKey={googleMapsApiKey}
                             libraries={['places']}
                         >
-                        <Autocomplete
+                            <label
+                                style={{ fontSize: "12px" }}>
+                                From:
+                            </label>
+                            <Autocomplete
                             onLoad={(ref) =>  placeToStartRef.current = ref}
                             onPlaceChanged={handlePlaceToStartSelect}
-                            options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
+                            options=
+                                {{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
                         >
                             <input type="text" placeholder="Starting point*" />
                         </Autocomplete>
 
-                        <Autocomplete
+                            <label
+                                style={{ fontSize: "12px" }}>
+                                To:
+                            </label>
+                            <Autocomplete
                             onLoad={(ref) => placeToGoRef.current = ref}
                             onPlaceChanged={handlePlaceToGoSelect}
                             options={{ componentRestrictions: { country: "ee" }, types: ["(regions)"] }}
@@ -173,17 +192,32 @@ export default function RequestForm() {
                             <input type="text" placeholder="Endpoint*" />
                         </Autocomplete>
                         </LoadScript>
-                        <label style={{ fontSize: "12px" }}>What time do you need the ride? Please choose the earliest starting time:</label>
+                        <label style={{ fontSize: "12px" }}>
+                            What time do you need the ride?
+                            <br />
+                            Please choose the earliest starting time:
+                        </label>
+                        <br />
                         <input
                             type="time"
                             placeholder="Departure time*"
-                            onChange={(e) => setTimeToGo(e.target.value)}/><br />
-                        <label style={{ fontSize: "12px" }}>And the latest time of arrival:</label>
+                            onChange={(e) => setTimeToGo(e.target.value)}/>
+                        <br />
+                        <label
+                            style={{ fontSize: "12px" }}>
+                            The latest time of arrival:
+                        </label>
+                        <br />
                         <input
                             type="time"
                             placeholder="Time of arrival*"
-                            onChange={(e) => setTimeToArrive(e.target.value)}/><br />
-                        <label style={{ fontSize: "12px" }}>How many people need the ride? Insert the number:</label>
+                            onChange={(e) => setTimeToArrive(e.target.value)}/>
+                        <br />
+                        <label
+                            style={{ fontSize: "12px" }}>
+                            How many people need the ride? Insert the number:
+                        </label>
+                        <br />
                         <input
                             type="number"
                             placeholder="*"
@@ -191,9 +225,7 @@ export default function RequestForm() {
                             max="9"
                             style={{width: "20px"}}
                             onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
-
                         <Button variant="contained"
-
                                 onClick={handleRequest}
                         > Submit </Button>
                         <br />

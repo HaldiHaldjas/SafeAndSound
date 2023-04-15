@@ -8,6 +8,7 @@ import { useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import '../App.css'
+import img1 from '../images/img1.jpg';
 
 function OfferForm() {
 
@@ -132,8 +133,8 @@ function OfferForm() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            // backgroundImage: `url(${img1})`,
-            // backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+             backgroundImage: `url(${img1})`,
+             backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
 
         }}>
             <div
