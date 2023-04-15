@@ -72,7 +72,6 @@ export default function SeeRequestsForm() {
 
     function showUserInfo(userId) {
 
-        console.log(userId)
         setSelectedUserId(userId)
         setOpen(true)
     }

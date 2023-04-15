@@ -4,6 +4,11 @@ import img2 from "../images/img2.jpg";
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {database} from "../config/firebase";
 import Button from "@mui/material/Button";
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import ProfileDialog from "./ProfileDialog";
 
 
 function RequestConfirmation() {
@@ -12,6 +17,10 @@ function RequestConfirmation() {
     const location = useLocation();
     const selectedRequest = location?.state?.selectedRequest;
     const [userData, setUserData] = useState("")
+    const [open, setOpen] = useState(false)
+    const [selectedUserId, setSelectedUserId] = useState("")
+
+
 
 
     const getUserDocument = async () => {
@@ -35,6 +44,15 @@ function RequestConfirmation() {
         getUserDocument();
     }, [])
 
+    function handleClose() {
+        setOpen(false) // false at the beginning and false when closed
+    }
+
+    function showUserInfo(userId) {
+
+        setSelectedUserId(userId)
+        setOpen(true)
+    }
 
     return (
         <div style={{
@@ -81,12 +99,46 @@ function RequestConfirmation() {
                 <p>User's phone: {userData.user_phone}</p>
                 <Button
                     variant="contained"
-                    onClick={() => {
-                        navigate("/profile", { state: { userId: userData.userId, isSignedIn: true } });
-                    }}
+                    onClick={() => showUserInfo(userData.userId)}
                     >
                     User's profile
                 </Button>
+
+                <Dialog
+                    onClose={handleClose}
+                    aria-labelledby="customized-dialog-title"
+                    fullWidth={true}
+                    open={open}
+                    PaperProps={{
+                        style: {
+                            backgroundColor: "rgba(255, 255, 255, 0.8)",
+                            borderRadius: "20px",
+                            padding: "25px",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            width: "500px"
+                        }
+                    }}
+                >
+                <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                    User info
+                </DialogTitle>
+                <DialogContent
+                    style={{
+                        width: "900px",
+                        marginLeft: "200px"
+                    }}
+                >
+                    <ProfileDialog
+                        userId={selectedUserId} isSignedIn="true"/>
+                </DialogContent>
+                <DialogActions>
+                    <Button autoFocus onClick={handleClose}>
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
             </div>
         </div>
     );
