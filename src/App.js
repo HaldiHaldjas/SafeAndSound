@@ -15,7 +15,7 @@ import RequestConfirmation from "./components/RequestConfirmation";
 import img10 from './images/img10.jpg';
 import img13 from './images/img13.jpg';
 import img2 from './images/img2.jpg';
-import img1 from './images/img2.jpg';
+import img1 from './images/img1.jpg';
 
 
 
@@ -68,7 +68,8 @@ function App() {
                   height: "100vh"
               }}>
           </div>
-          ) : ( location.pathname === "/offer" || location.pathname === "/request") ? (
+          ) : ( location.pathname === "/offer" || location.pathname === "/request"
+              || location.pathname === "/profile") ? (
               <div style={{
                   display: "flex",
                   alignItems: "center",

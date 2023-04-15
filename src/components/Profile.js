@@ -9,6 +9,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import EditProfileDialog from "./EditProfileDialog";
+import img13 from "../images/img13.jpg";
+import img10 from '../images/img10.jpg';
+import img2 from '../images/img2.jpg';
 
 
 
@@ -91,19 +94,29 @@ export default function Profile() {
     }
     return (
         <div style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundImage: `url(${img10})`,
+            backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+
+        }}>
+
+        <div style={{
             width: "70%",
             margin: "0 auto",
             display: "flex",
             alignItems: "center"
+
         }}>
             {isSignedIn && (
                 <div
                     style={{
                         width: "50%",
-                        backgroundColor: "#fff",
+                        backgroundColor: "rgba(255, 255, 255, 0.8)",
                         borderRadius: "10px",
                         padding: "20px",
-                        marginTop: "40px",
                         marginLeft: "40px"
                     }}>
                     <img src={profilePic} />
@@ -251,6 +264,7 @@ export default function Profile() {
                     </>
                 )}
             </div>
+        </div>
         </div>
     );
 
