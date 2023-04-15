@@ -134,7 +134,7 @@ export default function Profile() {
                             fontWeight: 'bold',
                             borderWidth: '2px',
                         }}
-                        onClick={editProfile}
+                        onClick={ editProfile }
                     >
                         Edit
                     </Button>
@@ -159,7 +159,7 @@ export default function Profile() {
                                     fontWeight: 'bold',
                                     borderWidth: '2px',
                                 }}
-                                onClick={toOffer}
+                                onClick={ toOffer }
                             >
                                 Insert an offer
                             </Button>
@@ -179,7 +179,7 @@ export default function Profile() {
                                 fontWeight: 'bold',
                                 borderWidth: '2px',
                             }}
-                            onClick={toRequest}
+                            onClick={ toRequest }
                         >
                             Insert a request
                         </Button>
@@ -198,7 +198,7 @@ export default function Profile() {
                                 fontWeight: 'bold',
                                 borderWidth: '2px',
                             }}
-                            onClick={toSeeOffers}
+                            onClick={ toSeeOffers }
                         >
                             All offers
                         </Button>
@@ -217,7 +217,7 @@ export default function Profile() {
                                 fontWeight: 'bold',
                                 borderWidth: '2px',
                             }}
-                            onClick={toSeeRequests}
+                            onClick={ toSeeRequests }
                         >
                             All requests
                         </Button>
@@ -225,7 +225,7 @@ export default function Profile() {
                         <br />
 
                         <Dialog
-                            onClose={handleClose}
+                            onClose={ handleClose }
                             aria-labelledby="customized-dialog-title"
                             maxWidth="100px"
                             sx={{
@@ -234,16 +234,16 @@ export default function Profile() {
                                 display: "flex",
                                 alignItems: "center"
                             }}
-                            open={open}
+                            open={ open }
                         >
-                            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                            <DialogTitle id="customized-dialog-title" onClose={ handleClose }>
                                 Edit profile information
                             </DialogTitle>
                             <DialogContent dividers>
                                 <EditProfileDialog userId={userId} isSignedIn="true"/>
                             </DialogContent>
                             <DialogActions>
-                                <Button autoFocus onClick={handleClose}>
+                                <Button autoFocus onClick={ handleClose }>
                                     Close
                                 </Button>
                             </DialogActions>

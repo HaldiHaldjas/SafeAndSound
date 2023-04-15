@@ -106,14 +106,9 @@ export default function SeeOffers2() {
                         accessorKey: 'randomId'
                     },
                 ]
-
                 }
-
-
             ]
         )
-
-
 
 
     return (
@@ -175,7 +170,7 @@ export default function SeeOffers2() {
             ]}
             renderTopToolbarCustomActions={({ table }) => {
                 const confirmChoice = () => {
-                    navigate("/seeOffers/confirmation",
+                    navigate("/seeoffers/confirmation",
                         { state: { userId: userId,
                                 selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache }});
 
@@ -183,17 +178,8 @@ export default function SeeOffers2() {
                 const toProfile = () => {
                     navigate("/profile", { state: { userId: userId, isSignedIn: true } });
                 }
-                const handleActivate = () => {
-                    table.getSelectedRowModel().flatRows.map((row) => {
-                        alert('activating ' + row.getValue('name'));
-                    });
-                };
 
-                const handleContact = () => {
-                    table.getSelectedRowModel().flatRows.map((row) => {
-                        alert('contact ' + row.getValue('name'));
-                    });
-                };
+
 
                 return (
                     <div style={{ display: 'flex', gap: '0.5rem' }}>

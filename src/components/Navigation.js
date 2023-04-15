@@ -74,18 +74,7 @@ function Navigation() {
                                     Back
                                 </Button>
                             </MenuItem>
-                        ) : ( location.pathname === "/seeoffers" ) ? (
-                            <MenuItem >
-                                <Button variant='outlined' color='primary' onClick={() => navigate('offer')}
-                                        sx={{ fontFamily: 'monospace',
-                                            fontWeight: 600,
-                                            color: "#fbf6f4",
-                                            backgroundColor: "#896c63" }}>
-                                    Back
-                                </Button>
-
-                            </MenuItem>
-                            ) : (
+                        ) : (
                                 <MenuItem >
                                     <Button variant='outlined' color='primary' onClick={() => navigate('home')}
                                             sx={{
