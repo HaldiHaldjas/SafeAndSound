@@ -12,14 +12,16 @@ import {
 import { AccountCircle, Send } from '@mui/icons-material';
 import { database } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 
 
 export default function SeeRequests1() {
 
+    const location = useLocation();
     const navigate = useNavigate();
     const [requests, setRequests] = useState([]);
+    const userId = location.state.userId;
 
 
 
@@ -176,6 +178,15 @@ export default function SeeRequests1() {
                     navigate("/seerequests/confirmation",  { state: { selectedRequest: table.getSelectedRowModel().flatRows[0]._valuesCache }});
 
                 };
+                const toProfile = () => {
+                    navigate("/profile",
+                        { state: { userId: userId, isSignedIn: true } });
+                }
+
+                const toRequest = () => {
+                    navigate("/request",
+                        { state: { userId: userId, isSignedIn: true } });
+                }
 
 
                 return (
@@ -187,6 +198,20 @@ export default function SeeRequests1() {
                             variant="contained"
                         >
                             Confirm choice
+                        </Button>
+                        <Button
+                            color="info"
+                            onClick={ toRequest }
+                            variant="contained"
+                        >
+                            Insert a request
+                        </Button>
+                        <Button
+                            color="info"
+                            onClick={ toProfile }
+                            variant="contained"
+                        >
+                            Profile
                         </Button>
 
                     </div>

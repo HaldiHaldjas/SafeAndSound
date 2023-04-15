@@ -124,6 +124,7 @@ export default function SeeOffers2() {
             initialState={{ showColumnFilters: true }}
             positionToolbarAlertBanner="bottom"
             renderDetailPanel={({ row }) => (
+
                 <Box
                     sx={{
                         display: 'flex',
@@ -176,9 +177,14 @@ export default function SeeOffers2() {
 
                 };
                 const toProfile = () => {
-                    navigate("/profile", { state: { userId: userId, isSignedIn: true } });
+                    navigate("/profile",
+                        { state: { userId: userId, isSignedIn: true } });
                 }
 
+                const toOffer = () => {
+                    navigate("/offer",
+                        { state: { userId: userId, isSignedIn: true } });
+                }
 
 
                 return (
@@ -186,17 +192,24 @@ export default function SeeOffers2() {
                         <Button
                             color="info"
                             disabled={!table.getIsSomeRowsSelected()}
-                            onClick={confirmChoice}
+                            onClick={ confirmChoice }
                             variant="contained"
                         >
                             Confirm choice
                         </Button>
                         <Button
-                            color="success"
-                            nClick={toProfile}
+                            color="info"
+                            onClick={ toOffer }
                             variant="contained"
                         >
-                            Back
+                            Insert an offer
+                        </Button>
+                        <Button
+                            color="info"
+                            onClick={ toProfile }
+                            variant="contained"
+                        >
+                            Profile
                         </Button>
 
 
