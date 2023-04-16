@@ -248,7 +248,7 @@ export default function RequestForm() {
                                  backgroundColor: "#896c63", borderRadius: "8px"
                              }}
                              onClick={() => {
-                                 navigate("/profile", { state: { userId: userId, isSignedIn: true } });
+                                 navigate("/profile", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                              }}
                              >
                              Home
@@ -276,7 +276,7 @@ export default function RequestForm() {
                                 backgroundColor: "#896c63", borderRadius: "8px"
                             }}
                             onClick={() => {
-                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             All offers
@@ -292,7 +292,7 @@ export default function RequestForm() {
                                 backgroundColor: "#896c63", borderRadius: "8px"
                             }}
                             onClick={() => {
-                                navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
+                                navigate("/seerequests", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             All requests

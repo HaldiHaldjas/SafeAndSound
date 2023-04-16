@@ -15,6 +15,7 @@ function OfferForm() {
     const navigate = useNavigate();
     const location = useLocation();
     const userId = location.state?.userId;
+    const isSignedIn = location.state?.isSignedIn;
     const [userData, setUserData] = useState(null)
     const [date, setDate] = useState("")
     const [placeToStart, setPlaceToStart] = useState("")
@@ -134,7 +135,9 @@ function OfferForm() {
                 }}
             >
                 <form id="OfferForm">
-                    <h3>You would like to share your ride? Insert an offer here:</h3>
+                    <h3>You would like to share your ride?
+                        <br />
+                        Insert an offer here:</h3>
                     <label
                         style={{ fontSize: "12px" }}>
                         Date of the ride:
@@ -176,6 +179,7 @@ function OfferForm() {
                     <label
                         style={{ fontSize: "12px" }}>
                         What time would you like to offer the ride?
+                        <br />
                         Please choose the earliest starting time:
                     </label>
                     <br />
@@ -200,7 +204,9 @@ function OfferForm() {
                     <br />
                     <label
                         style={{ fontSize: "12px" }}>
-                        How many free seats do you have in your car? Insert the number:
+                        How many free seats do you have in your car?
+                        <br />
+                        Insert the number:
                     </label>
                     <br />
                     <input
@@ -256,7 +262,7 @@ function OfferForm() {
                                 backgroundColor: "#896c63", borderRadius: "8px"
                             }}
                             onClick={() => {
-                                navigate("/profile", { state: { userId: userId, isSignedIn: true } });
+                                navigate("/profile", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             Home
@@ -274,7 +280,7 @@ function OfferForm() {
                                 borderRadius: "8px"
                             }}
                             onClick={() => {
-                                navigate("/request", { state: { userId: userId, isSignedIn: true } });
+                                navigate("/request", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             Insert a request
@@ -301,7 +307,7 @@ function OfferForm() {
                                 backgroundColor: "#896c63", borderRadius: "8px"
                             }}
                             onClick={() => {
-                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             All offers
@@ -317,7 +323,7 @@ function OfferForm() {
                                 backgroundColor: "#896c63", borderRadius: "8px"
                             }}
                             onClick={() => {
-                                navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
+                                navigate("/seerequests", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             All requests

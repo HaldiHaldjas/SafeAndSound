@@ -6,7 +6,6 @@ import {
     ListItemIcon,
     MenuItem,
     Typography,
-    TextField,
     Avatar,
 } from '@mui/material';
 import { AccountCircle, Send } from '@mui/icons-material';
@@ -22,7 +21,7 @@ export default function SeeRequests1() {
     const navigate = useNavigate();
     const [requests, setRequests] = useState([]);
     const userId = location.state.userId;
-
+    const isSignedIn = location.state?.isSignedIn;
 
 
     async function fetchRequests() {
@@ -190,7 +189,9 @@ export default function SeeRequests1() {
                             }}
                             onClick={() => {
                                 navigate("/seerequests/confirmation",
-                                    { state: { selectedRequest: table.getSelectedRowModel().flatRows[0]._valuesCache }});
+                                    { state:
+                                            { selectedRequest:
+                                                table.getSelectedRowModel().flatRows[0]._valuesCache }});
                             }}
                         >
                             Confirm choice
@@ -208,7 +209,7 @@ export default function SeeRequests1() {
                             }}
                             onClick={() => {
                                 navigate("/request",
-                                    { state: { userId: userId, isSignedIn: true } });
+                                    { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             Insert a request
@@ -226,7 +227,7 @@ export default function SeeRequests1() {
                             }}
                             onClick={() => {
                                 navigate("/profile",
-                                    { state: { userId: userId, isSignedIn: true } });
+                                    { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             Home

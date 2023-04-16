@@ -15,14 +15,12 @@ import { database } from "../config/firebase";
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
         const [userId, setUserId] = useState("")
-        const [isSignedIn, setIsSignedIn] = useState(false);
 
         const signIn = async () => {
             try {
 
                 await signInWithEmailAndPassword(auth, email, password)
                     .then(() => {
-                        setIsSignedIn(true);
                         navigate("/profile", { state: { userId: userId, isSignedIn: true } });
 
                     });

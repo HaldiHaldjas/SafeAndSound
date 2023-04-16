@@ -21,7 +21,8 @@ export default function SeeOffers2() {
     const location = useLocation();
     const navigate = useNavigate();
     const [offers, setOffers] = useState([]);
-    const userId = location.state.userId;
+    const userId = location?.state?.userId;
+    const isSignedIn = location?.state?.isSignedIn;
 
     async function fetchOffers() {
         const querySnapshot = await getDocs(collection(database, "offers"));
@@ -187,7 +188,8 @@ export default function SeeOffers2() {
                             onClick={() => {
                                 navigate("/seeoffers/confirmation",
                                     { state: { userId: userId,
-                                            selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache }});
+                                            selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache,
+                                        isSignedIn: {isSignedIn}}});
                             }}
                         >
                             Confirm choice
@@ -205,7 +207,7 @@ export default function SeeOffers2() {
                             }}
                             onClick={() => {
                                 navigate("/offer",
-                                    { state: { userId: userId, isSignedIn: true } });
+                                    { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             Insert an offer
@@ -223,7 +225,7 @@ export default function SeeOffers2() {
                             }}
                             onClick={() => {
                                 navigate("/profile",
-                                    { state: { userId: userId, isSignedIn: true } });
+                                    { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             Home

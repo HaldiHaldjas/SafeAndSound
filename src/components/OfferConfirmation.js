@@ -17,6 +17,7 @@ function OfferConfirmation() {
     const location = useLocation();
     const selectedOffer = location?.state?.selectedOffer;
     const userId = location?.state?.userId;
+    const isSignedIn = location?.state?.isSignedIn;
     const [driverPic, setDriverPic] = useState("");
     const [driverData, setDriverData] = useState("");
     const [open, setOpen] = useState(false);
@@ -58,6 +59,7 @@ function OfferConfirmation() {
 
 
     return (
+
         <div style={{
             width: "100%",
             margin: "0 auto",
@@ -76,6 +78,8 @@ function OfferConfirmation() {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
+                {isSignedIn && (
+                <>
                 <h3>Your selected offer:</h3>
                 <p>Date: {selectedOffer.day}</p>
                 <p>From: {selectedOffer.from}</p>
@@ -97,14 +101,16 @@ function OfferConfirmation() {
                         borderRadius: "8px"
                     }}
                     onClick={() => {
-                        navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                        navigate("/seeoffers", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                     }}
 
                 >
                     Back
                 </Button>
-
+                </>
+                    )}
             </div>
+
             <div
                 style={{
                     width: "20%",
@@ -116,7 +122,8 @@ function OfferConfirmation() {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-
+                {isSignedIn && (
+                    <>
                     <img src={driverData.user_profile_pic}></img>
                     <p>Driver's name: {driverData.user_first_name} {driverData.user_last_name} </p>
                     <p>Driver's phone: {driverData.user_phone}</p>
@@ -164,7 +171,7 @@ function OfferConfirmation() {
                         }}
                     >
                         <ProfileDialog
-                            userId={selectedDriverId} isSignedIn="true"/>
+                            userId={selectedDriverId} isSignedIn={isSignedIn}/>
                     </DialogContent>
                     <DialogActions>
                         <Button autoFocus onClick={handleClose}>
@@ -172,6 +179,8 @@ function OfferConfirmation() {
                         </Button>
                     </DialogActions>
                 </Dialog>
+                    </>
+                    )}
             </div>
         </div>
     );

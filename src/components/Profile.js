@@ -155,7 +155,7 @@ export default function Profile() {
                                     borderRadius: "8px"
                                 }}
                                 onClick={() => {
-                                    navigate("/offer", { state: { userId: userId, isSignedIn: true } });
+                                    navigate("/offer", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                                 }}
                             >
                                 Insert an offer
@@ -174,7 +174,7 @@ export default function Profile() {
                                 borderRadius: "8px"
                             }}
                             onClick={() => {
-                                navigate("/request", { state: { userId: userId, isSignedIn: true } });
+                                navigate("/request", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}
                         >
                             Insert a request
@@ -192,7 +192,7 @@ export default function Profile() {
                                 borderRadius: "8px"
                             }}
                             onClick={() => {
-                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
+                                navigate("/seeoffers", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}                        >
                             All offers
                         </Button>
@@ -209,7 +209,7 @@ export default function Profile() {
                                 borderRadius: "8px"
                             }}
                             onClick={() => {
-                                navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
+                                navigate("/seerequests", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                             }}                        >
                             All requests
                         </Button>
@@ -232,7 +232,7 @@ export default function Profile() {
                                 Edit profile information
                             </DialogTitle>
                             <DialogContent dividers>
-                                <EditProfileDialog userId={userId} isSignedIn="true"/>
+                                <EditProfileDialog userId={userId} isSignedIn={isSignedIn}/>
                             </DialogContent>
                             <DialogActions>
                                 <Button autoFocus onClick={ handleClose }>

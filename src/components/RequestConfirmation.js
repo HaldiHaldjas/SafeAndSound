@@ -17,6 +17,7 @@ function RequestConfirmation() {
     const location = useLocation();
     const selectedRequest = location?.state?.selectedRequest;
     const userId = location?.state?.userId;
+    const isSignedIn = location?.state?.isSignedIn;
     const [userData, setUserData] = useState("")
     const [open, setOpen] = useState(false)
     const [selectedUserId, setSelectedUserId] = useState("")
@@ -94,7 +95,7 @@ function RequestConfirmation() {
                         borderRadius: "8px"
                     }}
                     onClick={() => {
-                        navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
+                        navigate("/seerequests", { state: { userId: userId, isSignedIn: {isSignedIn} } });
                     }}
 
                 >
@@ -159,7 +160,7 @@ function RequestConfirmation() {
                     }}
                 >
                     <ProfileDialog
-                        userId={selectedUserId} isSignedIn="true"/>
+                        userId={selectedUserId} isSignedIn={isSignedIn}/>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose}>
