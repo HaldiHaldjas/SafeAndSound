@@ -85,7 +85,11 @@ import { database } from "../config/firebase";
                             width: "180px",
                             height: "40px",
                             fontWeight: 600, color: "#fbf6f4",
-                            backgroundColor: "#896c63", borderRadius: "8px"
+                            backgroundColor: "#896c63", borderRadius: "8px",
+                            "&:hover": {
+                                backgroundColor: "#ccada2",
+                                color: "#3e2723",
+                            },
                     }}>
                         Sign in
                     </Button>

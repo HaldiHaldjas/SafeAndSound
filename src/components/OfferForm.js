@@ -228,7 +228,11 @@ function OfferForm() {
                                     width: "180px",
                                     height: "40px",
                                     fontWeight: 600, color: "#fbf6f4",
-                                    backgroundColor: "#896c63", borderRadius: "8px"
+                                    backgroundColor: "#896c63", borderRadius: "8px",
+                                    "&:hover": {
+                                        backgroundColor: "#ccada2",
+                                        color: "#3e2723",
+                                    },
                                 }}
                             onClick={ handleRequest }
                     > Submit </Button>
@@ -253,7 +257,11 @@ function OfferForm() {
                                 width: "180px",
                                 height: "40px",
                                 fontWeight: 600, color: "#fbf6f4",
-                                backgroundColor: "#896c63", borderRadius: "8px"
+                                backgroundColor: "#896c63", borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
                             }}
                             onClick={() => {
                                 navigate("/profile", { state: { userId: userId, isSignedIn: true } });
@@ -271,7 +279,11 @@ function OfferForm() {
                                 fontWeight: 600,
                                 color: "#fbf6f4",
                                 backgroundColor: "#896c63",
-                                borderRadius: "8px"
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
                             }}
                             onClick={() => {
                                 navigate("/request", { state: { userId: userId, isSignedIn: true } });
@@ -286,7 +298,11 @@ function OfferForm() {
                                     width: "180px",
                                     height: "40px",
                                     fontWeight: 600, color: "#fbf6f4",
-                                    backgroundColor: "#896c63", borderRadius: "8px"
+                                    backgroundColor: "#896c63", borderRadius: "8px",
+                                    "&:hover": {
+                                        backgroundColor: "#ccada2",
+                                        color: "#3e2723",
+                                    },
                                 }}
                         > Previous drives
                         </Button>
@@ -298,7 +314,11 @@ function OfferForm() {
                                 width: "180px",
                                 height: "40px",
                                 fontWeight: 600, color: "#fbf6f4",
-                                backgroundColor: "#896c63", borderRadius: "8px"
+                                backgroundColor: "#896c63", borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
                             }}
                             onClick={() => {
                                 navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
@@ -314,7 +334,11 @@ function OfferForm() {
                                 width: "180px",
                                 height: "40px",
                                 fontWeight: 600, color: "#fbf6f4",
-                                backgroundColor: "#896c63", borderRadius: "8px"
+                                backgroundColor: "#896c63", borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
                             }}
                             onClick={() => {
                                 navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });

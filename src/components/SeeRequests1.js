@@ -186,7 +186,11 @@ export default function SeeRequests1() {
                                 fontWeight: 600,
                                 color: "#fbf6f4",
                                 backgroundColor: "#896c63",
-                                borderRadius: "8px"
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
                             }}
                             onClick={() => {
                                 navigate("/seerequests/confirmation",
@@ -204,7 +208,11 @@ export default function SeeRequests1() {
                                 fontWeight: 600,
                                 color: "#fbf6f4",
                                 backgroundColor: "#896c63",
-                                borderRadius: "8px"
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
                             }}
                             onClick={() => {
                                 navigate("/request",
@@ -222,7 +230,11 @@ export default function SeeRequests1() {
                                 fontWeight: 600,
                                 color: "#fbf6f4",
                                 backgroundColor: "#896c63",
-                                borderRadius: "8px"
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
                             }}
                             onClick={() => {
                                 navigate("/profile",
