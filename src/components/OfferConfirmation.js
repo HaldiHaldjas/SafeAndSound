@@ -86,7 +86,7 @@ function OfferConfirmation() {
                 <p>To: {selectedOffer.to}</p>
                 <p>Starting time: {selectedOffer.timeframe_1}</p>
                 <p>Latest arrival:: {selectedOffer.timeframe_2}</p>
-                <p>Number of free spots: {selectedOffer.needed_spots}</p>
+                <p>Number of free seats: {selectedOffer.needed_spots}</p>
                 <p>Price: {selectedOffer.price}€</p>
                 <p>Verification code: {selectedOffer.randomId}</p>
                 <Button
@@ -170,7 +170,7 @@ function OfferConfirmation() {
                     }}
                 >
                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                        User info
+                        Driver's info
                     </DialogTitle>
                     <DialogContent
                         style={{

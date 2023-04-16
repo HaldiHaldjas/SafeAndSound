@@ -84,7 +84,7 @@ function RequestConfirmation() {
                         <p>To: {selectedRequest.to}</p>
                         <p>Starting time: {selectedRequest.timeframe_1}</p>
                         <p>Latest arrival: {selectedRequest.timeframe_2}</p>
-                        <p>Number of the spots: {selectedRequest.needed_spots}</p>
+                        <p>Number of needed seats: {selectedRequest.needed_spots}</p>
                         <p>Verification code: {selectedRequest.randomId}</p>
                         <Button
                             variant="outlined"
@@ -165,7 +165,7 @@ function RequestConfirmation() {
                             }}
                         >
                             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                                User info
+                                User's info
                             </DialogTitle>
                             <DialogContent
                                 style={{
