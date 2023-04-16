@@ -191,7 +191,8 @@ export default function SeeRequests1() {
                                 navigate("/seerequests/confirmation",
                                     { state:
                                             { selectedRequest:
-                                                table.getSelectedRowModel().flatRows[0]._valuesCache }});
+                                                table.getSelectedRowModel().flatRows[0]._valuesCache,
+                                                isSignedIn: {isSignedIn}}});
                             }}
                         >
                             Confirm choice

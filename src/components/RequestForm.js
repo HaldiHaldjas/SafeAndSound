@@ -137,6 +137,8 @@ export default function RequestForm() {
                     alignItems: "center"
                 }}
             >
+                {isSignedIn && (
+                    <>
                     <form id="RequestForm">
                         <h3>Do you need a ride?
                             <br />
@@ -231,6 +233,8 @@ export default function RequestForm() {
                                     marginBottom: "-5px",
                                     marginLeft: "10px"}}></CheckIcon>}
                     </form>
+                    </>
+                    )}
                     </div>
                     <div style={{
                         width: "5%",
@@ -238,6 +242,8 @@ export default function RequestForm() {
                         top: "18%",
                         left: "10%"
                     }}>
+                        {isSignedIn && (
+                            <>
                          <Button
                              variant="outlined"
                              color="primary"
@@ -297,7 +303,8 @@ export default function RequestForm() {
                         >
                             All requests
                         </Button>
-
+                            </>
+                            )}
                 </div>
         </div>
     )

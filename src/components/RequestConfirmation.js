@@ -18,6 +18,7 @@ function RequestConfirmation() {
     const selectedRequest = location?.state?.selectedRequest;
     const userId = location?.state?.userId;
     const isSignedIn = location?.state?.isSignedIn;
+    console.log(isSignedIn)
     const [userData, setUserData] = useState("")
     const [open, setOpen] = useState(false)
     const [selectedUserId, setSelectedUserId] = useState("")
@@ -75,33 +76,36 @@ function RequestConfirmation() {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                <h3>Your selected request:</h3>
-                <p>Date: {selectedRequest.day}</p>
-                <p>From: {selectedRequest.from}</p>
-                <p>To: {selectedRequest.to}</p>
-                <p>Starting time: {selectedRequest.timeframe_1}</p>
-                <p>Latest arrival: {selectedRequest.timeframe_2}</p>
-                <p>Number of the spots: {selectedRequest.needed_spots}</p>
-                <p>Verification code: {selectedRequest.randomId}</p>
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    sx={{ fontFamily: 'monospace',
-                        width: "180px",
-                        height: "40px",
-                        fontWeight: 600,
-                        color: "#fbf6f4",
-                        backgroundColor: "#896c63",
-                        borderRadius: "8px"
-                    }}
-                    onClick={() => {
-                        navigate("/seerequests", { state: { userId: userId, isSignedIn: {isSignedIn} } });
-                    }}
+                {isSignedIn && (
+                    <>
+                    <h3>Your selected request:</h3>
+                    <p>Date: {selectedRequest.day}</p>
+                    <p>From: {selectedRequest.from}</p>
+                    <p>To: {selectedRequest.to}</p>
+                    <p>Starting time: {selectedRequest.timeframe_1}</p>
+                    <p>Latest arrival: {selectedRequest.timeframe_2}</p>
+                    <p>Number of the spots: {selectedRequest.needed_spots}</p>
+                    <p>Verification code: {selectedRequest.randomId}</p>
+                    <Button
+                        variant="outlined"
+                        color="primary"
+                        sx={{ fontFamily: 'monospace',
+                            width: "180px",
+                            height: "40px",
+                            fontWeight: 600,
+                            color: "#fbf6f4",
+                            backgroundColor: "#896c63",
+                            borderRadius: "8px"
+                        }}
+                        onClick={() => {
+                            navigate("/seerequests", { state: { userId: userId, isSignedIn: {isSignedIn} } });
+                        }}
 
-                >
-                    Back
-                </Button>
-
+                    >
+                        Back
+                    </Button>
+                </>
+                    )}
             </div>
             <div
                 style={{
@@ -114,61 +118,64 @@ function RequestConfirmation() {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
+                {isSignedIn && (
+                    <>
 
-                <img src={userData.user_profile_pic}></img>
-                <p>User's name: {userData.user_first_name} {userData.user_last_name} </p>
-                <p>User's phone: {userData.user_phone}</p>
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    sx={{ fontFamily: 'monospace',
-                        width: "180px",
-                        height: "40px",
-                        fontWeight: 600,
-                        color: "#fbf6f4",
-                        backgroundColor: "#896c63",
-                        borderRadius: "8px"
-                    }}
-                    onClick={() => showUserInfo(userData.userId)}
-                    >
-                    User's profile
-                </Button>
+                        <img src={userData.user_profile_pic}></img>
+                        <p>User's name: {userData.user_first_name} {userData.user_last_name} </p>
+                        <p>User's phone: {userData.user_phone}</p>
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
+                            onClick={() => showUserInfo(userData.userId)}
+                            >
+                            User's profile
+                        </Button>
 
-                <Dialog
-                    onClose={handleClose}
-                    aria-labelledby="customized-dialog-title"
-                    fullWidth={true}
-                    open={open}
-                    PaperProps={{
-                        style: {
-                            backgroundColor: "rgba(255, 255, 255)",
-                            borderRadius: "20px",
-                            padding: "25px",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            width: "500px"
-                        }
-                    }}
-                >
-                <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    User info
-                </DialogTitle>
-                <DialogContent
-                    style={{
-                        width: "900px",
-                        marginLeft: "200px"
-                    }}
-                >
-                    <ProfileDialog
-                        userId={selectedUserId} isSignedIn={isSignedIn}/>
-                </DialogContent>
-                <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
-                        Close
-                    </Button>
-                </DialogActions>
-            </Dialog>
-
+                        <Dialog
+                            onClose={handleClose}
+                            aria-labelledby="customized-dialog-title"
+                            fullWidth={true}
+                            open={open}
+                            PaperProps={{
+                                style: {
+                                    backgroundColor: "rgba(255, 255, 255)",
+                                    borderRadius: "20px",
+                                    padding: "25px",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    width: "500px"
+                                }
+                            }}
+                        >
+                        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                            User info
+                        </DialogTitle>
+                        <DialogContent
+                            style={{
+                                width: "900px",
+                                marginLeft: "200px"
+                            }}
+                        >
+                            <ProfileDialog
+                                userId={selectedUserId} isSignedIn={isSignedIn}/>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button autoFocus onClick={handleClose}>
+                                Close
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </>
+                    )}
             </div>
         </div>
     );

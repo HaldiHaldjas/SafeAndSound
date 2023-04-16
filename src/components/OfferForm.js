@@ -134,7 +134,9 @@ function OfferForm() {
                     alignItems: "center"
                 }}
             >
-                <form id="OfferForm">
+                {isSignedIn && (
+                    <>
+                    <form id="OfferForm">
                     <h3>You would like to share your ride?
                         <br />
                         Insert an offer here:</h3>
@@ -245,6 +247,8 @@ function OfferForm() {
                                 marginBottom: "-5px",
                                 marginLeft: "10px"}}></CheckIcon>}
                 </form>
+                    </>
+                    )}
                     </div>
                     <div style={{
                         width: "5%",
@@ -252,6 +256,8 @@ function OfferForm() {
                         top: "18%",
                         left: "10%"
                     }}>
+                        {isSignedIn && (
+                            <>
                         <Button
                             variant="outlined"
                             color="primary"
@@ -328,6 +334,8 @@ function OfferForm() {
                         >
                             All requests
                         </Button>
+                            </>
+                            )}
             </div>
         </div>
     )
