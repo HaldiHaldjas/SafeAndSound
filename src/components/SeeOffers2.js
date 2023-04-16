@@ -12,7 +12,6 @@ import { AccountCircle, Send } from '@mui/icons-material';
 import { database } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigate, useLocation} from "react-router-dom";
-import dog from "../images/dog.jpg";
 
 
 
