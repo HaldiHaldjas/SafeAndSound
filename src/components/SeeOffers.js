@@ -1,123 +1,267 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
+import MaterialReactTable from 'material-react-table';
+import {
+    Box,
+    Button,
+    ListItemIcon,
+    MenuItem,
+    Typography,
+    Avatar,
+} from '@mui/material';
+import { AccountCircle, Send } from '@mui/icons-material';
 import { database } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import  Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
-import { useNavigate} from "react-router-dom";
-import img5 from "../images/img5.jpg";
+import { useNavigate, useLocation} from "react-router-dom";
 
-function App() {
 
+
+export default function SeeOffers() {
+
+    const location = useLocation();
     const navigate = useNavigate();
     const [offers, setOffers] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [selectedIds, setSelectedIds] = useState([]);
-    const [selectedOffer, setSelectedOffer] = useState(null);
+    const userId = location?.state?.userId;
+    const isSignedIn = location?.state?.isSignedIn;
 
-
-    const handleCheckbox = (event, id) => {
-        if (event.target.checked) {
-            setSelectedIds((prevSelectedIds) => [...prevSelectedIds, id]);
-            setSelectedOffer(offers.find((offer) => offer.id === id));
-
-        } else {
-            setSelectedIds((prevSelectedIds) => prevSelectedIds.filter((selectedId) => selectedId !== id));
-            setSelectedOffer(null);
-        }
-    };
     async function fetchOffers() {
         const querySnapshot = await getDocs(collection(database, "offers"));
         const newData = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
         setOffers(newData);
-        setLoading(false); // set loading state to false when data is fetched
     }
+
+
+
     useEffect(() => {
         fetchOffers();
-    }, []);
+
+    }, [])
+
+
+
+        const columns = useMemo(
+            () => [
+
+                {
+                id: "Here we display offers from verified drivers",
+                header: "Offers",
+                columns: [
+                    {
+                     accessorFn: (row) => `${row.user_first_name} ${row.user_last_name}`, //accessorFn used to join multiple data into a single cell
+                     id: 'name', //id is still required when using accessorFn instead of accessorKey
+                     header: 'Driver',
+                     size: 250,
+                        Cell: ({ renderedCellValue, row }) => (
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '1rem',
+                            }}
+                        >
+
+                            <Avatar
+
+                                alt="avatar"
+                                height={30}
+                                src={row.original.user_profile_pic}
+                                loading="lazy"
+                                style={{borderRadius: '50%' }}
+                            />
+
+                            {/* using renderedCellValue instead of cell.getValue() preserves filter match highlighting */}
+                            <span>{renderedCellValue}</span>
+                        </Box>
+                    ),
+                    },
+                                       {
+                        header: 'From:',
+                        accessorKey: 'from'
+                    },
+                    {
+                        header: 'To:',
+                        accessorKey: 'to'
+                    },
+                    {
+                        accessorKey: "day",
+                        header: "Day:",
+                    },
+                    {
+                        header: 'Starting time:',
+                        accessorKey: 'timeframe_1'
+                    },
+                    {
+                        header: 'Latest time of arrival:',
+                        accessorKey: 'timeframe_2'
+                    },
+                    {
+                        header: 'Free seats:',
+                        accessorKey: 'needed_spots'
+                    },
+                    {
+                        header: 'Price:',
+                        accessorKey: 'price'
+                    },
+                    {
+                        header: 'Verification code:',
+                        accessorKey: 'randomId'
+                    },
+                ]
+                }
+            ]
+        )
 
 
     return (
-        <div style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundImage: `url(${img5})`,
-            backgroundAttachment: "fixed",
-            backgroundSize: "cover",
-            height: "100vh"
-        }}>
-            <div
-                style={{
-                    width: "50%",
-                    backgroundColor: "rgba(255, 255, 255, 0.8)",
-                    borderRadius: "20px",
-                    padding: "8px",
-                    marginTop: "1px",
-                    marginLeft: "40px",
-                    justifyContent: "center",
-                    alignItems: "center"
-                }}
-            >
-        <div className="App">
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <>
-                    <h3>Here we display offers from verified drivers</h3>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>From:</TableCell>
-                                <TableCell>To:</TableCell>
-                                <TableCell>Timeframe 1</TableCell>
-                                <TableCell>Timeframe 2</TableCell>
-                                <TableCell>Free spots</TableCell>
-                                <TableCell>Price</TableCell>
-                                <TableCell>Verification code</TableCell>
-                                <TableCell>
-                                    <Checkbox />
-                                </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {offers.map((offer) => (
-                                <TableRow key={offer.id}>
-                                    <TableCell>{offer.from && offer.from.address}</TableCell>
-                                    <TableCell>{offer.to && offer.to.address}</TableCell>
-                                    <TableCell>{offer.timeframe_1}</TableCell>
-                                    <TableCell>{offer.timeframe_2}</TableCell>
-                                    <TableCell>{offer.free_spots}</TableCell>
-                                    <TableCell>{offer.price}€</TableCell>
-                                    <TableCell>{offer.verif_code}</TableCell>
-                                    <TableCell>
-                                        <Checkbox
-                                            checked={selectedIds.includes(offer.id)}
-                                            onChange={(event) => handleCheckbox(event, offer.id)}
-                                        />
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                    <Button
-                        variant="contained"
-                        onClick={() => {
-                            navigate("/seeOffers/confirmation", { state: { selectedOffer: selectedOffer } })
+        <MaterialReactTable
+            columns={columns}
+            data={offers}
+            enableColumnFilterModes
+            enableColumnOrdering
+            enableGrouping
+            enablePinning
+            enableRowActions
+            enableRowSelection
+            initialState={{ showColumnFilters: true }}
+            positionToolbarAlertBanner="bottom"
+            renderDetailPanel={({ row }) => (
+
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'left',
+                        alignItems: 'center',
+                    }}
+                >
+
+                    <img
+                        alt="avatar"
+                        src={row.original.user_profile_pic}
+                        loading="lazy"
+                        style={{
+                            borderRadius: '50%',
+                            marginLeft: "200px"
                         }}
-                    >
-                        Confirm my choice
-                    </Button>
-                </>
+                    />
+                    <Box sx={{
+                        textAlign: 'left',
+                        marginLeft: "130px"
+                    }}>
+                        <Typography variant="h4">{row._valuesCache.name}</Typography>
+                        <Typography variant="h5">
+                            Free seats: {row._valuesCache.needed_spots}
+                            <br />
+                            Price per person: {row._valuesCache.price}€
+                            <br />
+
+                        </Typography>
+                    </Box>
+                </Box>
             )}
-        </div>
-        </div>
-        </div>
+            renderRowActionMenuItems={({ closeMenu }) => [
+                <MenuItem
+                    key={0}
+                    onClick={() => {
+                        // View profile logic...
+                        closeMenu();
+                    }}
+                    sx={{ m: 0 }}
+                >
+                    <ListItemIcon>
+                        <AccountCircle />
+                    </ListItemIcon>
+                    View Profile
+                </MenuItem>,
+                <MenuItem
+                    key={1}
+                    onClick={() => {
+                        // Send email logic...
+                        closeMenu();
+                    }}
+                    sx={{ m: 0 }}
+                >
+                    <ListItemIcon>
+                        <Send />
+                    </ListItemIcon>
+                    Send Email
+                </MenuItem>,
+            ]}
+            renderTopToolbarCustomActions={({ table }) => {
+
+                return (
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <Button
+                            color="info"
+                            disabled={!table.getIsSomeRowsSelected()}
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
+                            }}
+                            onClick={() => {
+                                navigate("/seeoffers/confirmation",
+                                    { state: { userId: userId,
+                                            selectedOffer: table.getSelectedRowModel().flatRows[0]._valuesCache,
+                                        isSignedIn: {isSignedIn}}});
+                            }}
+                        >
+                            Confirm choice
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
+                            }}
+                            onClick={() => {
+                                navigate("/offer",
+                                    { state: { userId: userId, isSignedIn: {isSignedIn} } });
+                            }}
+                        >
+                            Insert an offer
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
+                            }}
+                            onClick={() => {
+                                navigate("/profile",
+                                    { state: { userId: userId, isSignedIn: {isSignedIn} } });
+                            }}
+                        >
+                            Home
+                        </Button>
+
+
+                    </div>
+                );
+            }}
+        />
     );
-}
-export default App;
+};
