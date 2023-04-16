@@ -78,38 +78,35 @@ function RequestConfirmation() {
                 }}>
                 {isSignedIn && (
                     <>
-                    <h3>Your selected request:</h3>
-                    <p>Date: {selectedRequest.day}</p>
-                    <p>From: {selectedRequest.from}</p>
-                    <p>To: {selectedRequest.to}</p>
-                    <p>Starting time: {selectedRequest.timeframe_1}</p>
-                    <p>Latest arrival: {selectedRequest.timeframe_2}</p>
-                    <p>Number of the spots: {selectedRequest.needed_spots}</p>
-                    <p>Verification code: {selectedRequest.randomId}</p>
-                    <Button
-                        variant="outlined"
-                        color="primary"
-                        sx={{ fontFamily: 'monospace',
-                            width: "180px",
-                            height: "40px",
-                            fontWeight: 600,
-                            color: "#fbf6f4",
-                            backgroundColor: "#896c63",
-                            borderRadius: "8px",
-                            "&:hover": {
-                                backgroundColor: "#ccada2",
-                                color: "#3e2723",
-                            },
-                        }}
-                        onClick={() => {
-                            navigate("/seerequests", { state: { userId: userId, isSignedIn: {isSignedIn} } });
-                        }}
+                        <h3>Your selected request:</h3>
+                        <p>Date: {selectedRequest.day}</p>
+                        <p>From: {selectedRequest.from}</p>
+                        <p>To: {selectedRequest.to}</p>
+                        <p>Starting time: {selectedRequest.timeframe_1}</p>
+                        <p>Latest arrival: {selectedRequest.timeframe_2}</p>
+                        <p>Number of the spots: {selectedRequest.needed_spots}</p>
+                        <p>Verification code: {selectedRequest.randomId}</p>
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
+                            onClick={() => {
+                                navigate("/seerequests", { state: { userId: userId, isSignedIn: {isSignedIn} } });
+                            }}
 
-                    >
-                        Back
-                    </Button>
-                </>
-                    )}
+                        >
+                            Back
+                        </Button>
+                    </>
+                )}
+            </div>
             <div
                 style={{
                     width: "20%",
@@ -136,14 +133,10 @@ function RequestConfirmation() {
                                 fontWeight: 600,
                                 color: "#fbf6f4",
                                 backgroundColor: "#896c63",
-                                borderRadius: "8px",
-                                "&:hover": {
-                                    backgroundColor: "#ccada2",
-                                    color: "#3e2723",
-                                },
+                                borderRadius: "8px"
                             }}
                             onClick={() => showUserInfo(userData.userId)}
-                            >
+                        >
                             User's profile
                         </Button>
 
@@ -163,26 +156,26 @@ function RequestConfirmation() {
                                 }
                             }}
                         >
-                        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                            User info
-                        </DialogTitle>
-                        <DialogContent
-                            style={{
-                                width: "900px",
-                                marginLeft: "200px"
-                            }}
-                        >
-                            <ProfileDialog
-                                userId={selectedUserId} isSignedIn={isSignedIn}/>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button autoFocus onClick={handleClose}>
-                                Close
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
-                </>
-                    )}
+                            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                                User info
+                            </DialogTitle>
+                            <DialogContent
+                                style={{
+                                    width: "900px",
+                                    marginLeft: "200px"
+                                }}
+                            >
+                                <ProfileDialog
+                                    userId={selectedUserId} isSignedIn={isSignedIn}/>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button autoFocus onClick={handleClose}>
+                                    Close
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </>
+                )}
             </div>
         </div>
     );
