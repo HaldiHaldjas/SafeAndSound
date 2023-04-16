@@ -7,8 +7,8 @@ import { googleMapsApiKey } from "../config/config";
 import { useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
+import img1 from "../images/img1.jpg";
 import '../App.css'
-import img1 from '../images/img1.jpg';
 
 function OfferForm() {
 
@@ -127,8 +127,8 @@ function OfferForm() {
                     backgroundColor: "rgba(255, 255, 255, 0.8)",
                     borderRadius: "20px",
                     padding: "25px",
-                    marginTop: "1px",
-                    marginLeft: "90px",
+                    marginTop: "-20px",
+                    marginLeft: "40px",
                     justifyContent: "center",
                     alignItems: "center"
                 }}
@@ -225,11 +225,11 @@ function OfferForm() {
                         <Button variant="outlined"
                                 color="primary"
                                 sx={{ fontFamily: 'monospace',
-                                    fontWeight: 600,
-                                    color: "#fbf6f4",
-                                    backgroundColor: "#896c63",
                                     width: "180px",
-                                    height: "40px"}}
+                                    height: "40px",
+                                    fontWeight: 600, color: "#fbf6f4",
+                                    backgroundColor: "#896c63", borderRadius: "8px"
+                                }}
                             onClick={ handleRequest }
                     > Submit </Button>
                     <br />
@@ -241,20 +241,20 @@ function OfferForm() {
                 </form>
                     </div>
                     <div style={{
-                        width: "10%",
+                        width: "5%",
                         position: "absolute",
-                        top: "15%",
-                        right: "10%",
+                        top: "18%",
+                        left: "10%"
                     }}>
                         <Button
                             variant="outlined"
                             color="primary"
                             sx={{ fontFamily: 'monospace',
-                                fontWeight: 600,
-                                color: "#fbf6f4",
-                                backgroundColor: "#896c63",
                                 width: "180px",
-                                height: "40px"}}
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/profile", { state: { userId: userId, isSignedIn: true } });
                             }}
@@ -266,11 +266,13 @@ function OfferForm() {
                             variant="outlined"
                             color="primary"
                             sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
                                 fontWeight: 600,
                                 color: "#fbf6f4",
                                 backgroundColor: "#896c63",
-                                width: "180px",
-                                height: "40px"}}
+                                borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/request", { state: { userId: userId, isSignedIn: true } });
                             }}
@@ -281,11 +283,11 @@ function OfferForm() {
                         <Button variant="outlined"
                                 color="primary"
                                 sx={{ fontFamily: 'monospace',
-                                    fontWeight: 600,
-                                    color: "#fbf6f4",
-                                    backgroundColor: "#896c63",
                                     width: "180px",
-                                    height: "40px"}}
+                                    height: "40px",
+                                    fontWeight: 600, color: "#fbf6f4",
+                                    backgroundColor: "#896c63", borderRadius: "8px"
+                                }}
                         > Previous drives
                         </Button>
                         <br /><br />
@@ -293,11 +295,11 @@ function OfferForm() {
                             variant="outlined"
                             color="primary"
                             sx={{ fontFamily: 'monospace',
-                                fontWeight: 600,
-                                color: "#fbf6f4",
-                                backgroundColor: "#896c63",
                                 width: "180px",
-                                height: "40px"}}
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
                             }}
@@ -309,11 +311,11 @@ function OfferForm() {
                             variant="outlined"
                             color="primary"
                             sx={{ fontFamily: 'monospace',
-                                fontWeight: 600,
-                                color: "#fbf6f4",
-                                backgroundColor: "#896c63",
                                 width: "180px",
-                                height: "40px"}}
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
                             }}

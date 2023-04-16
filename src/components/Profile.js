@@ -9,9 +9,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import EditProfileDialog from "./EditProfileDialog";
-import img13 from "../images/img13.jpg";
-import img10 from '../images/img10.jpg';
-import img2 from '../images/img2.jpg';
+import img1 from '../images/img1.jpg';
+
 
 
 
@@ -71,7 +70,7 @@ export default function Profile() {
                     isUserDriver: isUserDriver
                 } });
     }
-    
+
     function handleClose() {
         setOpen(false)
     }
@@ -81,26 +80,29 @@ export default function Profile() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundImage: `url(${img10})`,
+            backgroundImage: `url(${img1})`,
             backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
 
         }}>
 
         <div style={{
-            width: "70%",
+            width: "100%",
             margin: "0 auto",
             display: "flex",
-            alignItems: "center"
-
+            alignItems: "center",
+            backgroundImage: `url(${img1})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
         }}>
             {isSignedIn && (
                 <div
                     style={{
-                        width: "50%",
+                        width: "45%",
                         backgroundColor: "rgba(255, 255, 255, 0.8)",
-                        borderRadius: "10px",
-                        padding: "20px",
-                        marginLeft: "40px"
+                        borderRadius: "20px",
+                        padding: "35px",
+                        marginTop: "-20px",
+                        marginLeft: "400px",
+                        justifyContent: "center",
+                        alignItems: "center",
                     }}>
                     <img src={profilePic} />
                     <h1>{firstName} {lastName}</h1>
@@ -116,44 +118,41 @@ export default function Profile() {
                     )}
                     <br />
                    <Button
-                        variant="contained"
-                        sx={{
-                            marginTop: "10px",
-                            fontFamily: 'monospace',
-                            backgroundColor: "#774e3f",
-                            "&:hover": {
-                                backgroundColor: "#ccada2",
-                                color: "#3e2723",
-                            },
-                            width: "80px",
-                            height: "40px",
-                            fontWeight: 'bold',
-                            borderWidth: '2px',
-                        }}
-                        onClick={ editProfile }
+                       variant="outlined"
+                       color="primary"
+                       sx={{ fontFamily: 'monospace',
+                           width: "180px",
+                           height: "40px",
+                           fontWeight: 600,
+                           color: "#fbf6f4",
+                           backgroundColor: "#896c63",
+                           borderRadius: "8px"
+                       }}
+                        onClick={editProfile}
                     >
                         Edit
                     </Button>
                 </div>
             )}
             <div style={{
-                width: "50%" }}>
+                width: "5%",
+                position: "absolute",
+                top: "18%",
+                left: "10%"
+            }}>
                 {isSignedIn && (
                     <>
                         {isUserDriver && (
                             <Button
-                                variant="contained"
-                                sx={{
-                                    fontFamily: 'monospace',
-                                    backgroundColor: "#774e3f",
-                                    "&:hover": {
-                                        backgroundColor: "#ccada2",
-                                        color: "#3e2723",
-                                    },
-                                    width: "200px",
+                                variant="outlined"
+                                color="primary"
+                                sx={{ fontFamily: 'monospace',
+                                    width: "180px",
                                     height: "40px",
-                                    fontWeight: 'bold',
-                                    borderWidth: '2px',
+                                    fontWeight: 600,
+                                    color: "#fbf6f4",
+                                    backgroundColor: "#896c63",
+                                    borderRadius: "8px"
                                 }}
                                 onClick={() => {
                                     navigate("/offer", { state: { userId: userId, isSignedIn: true } });
@@ -164,18 +163,15 @@ export default function Profile() {
                         )}
                         <br /><br />
                         <Button
-                            variant="contained"
-                            sx={{
-                                fontFamily: 'monospace',
-                                backgroundColor: "#774e3f",
-                                "&:hover": {
-                                    backgroundColor: "#ccada2",
-                                    color: "#3e2723",
-                                },
-                                width: "200px",
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
                                 height: "40px",
-                                fontWeight: 'bold',
-                                borderWidth: '2px',
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
                             }}
                             onClick={() => {
                                 navigate("/request", { state: { userId: userId, isSignedIn: true } });
@@ -185,18 +181,15 @@ export default function Profile() {
                         </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
-                            sx={{
-                                fontFamily: 'monospace',
-                                backgroundColor: "#774e3f",
-                                "&:hover": {
-                                    backgroundColor: "#ccada2",
-                                    color: "#3e2723",
-                                },
-                                width: "200px",
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
                                 height: "40px",
-                                fontWeight: 'bold',
-                                borderWidth: '2px',
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
                             }}
                             onClick={() => {
                                 navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
@@ -205,18 +198,15 @@ export default function Profile() {
                         </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
-                            sx={{
-                                fontFamily: 'monospace',
-                                backgroundColor: "#774e3f",
-                                "&:hover": {
-                                    backgroundColor: "#ccada2",
-                                    color: "#3e2723",
-                                },
-                                width: "200px",
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
                                 height: "40px",
-                                fontWeight: 'bold',
-                                borderWidth: '2px',
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
                             }}
                             onClick={() => {
                                 navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });

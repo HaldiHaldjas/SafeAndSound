@@ -4,12 +4,12 @@ import {collection, doc, getDoc, getDocs, query, where} from "firebase/firestore
 import { database } from "../config/firebase";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import img2 from "../images/img2.jpg";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import ProfileDialog from "./ProfileDialog";
 import DialogActions from "@mui/material/DialogActions";
+import img5 from "../images/img5.jpg";
 
 function OfferConfirmation() {
 
@@ -63,7 +63,7 @@ function OfferConfirmation() {
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
-            backgroundImage: `url(${img2})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+            backgroundImage: `url(${img5})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
         }}>
             <div
                 style={{
@@ -86,7 +86,16 @@ function OfferConfirmation() {
                 <p>Price: {selectedOffer.price}€</p>
                 <p>Verification code: {selectedOffer.randomId}</p>
                 <Button
-                    variant="contained"
+                    variant="outlined"
+                    color="primary"
+                    sx={{ fontFamily: 'monospace',
+                        width: "180px",
+                        height: "40px",
+                        fontWeight: 600,
+                        color: "#fbf6f4",
+                        backgroundColor: "#896c63",
+                        borderRadius: "8px"
+                    }}
                     onClick={() => {
                         navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
                     }}
@@ -112,7 +121,16 @@ function OfferConfirmation() {
                     <p>Driver's name: {driverData.user_first_name} {driverData.user_last_name} </p>
                     <p>Driver's phone: {driverData.user_phone}</p>
                     <Button
-                        variant="contained"
+                        variant="outlined"
+                        color="primary"
+                        sx={{ fontFamily: 'monospace',
+                            width: "180px",
+                            height: "40px",
+                            fontWeight: 600,
+                            color: "#fbf6f4",
+                            backgroundColor: "#896c63",
+                            borderRadius: "8px"
+                        }}
                         onClick={() => {
                             showUserInfo(driverData.userId)}}
                         >
@@ -127,7 +145,7 @@ function OfferConfirmation() {
                     open={open}
                     PaperProps={{
                         style: {
-                            backgroundColor: "rgba(255, 255, 255, 0.8)",
+                            backgroundColor: "rgba(255, 255, 255)",
                             borderRadius: "20px",
                             padding: "25px",
                             justifyContent: "center",

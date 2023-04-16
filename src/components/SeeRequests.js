@@ -130,7 +130,15 @@ export default function SeeRequestsForm() {
                             <TableCell>
                                 <Button
                                     onClick={() => showUserInfo(request.userId)}
-                                    variant="outlined">User Profile</Button>
+                                    variant="outlined"
+                                    color="primary"
+                                    sx={{ fontFamily: 'monospace',
+                                        width: "180px",
+                                        height: "40px",
+                                        fontWeight: 600, color: "#fbf6f4",
+                                        backgroundColor: "#896c63", borderRadius: "8px"
+                                    }}
+                                >User Profile</Button>
                             </TableCell>
                             <TableCell>
                                 <Checkbox
@@ -144,7 +152,14 @@ export default function SeeRequestsForm() {
             </Table>
             <Button
                 onClick={submit}
-                variant="contained"
+                variant="outlined"
+                color="primary"
+                sx={{ fontFamily: 'monospace',
+                    width: "180px",
+                    height: "40px",
+                    fontWeight: 600, color: "#fbf6f4",
+                    backgroundColor: "#896c63", borderRadius: "8px"
+                }}
                 >Confirm my choice</Button>
 
 

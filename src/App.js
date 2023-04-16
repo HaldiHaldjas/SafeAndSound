@@ -13,9 +13,9 @@ import Profile from "./components/Profile";
 import Routing from "./Routing";
 import RequestConfirmation from "./components/RequestConfirmation";
 import img10 from './images/img10.jpg';
-import img13 from './images/img13.jpg';
 import img2 from './images/img2.jpg';
 import img1 from './images/img1.jpg';
+import img5 from './images/img5.jpg';
 
 
 
@@ -40,19 +40,20 @@ function App() {
 
               <div
                   style={{
-                      width: "40%",
+                      width: "35%",
                       backgroundColor: "#c8cbad",
                       borderRadius: "20px",
-                      padding: "20px",
-                      marginTop: "50px",
-                      marginLeft: "200px",
+                      padding: "25px",
+                      marginTop: "-300px",
+                      marginLeft: "-500px",
                       justifyContent: "center",
                       alignItems: "center",
-                      opacity: 0.8
+                      opacity: 0.6,
+                      color: "#4a3430"
                   }}
               >
-              <h1>Welcome to Safe & Sound,</h1>
-                  <p> the easiest and most convenient way to get around Estonia!
+              <h1 style={{ fontFamily: "monospace", fontSize: "33px" }}>Welcome to Safe & Sound,</h1>
+                  <p style={{ fontFamily: "monospace", fontSize: "18px" }}> the easiest and most convenient way to get around Estonia!
 
                       Our app connects you with a network of cars near you. Say goodbye to the hassle of car ownership and hello to the freedom of car sharing.</p>
       </div>
@@ -62,7 +63,7 @@ function App() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundImage: `url(${img1})`,
+                  backgroundImage: `url(${img10})`,
                   backgroundAttachment:"fixed",
                   backgroundSize: "cover",
                   height: "100vh"
@@ -74,6 +75,7 @@ function App() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  // backgroundImage: `url(${img5})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
               }}>
               </div>
           ) : ( location.pathname === "/seeoffers/confirmation" || location.pathname === "/seerequests/confirmation") ? (
@@ -81,7 +83,7 @@ function App() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundImage: `url(${img10})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+                  // backgroundImage: `url(${img5})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
               }}>
               </div>
           ) : (

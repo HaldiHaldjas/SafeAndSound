@@ -8,7 +8,7 @@ import { googleMapsApiKey } from "../config/config";
 import { useNavigate} from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import '../App.css'
-import img13 from "../images/img13.jpg";
+import img1 from "../images/img1.jpg";
 
 
 
@@ -121,7 +121,8 @@ export default function RequestForm() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundImage: `url(${img13})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+            backgroundImage: `url(${img1})`,
+            backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
 
         }}>
             <div
@@ -130,8 +131,8 @@ export default function RequestForm() {
                     backgroundColor: "rgba(255, 255, 255, 0.8)",
                     borderRadius: "20px",
                     padding: "25px",
-                    marginTop: "1px",
-                    marginLeft: "90px",
+                    marginTop: "-20px",
+                    marginLeft: "40px",
                     justifyContent: "center",
                     alignItems: "center"
                 }}
@@ -213,7 +214,14 @@ export default function RequestForm() {
                             max="9"
                             style={{width: "20px"}}
                             onChange={(e) => setNeededSpots(Number(e.target.value))}/><br />
-                        <Button variant="contained"
+                        <Button variant="outlined"
+                                color="primary"
+                                sx={{ fontFamily: 'monospace',
+                                    width: "180px",
+                                    height: "40px",
+                                    fontWeight: 600, color: "#fbf6f4",
+                                    backgroundColor: "#896c63", borderRadius: "8px"
+                                }}
                                 onClick={handleRequest}
                         > Submit </Button>
                         <br />
@@ -225,9 +233,20 @@ export default function RequestForm() {
                     </form>
                     </div>
                     <div style={{
-                        width: "50%" }}>
+                        width: "5%",
+                        position: "absolute",
+                        top: "18%",
+                        left: "10%"
+                    }}>
                          <Button
-                             variant="contained"
+                             variant="outlined"
+                             color="primary"
+                             sx={{ fontFamily: 'monospace',
+                                 width: "180px",
+                                 height: "40px",
+                                 fontWeight: 600, color: "#fbf6f4",
+                                 backgroundColor: "#896c63", borderRadius: "8px"
+                             }}
                              onClick={() => {
                                  navigate("/profile", { state: { userId: userId, isSignedIn: true } });
                              }}
@@ -235,13 +254,27 @@ export default function RequestForm() {
                              Home
                          </Button>
                         <br /><br />
-                        <Button variant="contained"
+                        <Button vvariant="outlined"
+                                color="primary"
+                                sx={{ fontFamily: 'monospace',
+                                    width: "180px",
+                                    height: "40px",
+                                    fontWeight: 600, color: "#fbf6f4",
+                                    backgroundColor: "#896c63", borderRadius: "8px"
+                                }}
 
                             // onClick={(e) => {setSeeDriveHistory} Go to my profile previous drives page (e.target.value)}
                         > Previous drives </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/seeoffers", { state: { userId: userId, isSignedIn: true } });
                             }}
@@ -250,7 +283,14 @@ export default function RequestForm() {
                         </Button>
                         <br /><br />
                         <Button
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600, color: "#fbf6f4",
+                                backgroundColor: "#896c63", borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/seerequests", { state: { userId: userId, isSignedIn: true } });
                             }}

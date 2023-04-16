@@ -76,32 +76,32 @@ export default function SeeRequests1() {
                         ),
                     },
                     {
-                        header: 'From',
+                        header: 'From:',
                         accessorKey: 'from'
                     },
                     {
-                        header: 'To',
+                        header: 'To:',
                         accessorKey: 'to'
                     },
                     {
                         accessorKey: "day",
-                        header: "Day",
+                        header: "Day:",
                     },
                     {
-                        header: 'Timeframe 1',
+                        header: 'Starting time:',
                         accessorKey: 'timeframe_1'
                     },
                     {
-                        header: 'Timeframe 2',
+                        header: 'Latest time of arrival:',
                         accessorKey: 'timeframe_2'
                     },
                     {
-                        header: 'Seats needed',
+                        header: 'Seats needed:',
                         accessorKey: 'needed_spots'
                     },
 
                     {
-                        header: 'Verification code',
+                        header: 'Verification code:',
                         accessorKey: 'randomId'
                     },
                 ]
@@ -148,7 +148,7 @@ export default function SeeRequests1() {
                 <MenuItem
                     key={0}
                     onClick={() => {
-                        // View profile logic...
+
                         closeMenu();
                     }}
                     sx={{ m: 0 }}
@@ -161,7 +161,7 @@ export default function SeeRequests1() {
                 <MenuItem
                     key={1}
                     onClick={() => {
-                        // Send email logic...
+
                         closeMenu();
                     }}
                     sx={{ m: 0 }}
@@ -177,9 +177,17 @@ export default function SeeRequests1() {
                 return (
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                         <Button
-                            color="info"
                             disabled={!table.getIsSomeRowsSelected()}
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/seerequests/confirmation",
                                     { state: { selectedRequest: table.getSelectedRowModel().flatRows[0]._valuesCache }});
@@ -188,8 +196,16 @@ export default function SeeRequests1() {
                             Confirm choice
                         </Button>
                         <Button
-                            color="info"
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/request",
                                     { state: { userId: userId, isSignedIn: true } });
@@ -198,8 +214,16 @@ export default function SeeRequests1() {
                             Insert a request
                         </Button>
                         <Button
-                            color="info"
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/profile",
                                     { state: { userId: userId, isSignedIn: true } });

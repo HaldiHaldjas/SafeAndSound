@@ -74,35 +74,35 @@ export default function SeeOffers2() {
                     ),
                     },
                                        {
-                        header: 'From',
+                        header: 'From:',
                         accessorKey: 'from'
                     },
                     {
-                        header: 'To',
+                        header: 'To:',
                         accessorKey: 'to'
                     },
                     {
                         accessorKey: "day",
-                        header: "Day",
+                        header: "Day:",
                     },
                     {
-                        header: 'Timeframe 1',
+                        header: 'Starting time:',
                         accessorKey: 'timeframe_1'
                     },
                     {
-                        header: 'Timeframe 2',
+                        header: 'Latest time of arrival:',
                         accessorKey: 'timeframe_2'
                     },
                     {
-                        header: 'Free seats',
+                        header: 'Free seats:',
                         accessorKey: 'needed_spots'
                     },
                     {
-                        header: 'Price',
+                        header: 'Price:',
                         accessorKey: 'price'
                     },
                     {
-                        header: 'Verification code',
+                        header: 'Verification code:',
                         accessorKey: 'randomId'
                     },
                 ]
@@ -176,7 +176,14 @@ export default function SeeOffers2() {
                         <Button
                             color="info"
                             disabled={!table.getIsSomeRowsSelected()}
-                            variant="contained"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/seeoffers/confirmation",
                                     { state: { userId: userId,
@@ -186,8 +193,16 @@ export default function SeeOffers2() {
                             Confirm choice
                         </Button>
                         <Button
-                            color="info"
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/offer",
                                     { state: { userId: userId, isSignedIn: true } });
@@ -196,8 +211,16 @@ export default function SeeOffers2() {
                             Insert an offer
                         </Button>
                         <Button
-                            color="info"
-                            variant="contained"
+                            variant="outlined"
+                            color="primary"
+                            sx={{ fontFamily: 'monospace',
+                                width: "180px",
+                                height: "40px",
+                                fontWeight: 600,
+                                color: "#fbf6f4",
+                                backgroundColor: "#896c63",
+                                borderRadius: "8px"
+                            }}
                             onClick={() => {
                                 navigate("/profile",
                                     { state: { userId: userId, isSignedIn: true } });
