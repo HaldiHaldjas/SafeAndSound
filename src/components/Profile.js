@@ -126,7 +126,11 @@ export default function Profile() {
                            fontWeight: 600,
                            color: "#fbf6f4",
                            backgroundColor: "#896c63",
-                           borderRadius: "8px"
+                           borderRadius: "8px",
+                           "&:hover": {
+                               backgroundColor: "#ccada2",
+                               color: "#3e2723",
+                           },
                        }}
                         onClick={editProfile}
                     >
@@ -152,7 +156,11 @@ export default function Profile() {
                                     fontWeight: 600,
                                     color: "#fbf6f4",
                                     backgroundColor: "#896c63",
-                                    borderRadius: "8px"
+                                    borderRadius: "8px",
+                                    "&:hover": {
+                                        backgroundColor: "#ccada2",
+                                        color: "#3e2723",
+                                    },
                                 }}
                                 onClick={() => {
                                     navigate("/offer", { state: { userId: userId, isSignedIn: {isSignedIn} } });
@@ -171,7 +179,11 @@ export default function Profile() {
                                 fontWeight: 600,
                                 color: "#fbf6f4",
                                 backgroundColor: "#896c63",
-                                borderRadius: "8px"
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
                             }}
                             onClick={() => {
                                 navigate("/request", { state: { userId: userId, isSignedIn: {isSignedIn} } });
@@ -189,7 +201,11 @@ export default function Profile() {
                                 fontWeight: 600,
                                 color: "#fbf6f4",
                                 backgroundColor: "#896c63",
-                                borderRadius: "8px"
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
                             }}
                             onClick={() => {
                                 navigate("/seeoffers", { state: { userId: userId, isSignedIn: {isSignedIn} } });
@@ -206,7 +222,11 @@ export default function Profile() {
                                 fontWeight: 600,
                                 color: "#fbf6f4",
                                 backgroundColor: "#896c63",
-                                borderRadius: "8px"
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#ccada2",
+                                    color: "#3e2723",
+                                },
                             }}
                             onClick={() => {
                                 navigate("/seerequests", { state: { userId: userId, isSignedIn: {isSignedIn} } });

@@ -183,7 +183,11 @@ export default function RegistrationForm() {
                                         width: "180px",
                                         height: "40px",
                                         fontWeight: 600, color: "#fbf6f4",
-                                        backgroundColor: "#896c63", borderRadius: "8px"
+                                        backgroundColor: "#896c63", borderRadius: "8px",
+                                        "&:hover": {
+                                            backgroundColor: "#ccada2",
+                                            color: "#3e2723",
+                                        },
                                     }}
                                     onClick={ handleRegistration }>
                                 Register
@@ -196,7 +200,11 @@ export default function RegistrationForm() {
                                         width: "180px",
                                         height: "40px",
                                         fontWeight: 600, color: "#fbf6f4",
-                                        backgroundColor: "#896c63", borderRadius: "8px"
+                                        backgroundColor: "#896c63", borderRadius: "8px",
+                                        "&:hover": {
+                                            backgroundColor: "#ccada2",
+                                            color: "#3e2723",
+                                        },
                                     }}
                                     onClick={() => {
                                         navigate("/signin");
