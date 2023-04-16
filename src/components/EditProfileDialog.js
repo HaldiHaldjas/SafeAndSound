@@ -1,12 +1,14 @@
-import React, {useState} from "react";
-import {collection, doc, getDoc, setDoc} from "firebase/firestore";
-import {database} from "../config/firebase";
-import {useLocation} from 'react-router-dom';
+import React, { useState } from "react";
+import { doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
+import {database, storage} from "../config/firebase";
+import { useLocation } from 'react-router-dom';
 import { useNavigate} from "react-router-dom";
+import { v4 } from "uuid";
 import {Button} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Box from '@mui/material/Box';
 import CheckIcon from "@mui/icons-material/Check";
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 
 export default function EditProfileDialog(props) {
     const navigate = useNavigate();
@@ -26,31 +28,73 @@ export default function EditProfileDialog(props) {
     const [newLicencePlate, setNewLicencePlate] = useState("")
     const [newLicencePic, setNewLicencePic] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [isProfilePicUploaded, setIsProfilePicUploaded] = useState(false);
+    const [isLicencePicUploaded, setIsLicencePicUploaded] = useState(false);
 
 
+    console.log(firstName)
+    console.log(lastName)
+    console.log(phone)
 
     const submit = async () => {
 
         try {
             const userRef = doc(database, "users", userId);
-            const docSnapshot = await getDoc(userRef);
 
-            const data = docSnapshot.data();
 
-            const newData = {
-            };
+                if ( newFirstName.length > 0 ) {
+                    await updateDoc(userRef,
+                        { first_name: newFirstName})
+                }
+                if ( newLastName.length > 0 ) {
+                    await updateDoc(userRef,
+                        { last_name: newLastName})
+                }
+                if ( newPhone.length > 0 ) {
+                    await updateDoc(userRef,
+                        { phone: newPhone})
+                }
+                if ( newLicencePlate.length > 0 ) {
+                    await updateDoc(userRef,
+                        { licence_plate: newLicencePlate})
+                }
+                if ( newProfilePic.length > 0 ) {
+                    await updateDoc(userRef,
+                        { profile_pic: newProfilePic})
+                }
+                if ( newLicencePic.length > 0 ) {
+                    await updateDoc(userRef,
+                        { driving_licence_pic: newLicencePic})
+                }
+            setIsSubmitted(true)
 
-            await setDoc(userRef, newData);
-            setIsSubmitted()
+
         }
+
         catch (err) {
             console.error(err);
         }
     };
 
+    const upLoadImage = (file, imageName, setImage, setIsUpLoaded) => {
+        if (file == null)
+            return;
+        const imageRef = ref(storage, `images/${imageName.name + v4() }`);
+        uploadBytes(imageRef, file).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    setImage(url);
+                    setIsUpLoaded(true);
+
+                })
+
+            }
+        )
+    }
+
+
     return (
         <div style={{
-            width: "70%",
+            width: "90%",
             margin: "0 auto",
             display: "flex",
             textAlign: "center",
@@ -78,8 +122,16 @@ export default function EditProfileDialog(props) {
                             </Grid>
                             <Grid item xs={6} sm={6} md={6} >
                                 <input placeholder={profilePic} type="file"
-                                    // onChange={(e) => setNewFirstName(e.target.value)}
-                                />
+                                       onChange={(e) =>
+                                           upLoadImage(e.target.files[0], "profilePic",
+                                               setNewProfilePic, setIsProfilePicUploaded)} />
+                                {isProfilePicUploaded &&
+                                    <CheckIcon
+                                        sx={{color: "green",
+                                            marginBottom: "-5px",
+                                            marginLeft: "-80px"}}>
+                                    </CheckIcon>}
+
                             </Grid>
                             <Grid item xs={6} sm={6} md={6} >
                                 <p>First name:</p>
@@ -125,9 +177,17 @@ export default function EditProfileDialog(props) {
                                     </Grid>
                                     <Grid item xs={6} sm={6} md={6} >
                                         <input placeholder={firstName} type="file"
-                                            // onChange={(e) => setNewFirstName(e.target.value)}
+                                               onChange={(e) =>
+                                                   upLoadImage(e.target.files[0], "licencePic",
+                                                       setNewLicencePic, setIsLicencePicUploaded)} />
 
-                                        /></Grid>
+                                        {isLicencePicUploaded &&
+                                            <CheckIcon
+                                                sx={{color: "green",
+                                                    marginBottom: "-5px",
+                                                    marginLeft: "-80px"}}>
+                                            </CheckIcon>}
+                                    </Grid>
                                 </>
 
                             )}
