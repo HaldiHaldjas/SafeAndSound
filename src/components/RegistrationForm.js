@@ -93,8 +93,7 @@ export default function RegistrationForm() {
                                 backgroundColor: "rgba(255, 255, 255, 0.8)",
                                 borderRadius: "20px",
                                 padding: "8px",
-                                marginTop: "1px",
-                                marginLeft: "40px",
+                                marginTop: "-30px",
                                 justifyContent: "center",
                                 alignItems: "center"
                             }}
@@ -216,6 +215,9 @@ export default function RegistrationForm() {
                     </div>
                 </>
             )}
+            <p style={{position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)", textAlign: "center", fontSize: "12px", color: "#896c63"}}>
+                Image by <a href="https://www.freepik.com/free-photo/beautiful-mountain-road-landscape_16694695.htm" style={{color: "#896c63"}}>Freepik</a>. All rights reserved.
+            </p>
         </div>
     )
 }

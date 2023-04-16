@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import ProfileDialog from "./ProfileDialog";
 import DialogActions from "@mui/material/DialogActions";
-import img5 from "../images/img5.jpg";
+import img2 from "../images/img2.jpg";
 
 function OfferConfirmation() {
 
@@ -65,7 +65,7 @@ function OfferConfirmation() {
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
-            backgroundImage: `url(${img5})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+            backgroundImage: `url(${img2})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
         }}>
             <div
                 style={{
@@ -73,7 +73,7 @@ function OfferConfirmation() {
                     backgroundColor: "rgba(255, 255, 255, 0.8)",
                     borderRadius: "20px",
                     padding: "25px",
-                    marginTop: "1px",
+                    marginTop: "-100px",
                     marginLeft: "90px",
                     justifyContent: "center",
                     alignItems: "center"
@@ -121,7 +121,7 @@ function OfferConfirmation() {
                     backgroundColor: "rgba(255, 255, 255, 0.8)",
                     borderRadius: "20px",
                     padding: "25px",
-                    marginTop: "1px",
+                    marginTop: "-150px",
                     marginLeft: "90px",
                     justifyContent: "center",
                     alignItems: "center"
@@ -190,6 +190,9 @@ function OfferConfirmation() {
                     </>
                     )}
             </div>
+            <p style={{position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)", textAlign: "center", fontSize: "12px", color: "#896c63"}}>
+                Image by <a href="https://www.freepik.com/free-photo/young-rural-travellers-driving-through-country-side_16694661.htm#&position=43&from_view=collections" style={{color: "#896c63"}}>Freepik</a>. All rights reserved.
+            </p>
         </div>
     );
 }

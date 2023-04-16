@@ -15,7 +15,7 @@ import RequestConfirmation from "./components/RequestConfirmation";
 import img10 from './images/img10.jpg';
 import img2 from './images/img2.jpg';
 import img1 from './images/img1.jpg';
-import img5 from './images/img5.jpg';
+
 
 
 
@@ -37,6 +37,9 @@ function App() {
               justifyContent: "center",
               backgroundImage: `url(${img2})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
           }}>
+              <p style={{position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)", textAlign: "center", fontSize: "12px", color: "#896c63"}}>
+                  Image by <a href="https://www.freepik.com/free-photo/young-rural-travellers-driving-through-country-side_16694661.htm#&position=43&from_view=collections" style={{color: "#896c63"}}>Freepik</a>. All rights reserved.
+              </p>
 
               <div
                   style={{

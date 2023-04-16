@@ -361,6 +361,9 @@ function OfferForm() {
                             </>
                             )}
             </div>
+            {/*<p style={{position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)", textAlign: "center", fontSize: "12px", color: "#896c63"}}>*/}
+            {/*    Image by <a href="https://www.freepik.com/free-photo/group-friends-trip-together_6281291.htm#query=car%20trip&position=0&from_view=keyword&track=ais" style={{color: "#896c63"}}>Freepik</a>. All rights reserved.*/}
+            {/*</p>*/}
         </div>
     )
 }
