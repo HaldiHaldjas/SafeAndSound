@@ -119,7 +119,6 @@ export default function SeeOffers() {
             enableColumnOrdering
             enableGrouping
             enablePinning
-            enableRowActions
             enableRowSelection
             initialState={{ showColumnFilters: true }}
             positionToolbarAlertBanner="bottom"
@@ -147,12 +146,10 @@ export default function SeeOffers() {
                         marginLeft: "130px"
                     }}>
                         <Typography variant="h4">{row._valuesCache.name}</Typography>
-                        <Typography variant="h5">
-                            Free seats: {row._valuesCache.needed_spots}
+                        <Typography variant="h6">
+                            {row.original.user_email}
                             <br />
-                            Price per person: {row._valuesCache.price}€
-                            <br />
-
+                            {row.original.user_phone}
                         </Typography>
                     </Box>
                 </Box>
@@ -213,7 +210,7 @@ export default function SeeOffers() {
                         >
                             Confirm choice
                         </Button>
-                        <Button
+              {/*          <Button
                             variant="outlined"
                             color="primary"
                             sx={{ fontFamily: 'monospace',
@@ -234,7 +231,7 @@ export default function SeeOffers() {
                             }}
                         >
                             Insert an offer
-                        </Button>
+                        </Button>*/}
                         <Button
                             variant="outlined"
                             color="primary"

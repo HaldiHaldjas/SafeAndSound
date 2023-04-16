@@ -122,7 +122,7 @@ export default function SeeRequests() {
             enableColumnOrdering
             enableGrouping
             enablePinning
-            enableRowActions
+
             enableRowSelection
             initialState={{ showColumnFilters: true }}
             positionToolbarAlertBanner="bottom"
@@ -149,9 +149,11 @@ export default function SeeRequests() {
                         marginLeft: "130px"
                     }}>
                         <Typography variant="h4">{row._valuesCache.name}</Typography>
-                        <Typography variant="h5">
-                            Needed seats: {row._valuesCache.needed_spots}
+
+                        <Typography variant="h6">
+                            {row.original.user_email}
                             <br />
+                            {row.original.user_phone}
                         </Typography>
                     </Box>
                 </Box>
@@ -214,7 +216,7 @@ export default function SeeRequests() {
                         >
                             Confirm choice
                         </Button>
-                        <Button
+                   {/*     <Button
                             variant="outlined"
                             color="primary"
                             sx={{ fontFamily: 'monospace',
@@ -235,7 +237,7 @@ export default function SeeRequests() {
                             }}
                         >
                             Insert a request
-                        </Button>
+                        </Button>*/}
                         <Button
                             variant="outlined"
                             color="primary"
