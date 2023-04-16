@@ -82,7 +82,10 @@ export default function RegistrationForm() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        backgroundImage: `url(${img10})`, backgroundAttachment:"fixed", backgroundSize: "cover", height: "100vh"
+                        backgroundImage: `url(${img10})`,
+                        backgroundAttachment:"fixed",
+                        backgroundSize: "cover",
+                        height: "100vh"
                     }}>
                         <div
                             style={{

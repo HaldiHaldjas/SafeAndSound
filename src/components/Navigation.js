@@ -44,8 +44,9 @@ function Navigation() {
                         justifyContent: { xs: "flex-start", md: "flex-end"},
                         alignItems: "center",
                     }}>
-                        {( location.pathname === "/home" || location.pathname === "/" || location.pathname === "/signin" || location.pathname === "/register" ) ? (
-                        <>
+                        {( location.pathname === "/home" || location.pathname === "/" ||
+                            location.pathname === "/signin" || location.pathname === "/register" ) ? (
+                            <>
                             <MenuItem >
                                 <Button variant='outlined' color='primary' onClick={() => navigate('signin')}
                                         sx={{ fontFamily: 'monospace',
@@ -68,31 +69,6 @@ function Navigation() {
                                 </Button>
                             </MenuItem>
                         </>
-                            ) : ( location.pathname === "/seerequests" ) ? (
-                            <MenuItem >
-                                <Button variant='outlined' color='primary' onClick={() => navigate('request')}
-                                        sx={{ fontFamily: 'monospace',
-                                            width: "180px",
-                                            height: "40px",
-                                            fontWeight: 600, color: "#fbf6f4",
-                                            backgroundColor: "#896c63", borderRadius: "8px"
-                                        }}>
-                                    Back
-                                </Button>
-                            </MenuItem>
-                        ) : ( location.pathname === "/seeoffers" ) ? (
-                            <MenuItem >
-                                <Button variant='outlined' color='primary' onClick={() => navigate('offer')}
-                                        sx={{ fontFamily: 'monospace',
-                                            width: "180px",
-                                            height: "40px",
-                                            fontWeight: 600, color: "#fbf6f4",
-                                            backgroundColor: "#896c63", borderRadius: "8px"
-                                        }}>
-                                    Back
-                                </Button>
-
-                            </MenuItem>
                             ) : (
                                 <MenuItem >
                                     <Button variant='outlined' color='primary' onClick={() => navigate('/')}
@@ -109,19 +85,7 @@ function Navigation() {
 
 
                         )}
-             {/*           <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('request')}>Request</Button>
-                        </MenuItem>
-                        <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('offer')}>Offer</Button>
-                        </MenuItem>
-                        <MenuItem>
-                            <Button variant='outlined' color='primary' onClick={() => navigate('seeOffers')}>Offered rides</Button>
-                        </MenuItem>
-                        <MenuItem >
-                            <Button variant='outlined' color='primary' onClick={() => navigate('seerequests')}>See requests</Button>
-                        </MenuItem>
-             */}       </Box>
+                   </Box>
 
                 </Toolbar>
             </Container>
