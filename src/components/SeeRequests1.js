@@ -12,6 +12,7 @@ import { AccountCircle, Send } from '@mui/icons-material';
 import { database } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import {useLocation, useNavigate} from "react-router-dom";
+import dog from "../images/dog.jpg";
 
 
 
@@ -64,7 +65,7 @@ export default function SeeRequests1() {
 
                                     alt="avatar"
                                     height={30}
-                                    src={row.user_profile_pic}
+                                    src={row.original.user_profile_pic}
                                     loading="lazy"
                                     style={{borderRadius: '50%' }}
                                 />
@@ -130,17 +131,30 @@ export default function SeeRequests1() {
                 <Box
                     sx={{
                         display: 'flex',
-                        justifyContent: 'space-around',
+                        justifyContent: 'left',
                         alignItems: 'center',
                     }}
                 >
 
-                    <Box sx={{ textAlign: 'center' }}>
-                        <Typography variant="h4">Signature Catch Phrase:</Typography>
-                        <Typography variant="h1">
-                            &quot;{row.original.signatureCatchPhrase}&quot;
+                    <img
+                        alt="avatar"
+                        src={row.original.user_profile_pic}
+                        loading="lazy"
+                        style={{
+                            borderRadius: '50%',
+                            marginLeft: "200px"
+                        }}
+                    />
+                    <Box sx={{
+                        textAlign: 'left',
+                        marginLeft: "130px"
+                    }}>
+                        <Typography variant="h4">{row._valuesCache.name}</Typography>
+                        <Typography variant="h5">
+                            Needed seats: {row._valuesCache.needed_spots}
+                            <br />
                         </Typography>
-                    </Box>q
+                    </Box>
                 </Box>
             )}
             renderRowActionMenuItems={({ closeMenu }) => [

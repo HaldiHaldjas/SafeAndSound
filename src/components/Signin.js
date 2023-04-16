@@ -1,8 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import { auth } from "../config/firebase";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import img10 from '../images/img10.jpg';
