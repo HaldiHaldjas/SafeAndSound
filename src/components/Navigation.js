@@ -36,7 +36,7 @@ function Navigation() {
                             textDecoration: 'none',
                         }}
                     >
-                    Safe and sound
+                    Safe & sound
                     </Typography>
 
                     <Box sx={{
